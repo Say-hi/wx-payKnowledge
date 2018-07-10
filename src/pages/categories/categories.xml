@@ -1,0 +1,26 @@
+<view class="out-wrap">
+  <navigator url="../searchHistory/searchHistory" class="search bb">
+    <view class="jwq icon-sousuo"></view>
+    <input disabled confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
+  </navigator>
+  <view class="scroll-wrap">
+    <scroll-view class="scroll-left" scroll-y="true">
+      <view class="p20 f30 bd1 tac {{ left == index ? 'leftActive' : '' }}" catchtap="leftChoose" data-index="{{ index }}" wx:for="{{ leftArr }}" data-place="{{ item.value }}" wx:key="*234">{{ item.label }}</view>
+    </scroll-view>
+
+    <scroll-view class="scroll-right" scroll-y="true">
+      <navigator url="../goodsList/goodsList" class="inside {{ right == index ? 'rightActive' : '' }}" data-id="{{ item.employeeId }}" catchtap="goDetail" data-index="{{ index }}" wx:for="123123123" wx:key="*236">
+        <view class="i-wrap tac f28 c333">
+          <image mode="aspectFill" src="{{ testImg }}"></image>
+          <view>值</view>
+        </view>
+      </navigator>
+      <view wx:if="{{ !rightArr.length }}" class="tac">还没有相关的配内容哦~</view>
+    </scroll-view>
+  </view>
+</view>
+
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

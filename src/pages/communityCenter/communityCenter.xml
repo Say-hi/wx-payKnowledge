@@ -1,0 +1,61 @@
+<view class="tab-wrap">
+  <view url="{{ item.url }}"
+             wx:for="{{ tabArr }}"
+             wx:key="*9"
+             hover-class="none"
+             catchtap="changeTab"
+             data-index="{{ index }}"
+             class="tab-item f24 c333 bd1 bt1 lh88">
+    <image mode="widthFix" src="{{ item.img }}"></image>
+    <view class="f30 c666 fw7 {{ active == index ? 'active' : '' }}">{{ item.name }}</view>
+  </view>
+</view>
+<view class="zw"></view>
+<view wx:if="{{ active == 0 }}" class="p20 comment-item bd1" wx:for="123" wx:key="*10">
+  <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+  <view class="ci-right">
+    <view class="f24 c999 ci-l-name">
+      <text>粗恶协亨</text>
+      <text class="f24">2天前</text>
+    </view>
+    <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+    <view class="f28 c999 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+    <view class="c-i-img-wrap">
+      <image wx:for="132123" wx:key="*44" data-src="{{ testImg }}" catchtap="showImg" mode="widthFix" src="{{ testImg }}"></image>
+    </view>
+    <view class="h-a-operation">
+      <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+      <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+      <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+    </view>
+  </view>
+</view>
+
+<view data-url="../quesitonDetail/quesitonDetail" catchtap="goDetail" wx:if="{{ active == 1 }}" class="hot-answer p30" wx:for="1234" wx:key="*4">
+  <view class="bd1 h-a-top">
+    <image class="br question-img" src="{{ testImg }}"></image>
+    <view class="f24 c999 question-name">阿飞撒地方</view>
+    <view class="f24 c999">660回答</view>
+  </view>
+  <view class="h-a-content">
+    <view class="h-a-c-left br fw7 tac l36 f24">?</view>
+    <view>
+      <view class="f32 c333 fw7">阿斯顿将发生的卷发撒旦法撒旦法死到发阿斯顿将发生的卷发撒旦法撒旦法死到发</view>
+      <view class="f24 h-a-c-a">
+        <text class="c999">阿斯顿发生:</text><text class="c333">阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬</text>
+      </view>
+      <view class="h-a-operation">
+        <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="zw"></view>
+<navigator url="{{ active == 0 ? '../releaseCommunity/releaseCommunity' : '../releaseQuestion/releaseQuestion' }}" class="fabu f32 main-text-color tac lh88">{{ active == 0 ? '去发布' : '去提问' }}</navigator>
+<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

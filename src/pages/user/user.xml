@@ -1,0 +1,76 @@
+<view class="p30 user-info-wrap">
+  <view class="user-info br20 p30">
+    <navigator url='../userInfo/userInfo' class="arrow">
+      <image class="br" src="{{ testImg }}"></image>
+      <view>
+        <view class="f32 c333">阿斯顿发生大</view>
+        <view class="f24 c999">还没有个性签名喔</view>
+      </view>
+    </navigator>
+    <view class="user-operation f28 c999 lh30">
+      <navigator hover-class="none" url="{{ item.url }}" class="tac u-o-item" wx:for="{{ userOperationArr }}" wx:key="543">{{ item.t }}</navigator>
+    </view>
+  </view>
+</view>
+<view class="p30 user-order-wrap bd1 bt1">
+  <navigator url="../userOrder/userOrder?type=0" class="f32 c444 fw7 bd1 arrow lh70">
+    <text>我的订单</text>
+    <text class="f28">全部订单</text>
+  </navigator>
+  <view class="tab-wrap tab-wrap3">
+    <navigator url="{{ item.active ? '': item.url }}"
+    wx:for="{{ userOrderArr }}"
+    wx:key="*5"
+    hover-class="none"
+    class="tab-item f24 c333 pr">
+    <view class="tab-nubmer pa br cfff">100</view>
+    <image mode="widthFix" src="{{ item.i }}"></image>
+    <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>
+    </navigator>
+  </view>
+</view>
+<view class="bgh20"></view>
+<view class="p30 user-order-wrap bd1 bt1">
+  <view class="f32 c444 fw7 bd1 lh70">
+    <text>我的服务</text>
+    <!--<text class="f28">全部订单</text>-->
+  </view>
+  <view class="tab-wrap tab-wrap3 tab5">
+    <navigator open-type="reLaunch" url="{{ item.active ? '': item.url }}"
+               wx:for="{{ userServiceArr }}"
+               wx:key="*5"
+               hover-class="none"
+               class="tab-item f24 c333 pr">
+      <image mode="widthFix" src="{{ item.i }}"></image>
+      <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>
+    </navigator>
+  </view>
+</view>
+<view class="bgh20"></view>
+<view class="p30 user-order-wrap tab4 bd1 bt1">
+  <view class="f32 c444 fw7 bd1 lh70">
+    <text>其他服务</text>
+    <!--<text class="f28">全部订单</text>-->
+  </view>
+  <view class="tab-wrap tab-wrap4">
+    <view wx:for="{{ userOtherServiceArr }}"
+          class="arrow tab4-item bd1 lh60 f24 c444 "
+           wx:key="*59">
+      <navigator wx:if="{{ item.type == 'url' }}" url="{{ item.url }}"
+                 hover-class="none"
+                 class="">
+        {{ item.t }}
+      </navigator>
+      <button open-type="{{ item.open_type }}" class="lh60 f24 c444" wx:if="{{ item.type == 'button' }}">
+        {{ item.t }}
+      </button>
+    </view>
+  </view>
+</view>
+<view class="bgh20"></view>
+<view class="zw"></view>
+<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

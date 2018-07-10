@@ -1,0 +1,28 @@
+<form bindsubmit="formSubmit">
+  <view class="bt1">
+    <view class="bd1 bt1 user-out">
+      <view class="user lh80 bd1 f28 c000">
+        <text class="fw7">预约人姓名</text>
+        <input name="name" placeholder="输入您的姓名" />
+      </view>
+      <view class="user lh80 f28 c000">
+        <text class="fw7">联系电话</text>
+        <input type="number" maxlength="11" name="phone" placeholder="输入您的联系电话" />
+      </view>
+    </view>
+    <view class="f28 bd1 p30 c999 co-title">请选择您符合预约的条件</view>
+    <view wx:for="{{ conditionArr }}" wx:key="87" catchtap="choose" data-index="{{ index }}" class="choose-item bd1 p30 f26 c333">
+      <view class="choose-text">{{ index * 1 + 1 }}.{{ item.t }}</view>
+      <view class="chooseBox {{ item.choose ? 'active' : '' }} pr"></view>
+    </view>
+    <textarea name="condition" class="f32 p30 bt1 bd1" placeholder="如果您还有其他更好的条件可以填写在这里....."></textarea>
+    <view class="upinfo tac">
+      <button formType="submit" class="br5 f30 cfff lh80">提交预约信息</button>
+      <view class="f28 c999">不符合条件的籽儿们不能通过审核哟</view>
+    </view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

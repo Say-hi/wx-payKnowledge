@@ -1,0 +1,118 @@
+<swiper autoplay
+        indicator-dots
+        circular
+        indicator-color="{{ indicatorColor }}"
+        indicator-active-color="{{ indicatorActiveColor }}"
+        class="banner">
+  <swiper-item  wx:for="123"
+                wx:key="*0">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+  </swiper-item>
+</swiper>
+<view class="tab-wrap">
+    <navigator url="{{ item.url }}"
+           wx:for="{{ tabArr }}"
+           wx:key="*1"
+           hover-class="none"
+           class="tab-item f24 c333">
+        <image mode="widthFix" src="{{ item.i }}"></image>
+        <view class="f24 c333">{{ item.t }}</view>
+    </navigator>
+</view>
+<view class="Adimg">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+</view>
+<view class="hot pr">
+    <view class="hot-title">
+        <image mode="widthFix" src="{{ testImg }}"></image>
+        <text class="f32 c333 fw7">热门推荐</text>
+    </view>
+</view>
+
+<view class="hot-wrap bd20">
+    <navigator url='../videoList/videoList'
+               hover-class="none"
+               class="content-title p30"><view class="f30 c333">热门课程</view><view class="arrow f24 c666">更多</view></navigator>
+    <scroll-view scroll-x
+                 class="content-scroll bb">
+        <view class="content-scroll-in">
+            <navigator
+                    wx:for="123"
+                    wx:key="*2"
+                    url="../videoDetail/videoDetail"
+                    class="content-item br6">
+                <view class="pr">
+                    <image class="br6" mode="widthFix"
+                           src="{{ testImg }}"></image>
+                    <view class="content-time pa f20 cfff">28:00</view>
+                </view>
+                <view class="f24 c333 fw7 ell1 lh64">阿斯兰的房间爱死了打开房间爱死了贷款</view>
+            </navigator>
+        </view>
+    </scroll-view>
+</view>
+
+<view class="hot-wrap bd20">
+    <navigator url='../colunmsList/colunmsList'
+               hover-class="none"
+               class="content-title p30"><view class="f30 c333">热门专栏</view><view class="arrow f24 c666">更多</view></navigator>
+    <view class="hot-zl">
+        <navigator url='../colunmsDetail/colunmsDetail' class="hot-zl-item bb" wx:for="123" wx:key="*3">
+            <view class="tac">
+                <image class="br" src="{{ testImg }}"></image>
+            </view>
+            <view class="tac f24 c333 fw7 lh60">阿斯顿发</view>
+            <view class=" f20 c999 tac ell2">阿斯顿发撒旦法撒旦阿斯顿发撒旦法撒旦</view>
+            <view class="tac f20 c999 lh60">798人关注|12篇文章</view>
+            <view class="tac">
+                <navigator class="f20 tac lh40">进入专栏</navigator>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="hot-wrap">
+    <navigator url='../communityCenter/communityCenter?active=1'
+               hover-class="none"
+               class="content-title p30"><view class="f30 c333">热门问答</view><view class="arrow f24 c666">更多</view></navigator>
+    <navigator url="../quesitonDetail/quesitonDetail" class="hot-answer p30" wx:for="1234" wx:key="*4">
+        <view class="bd1 h-a-top">
+            <image class="br question-img" src="{{ testImg }}"></image>
+            <view class="f24 c999 question-name">阿飞撒地方</view>
+            <view class="f24 c999">660回答</view>
+        </view>
+        <view class="h-a-content">
+            <view class="h-a-c-left br fw7 tac l36 f24">?</view>
+            <view>
+                <view class="f32 c333 fw7">阿斯顿将发生的卷发撒旦法撒旦法死到发阿斯顿将发生的卷发撒旦法撒旦法死到发</view>
+                <view class="f24 h-a-c-a">
+                    <text class="c999">阿斯顿发生:</text><text class="c333">阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬</text>
+                </view>
+                <view class="h-a-operation">
+                    <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+                    <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+                    <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+                </view>
+            </view>
+        </view>
+    </navigator>
+</view>
+
+<view class="zw"></view>
+<!--<view class="tab-wrap tab-wrap2 bt1 bottom-operation">-->
+    <!--<navigator open-type="reLaunch" url="{{ item.active ? '': item.url }}"-->
+               <!--wx:for="{{ tabArr2 }}"-->
+               <!--wx:key="*5"-->
+               <!--hover-class="none"-->
+               <!--class="tab-item f24 c333">-->
+        <!--<image mode="widthFix" src="{{ item.i }}"></image>-->
+        <!--<view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>-->
+    <!--</navigator>-->
+<!--</view>-->
+<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ needUserInfo }}" is="getUserInfo"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

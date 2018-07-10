@@ -1,0 +1,37 @@
+<image class="top-img" mode="widthFix" src="{{ testImg }}"></image>
+<view class="p30 info-out">
+  <view class="f30 c333 ">阿斯顿发撒旦飞洒地方</view>
+  <view class="f26 c666 bd1 lh70">浏览123次</view>
+  <view class="bd1 info"> <text class="jwq icon-time f30 c999">时间:</text> <text class="f30 c333">阿斯顿发撒旦</text></view>
+  <view class="bd1 info"><text class="jwq icon-icon- f30 c999">地点: </text><text class="f30 c333">阿斯顿发撒旦</text></view>
+  <view class="info"><text class="jwq icon-zhifufangshi f30 c999">费用: </text><text class="f30 c333">阿斯顿发撒旦</text></view>
+</view>
+
+<view class="f30 c333 fw7 bd1 tac lh70">活动详情</view>
+<view class="p30">
+    <import src="../../wxParse/wxParse"></import>
+    <template is="wxParse" data="{{ wxParseData: introduce.nodes }}"></template>
+</view>
+<view class="zw"></view>
+<view catchtap="showApply" class="fabu f32 cfff tac lh88">立即报名</view>
+<view class="mask" wx:if="{{ apply }}">
+    <view class="p30 apply-mask">
+        <view catchtap="showApply" class="jwq icon-cuowu"></view>
+        <form bindsubmit="formSubmit">
+            <view class="f30 c333">姓名<text class="must">(必填)</text></view>
+            <input name="name"/>
+            <view class="f30 c333">性别<text class="must">(必填)</text></view>
+            <input name="gender"/>
+            <view class="f30 c333">工作<text class="must">(必填)</text></view>
+            <input name="job"/>
+            <view class="f30 c333">手机<text class="must">(必填)</text></view>
+            <input type="number" maxlength="11" name="phone"/>
+            <view class="zw"></view>
+            <button formType="submit" class="tac f32 cfff m-b-confirm">确认报名并支付</button>
+        </form>
+    </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

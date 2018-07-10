@@ -1,0 +1,15 @@
+<view class="bt1 p30">
+  <view class="top-tab">
+    <view class="tac lh60 f30 fw7 {{ currentTab == 0 ? 'c333' : 'c999' }}" catchtap="chooseTab" data-index="0">预约生产</view>
+    <view class="tac lh60 f30 fw7 {{ currentTab == 1 ? 'c333' : 'c999' }}" catchtap="chooseTab" data-index="1">精彩回顾</view>
+  </view>
+  <import src="../../wxParse/wxParse"></import>
+  <template is="wxParse" data="{{ wxParseData: content.nodes }}"></template>
+  <view class="zw"></view>
+</view>
+
+<navigator url="../reservation/reservation" class="bookCo cfff f30 fw7 tac lh80">预约</navigator>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

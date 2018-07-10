@@ -1,0 +1,63 @@
+@import "../../common/variable";
+.comment-item {
+  display: flex;
+  .ci-left {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 18rpx;
+  }
+  .ci-right {
+    flex: 1;
+    .zan {
+      &:before {
+        margin-right: 8rpx;
+      }
+    }
+    .ci-r-text {
+      margin-top: 20rpx;
+    }
+    .ci-r-content {
+      margin-top: 20rpx;
+      padding: 20rpx;
+      background-color: #f5f6f7;
+    }
+    .ci-r-bottom {
+      margin-top: 20rpx;
+      display: flex;
+      align-items: center;
+      .ci-r-b-num {
+        padding: 10rpx 16rpx;
+        border-radius: 40rpx;
+        background-color: #f5f6f7;
+        margin-left: 20rpx;
+      }
+    }
+  }
+  .ci-l-name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.write-comment {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  padding: 12rpx 20rpx;
+  background-color: #fff;
+  .br5 {
+    background-color: #f1f3f6;
+    display: flex;
+    align-items: center;
+    padding: 10rpx;
+    .icon-write {
+      margin-right: 10rpx;
+    }
+    input {
+      flex: 1;
+    }
+  }
+}

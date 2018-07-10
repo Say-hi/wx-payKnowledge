@@ -1,0 +1,92 @@
+@import "../../common/variable";
+
+.time-kill {
+  padding-top: 0;
+  width: 100%;
+
+  .content-scroll {
+    width: 100%;
+    .content-scroll-in {
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      border-bottom: 20rpx solid transparent;
+    }
+    .content-item {
+      min-width: 160rpx;
+      //overflow: hidden;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //view {
+      //  word-break: keep-all;
+      //}
+    }
+    .active {
+      background-color: #ff0d0d;
+      position: relative;
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        position: absolute;
+        border: 20rpx solid #333;
+        border-color: #ff0d0d transparent transparent transparent;
+      }
+      view {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.gl-out {
+  padding-top: 0;
+}
+
+.goods-list {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  image {
+    width: 206rpx;
+    margin-right: 40rpx;
+  }
+  .gl-right {
+    flex: 1;
+    .gl-r-center {
+      margin-top: 30rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .gl-r-c-r {
+        padding: 10rpx 26rpx;
+        background-color: #ff0d0d;
+        border-radius: 25rpx;
+      }
+    }
+    .gl-r-bottom {
+      margin-top: 20rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .gl-r-b-r {
+        display: flex;
+        align-items: center;
+        .f22 {
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
+}
+
+progress {
+  width: 110rpx;
+  border: 2rpx solid #eee;
+  overflow: hidden;
+}

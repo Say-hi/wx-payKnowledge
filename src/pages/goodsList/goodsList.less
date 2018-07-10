@@ -1,0 +1,110 @@
+@import "../../common/variable";
+.topFix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #fff;
+}
+.zw {
+  height: 180rpx;
+}
+.search {
+  background-color: #fff;
+  width: 100%;
+  padding: 16rpx 20rpx;
+  position: relative;
+  height: 80rpx;
+  .icon-sousuo {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    left: 40rpx;
+    transform: translateY(-50%);
+    &:before {
+      font-size: 40rpx;
+      color: #999;
+    }
+  }
+  input {
+    padding-left: 60rpx;
+    //border: 1rpx solid #dcdcdc;
+    background-color: #eee;
+    height: 100%;
+    line-height: 65rpx;
+    border-radius: 65rpx;
+  }
+}
+
+.operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  border-bottom: 20rpx solid #eee;
+  view {
+    text {
+      display: inline-block;
+      height: 10rpx;
+      width: 10rpx;
+      margin-left: 10rpx;
+      border: 1rpx solid #333;
+      border-color: transparent #333 #333 transparent;
+      transform: translateY(-25%) rotateZ(45deg);
+      transition: all 0.5s;
+    }
+  }
+  .active {
+    color: #cd9b00;
+    text {
+      border-color: transparent #cd9b00 #cd9b00 transparent;
+    }
+  }
+  .angler {
+    text {
+      transform: translateY(-25%) rotateZ(225deg);
+    }
+  }
+}
+
+.gl-out {
+  padding-top: 0;
+}
+
+.goods-list {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  image {
+    width: 206rpx;
+    margin-right: 40rpx;
+  }
+  .gl-right {
+    flex: 1;
+    .gl-r-center {
+      margin-top: 30rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .gl-r-c-r {
+        padding: 10rpx 26rpx;
+        background-color: #ff0d0d;
+        border-radius: 25rpx;
+      }
+    }
+    .gl-r-bottom {
+      margin-top: 20rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .gl-r-b-r {
+        display: flex;
+        align-items: center;
+        .f22 {
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
+}

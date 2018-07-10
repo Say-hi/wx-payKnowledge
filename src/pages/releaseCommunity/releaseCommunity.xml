@@ -1,0 +1,23 @@
+<form bindsubmit="formSubmit">
+  <view class="title lh88 p020">
+    <input name="name" bindinput="inputValue" placeholder-class="c333 fw7" data-type="name" class="f30" maxlength="30" placeholder="请输入标题"/>
+    <view class="f28 c999">{{ name.length || 0 }}/30</view>
+  </view>
+  <textarea name="content" auto-height="true" class="p20 f28" maxlength="1000" placeholder="输入内容10-1000字"></textarea>
+  <view class="imgArea p20">
+    <view class="upImg">
+      <view class="pr" wx:for="{{ upImgArr }}" wx:key="*11">
+        <image catchtap="showImg" data-src="{{ item }}" mode="widthFix" src="{{ item }}"></image>
+        <view catchtap="del" data-index="{{ index }}" class="jwq icon-cuowu pa"></view>
+      </view>
+      <image class="add-img" src="{{ imgDomain }}/workProject/payKnowledge/release_add_img.png" catchtap="addImg"></image>
+    </view>
+  </view>
+  <view class="p30">
+    <button formType="submit" class="f34 lh88 cfff release-btn">发表</button>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

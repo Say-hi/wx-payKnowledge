@@ -1,0 +1,17 @@
+<view class="bt1 list-wrap">
+  <navigator hover-class="none" url="../colunmsDetail/colunmsDetail" wx:for="1234" wx:key="*22" class="bd1 lw-item p200">
+    <image class="item-img br" src="{{ testImg }}"></image>
+    <view class="item-center">
+      <view class="f28 c333">啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方</view>
+      <view class="f26 c999">asdfasdf</view>
+      <view class="f26 c999">123人关注|12篇文章</view>
+    </view>
+    <view catchtap="follow" class="f24 cfff {{  index == 0 ? 'follow' : 'no-follow'}}">
+      关注
+    </view>
+  </navigator>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

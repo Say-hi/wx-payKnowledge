@@ -1,0 +1,60 @@
+@import "../../common/variable";
+
+.video-item {
+  .v-i-img {
+    .poster {
+      width: 100%;
+    }
+    .play-btn {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 108rpx;
+      height: 108rpx;
+    }
+  }
+  .video-text {
+    margin-top: 30rpx;
+  }
+  .video-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .video-time {
+      background-color: #dfad11;
+      padding: 7rpx 8rpx 6rpx 12rpx;
+      margin-right: 12rpx;
+    }
+    .h-a-operation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      vertical-align: middle;
+      .jwq {
+        margin-left: 40rpx;
+        display: flex;
+        align-items: center;
+        &:before {
+          font-size: 34rpx;
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
+}
+
+.video-area {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fabu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4efde;
+}

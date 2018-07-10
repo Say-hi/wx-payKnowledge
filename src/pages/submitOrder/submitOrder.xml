@@ -1,0 +1,137 @@
+<!--<view class="send-type lh80">-->
+  <!--<text class="iconfont icon-navicon-chps f30 c333 fw7">配送方式:</text>-->
+  <!--<text catchtap="chooseSendType" data-index="2" class="iconfont f26 c333 icon-xuanze-danxuan {{ active == 2 ? 'active' : '' }}">门店自取</text>-->
+  <!--<text catchtap="chooseSendType" data-index="1" class="iconfont f26 c333 icon-xuanze-danxuan {{ active == 1 ? 'active' : '' }}">送货上门</text>-->
+<!--</view>-->
+<view wx:if="{{ lostTime }}" class="time iconfont icon-dengdaifukuan">
+  <view class="f32 cfff">等待买家付款</view>
+  <view class="f24 cfff">{{ timeText ?  '剩余' + timeText + '付款, 超时将自动取消订单' : '该订单超时已取消' }}</view>
+</view>
+<!--<view catchtap="chooseShopAddress" class="address">-->
+<!--<view class="address">-->
+  <!--<view class="iconfont p20 icon-xianxiamendian arrow f30 c666">-->
+    <!--<picker disabled="{{ lostTime ? true : false }}" bindchange="bindShopPickerChange" value="{{ shopIndex }}" range-key="pickup_name" range="{{ shopArr }}">-->
+      <!--<view wx:if="{{ lostTime }}" class="picker">{{ info.pickup_name }}</view>-->
+      <!--<view wx:else class="picker">-->
+        <!--{{ shopArr[shopIndex].pickup_name }}-->
+      <!--</view>-->
+    <!--</picker>-->
+  <!--</view>-->
+  <!--<view class="fuck-address-img"></view>-->
+<!--</view>-->
+<view catchtap="chooseAddress" class="address pr">
+  <image mode="widthFix" src="../../images/add_address.png"></image>
+  <view wx:if="{{ addressInfo }}" class="address-s">
+    <view class="a-s-t">
+      <text class="iconfont icon-dizhi f30 c333">收货人: {{ addressInfo.userName }}</text>
+      <text class="f30 c333">{{ addressInfo.telNumber }}</text>
+    </view>
+    <view class="ell1 f24 c666">
+      收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
+    </view>
+  </view>
+  <view wx:if="{{ needSetting }}" class="open-setting">
+    <button open-type="openSetting" bindopensetting="openSetting">开启授权</button>
+  </view>
+</view>
+
+<view wx:if="{{ active == 1 }}" class="address">
+  <view class="arrow fuck-time-choose p20 f30 c333">
+    <text class="iconfont icon-shijian">配送时间</text>
+    <picker disabled="{{ lostTime ? true : false }}" bindchange="bindPickerChange" value="{{ timeIndex }}" range="{{ timeArr }}">
+      <view class="picker">
+        {{ timeArr[timeIndex] }}
+      </view>
+    </picker>
+  </view>
+</view>
+
+<view class="goods-w">
+  <view class="lh70 f28 c333 shop-top">
+    <image mode="widthFix" class="shopImg" src="{{ shopImg }}"></image>
+    <text>肥猫团购商城</text>
+  </view>
+  <view wx:for="12" wx:key="*39" class="goods">
+    <image src="{{ testImg }}"></image>
+    <view class="g-i">
+      <view class="f30 c333">阿斯顿发</view>
+      <view class="g-b">
+        <view class="f30 c333">
+          <text class="f24">￥</text>25.00
+        </view>
+        <view class="f24 c999">×2</view>
+      </view>
+    </view>
+  </view>
+  <view class="g-d bd1 lh80 f24">
+    <view class="c333 fw7">送货费</view>
+    <view><text>￥</text>{{ sendMoney }}</view>
+  </view>
+  <navigator catchtap="setCoupon" url="../coupon/coupon?type=order&money={{ allMoney }}">
+    <view class="g-d bd1 lh80 f24">
+      <view class="c333 fw7">选择优惠卷</view>
+      <view wx:if="{{ lostTime }}" class="f24 c999">
+        红包抵扣{{ info.coupon_price }}
+      </view>
+      <view wx:else class="arrow f24 c999">
+        {{ useCoupon ? '满' + useCoupon.coupon.condition  + '减' + useCoupon.coupon.money : '选择' }}
+      </view>
+    </view>
+  </navigator>
+  <view class="g-d bd1 lh80 f24">
+    <view class="c333 fw7">积分抵扣</view>
+    <view wx:if="{{ lostTime }}" class="fuck-score c999">抵扣{{ info.integral_money }}</view>
+    <view wx:else class="fuck-score {{ fuck_score ? '' : 'c999' }}"><view class="c333">可用<text class="main-text-color">{{ userInfo.pay_points }}</text>积分　</view><text>-￥</text>{{ userInfo.pay_points / 100 }}　<switch color="#ff4344" bindchange="fuckScore"></switch></view>
+  </view>
+  <view class="g-d bd1 lh80 f24">
+    <view class="c333 fw7">买家留言:</view>
+    <input bindinput="inputValue" data-type="userNote" disabled="{{ info.user_note ? true : false }}" value="{{ info.user_note }}" placeholder="请输入您的留言"/>
+  </view>
+  <view class="g-d">
+    <view>　</view>
+    <view>
+      <text class="f24">共{{ info.goods_list.length || allCount }}件商品　小计:<text class="f28 main-text-color">￥{{ info.total_amount ? info.total_amount * 1 + info.user_money * 1  : calculateMoney }}</text></text>
+    </view>
+  </view>
+</view>
+<!--<view wx:if="{{ addressInfo }}" class="f24 c666 iconfont icon-zhuyidapx lh60">配送仅限湘大及其周边，配送大约25分钟</view>-->
+<view class="zw"></view>
+
+<view class="m-bottom bd1">
+  <!--<view class="iconfont icon-gouwuche cfff"><text class="f24 cfff">2</text></view>-->
+  <view class="m-money tar p020">
+    <view class="f24 c333">实付: <text class="main-text-color f40">￥{{ info.total_amount ? info.total_amount * 1 + info.user_money * 1 : calculateMoney }}</text></view>
+    <!--<view class="f22" style="color: #f60;">满20元起送</view>-->
+  </view>
+  <!--<view catchtap="showLostTime" class="f36 cfff confirm tac">提交订单</view>-->
+  <view catchtap="choosePay" class="f36 cfff confirm tac">{{ lostTime ? '支付订单' : '提交订单' }}</view>
+</view>
+<view wx:if="{{ maodouPay }}" class="mask maodoupay">
+  <form bindsubmit="formSubmit">
+    <view class="mask-in p20">
+      <view class="tac f32 c333 fw7">猫豆支付密码</view>
+      <view>
+        <input bindinput="inputValue" data-type="pwd" maxlength="6" type="number" focus="{{ focus }}" name="pwd" placeholder="请输入您的猫豆支付密码" />
+        <view catchtap="getinput" class="pwd-show">
+          <view wx:for="123456" class="tac lh80">{{ pwd.length > index ? '·' : '' }}</view>
+        </view>
+      </view>
+        <button formType="submit">确认</button>
+        <button catchtap="sd">取消</button>
+    </view>
+  </form>
+</view>
+
+<view class="mask" wx:if="{{ showActionSheet }}">
+  <view class="mask-sas f34 c333">
+    <view wx:for="{{ payBottom }}" wx:key="*89" catchtap="" class="tac bd1">
+      <image mode="widthFix" src="{{ item.img }}"></image>
+      <view>{{ item.t }}</view>
+    </view>
+    <view class="tac back" catchtap="payShow">返回</view>
+  </view>
+</view>
+
+        <!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

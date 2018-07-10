@@ -1,0 +1,31 @@
+@import "../../common/variable";
+@import "../categories/categories";
+.ar-list-wrap {
+  .ar-inside {
+    display: flex;
+    image {
+      max-width: 170rpx;
+      margin-right: 30rpx;
+    }
+    .ar-i-r {
+      flex: 1;
+      .h-a-operation {
+        display: flex;
+        align-items: center;
+        //justify-content: flex-end;
+        vertical-align: middle;
+        .jwq {
+          flex: 1;
+          //margin-left: 40rpx;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          &:before {
+            font-size: 34rpx;
+            margin-right: 10rpx;
+          }
+        }
+      }
+    }
+  }
+}

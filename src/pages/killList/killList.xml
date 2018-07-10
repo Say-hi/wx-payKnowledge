@@ -1,0 +1,42 @@
+<view class="time-kill">
+  <scroll-view scroll-x
+               class="content-scroll bb">
+    <view class="content-scroll-in">
+      <view
+              wx:for="123456"
+              wx:key="*37"
+              catchtap="chooseTime"
+              data-index="{{ index }}"
+              class="content-item c999 p10 {{ chooseIndex == index ? 'active' : '' }}">
+        <view class="tac fw7 f28">
+          <view class="f32">00:00</view>
+          <view>{{ index == 1 ? '已结束已结束已结束已结束' : '已结束' }}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="p30 gl-out">
+  <navigator url="../goodsDetail/goodsDetail" class="goods-list bd1" wx:for="123" wx:key="*66">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+    <view class="gl-right">
+      <view class="f32 c000">阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方</view>
+      <view class="gl-r-center">
+        <text class="f36">￥365.22</text>
+        <text class="f28 cfff gl-r-c-r">马上抢</text>
+      </view>
+      <view class="gl-r-bottom">
+        <text class="through-line f24 c999">￥365.22</text>
+        <view class="gl-r-b-r">
+          <view class="f22 c999">仅剩:44444件</view>
+          <progress class="br10" percent="20" stroke-width="6" activeColor="#ff0d0d" backgroundColor="#ffffff"></progress>
+        </view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

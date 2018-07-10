@@ -1,0 +1,40 @@
+@import "../../common/variable";
+.title {
+  display: flex;
+  align-items: center;
+  input {
+    flex: 1;
+  }
+}
+
+textarea {
+  min-height: 200rpx;
+}
+
+.imgArea {
+  .upImg {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    image {
+      max-width: 210rpx;
+      margin: 5rpx;
+    }
+    .icon-cuowu {
+      top: 10rpx;
+      right: 10rpx;
+      &:before {
+        color: #cd9b00;
+        font-size: 40rpx;
+      }
+    }
+  }
+  .add-img {
+    width: 210rpx;
+    height: 210rpx;
+  }
+}
+
+.release-btn {
+  background-color: #cd9b00;
+}

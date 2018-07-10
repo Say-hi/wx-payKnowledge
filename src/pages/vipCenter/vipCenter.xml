@@ -1,0 +1,31 @@
+<view class="top-info tac pr">
+  <view>
+    <image class="br" src="{{ testImg }}"></image>
+    <view class="f24 c333">
+      <text>当前等级: lv1　｜　当前脑籽: 3258颗</text>
+    </view>
+  </view>
+  <image mode="widthFix" class="top-info-bg" src="{{ cipCenterImg }}"></image>
+</view>
+<view class="zw30 bd1"></view>
+<view class="vip-title bd1"><text class="f32 c333">我的等级</text><text class="f24 c999">还需485颗达到LV2</text></view>
+<view wx:for="{{ vipLvArr }}" class="vip-lv f24 c666 p30">
+  <view class="fw7">{{ item.l }}</view>
+  <view class="vip-lv-c"></view>
+  <view class="c999 {{ item.apply ? 'apply' : item.r ? 'arrive' : '' }}">{{ item.apply ? '申请' : item.r ? '已达到' : '未达到' }}</view>
+</view>
+<view class="zw"></view>
+<view class="tac f28 vip-bottom">
+  <text catchtap="showDescC">会员权限说明</text>
+</view>
+<view class="mask" wx:if="{{ showMask }}">
+  <view class="mask-in br10 tac">
+    <view class="mask-title f32 c333 fw7 lh80">会员权限说明</view>
+    <view class="f24 c666 p20 tal">阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大</view>
+    <view catchtap="showDescC" class="f30 fw7 lh80 c333 confirm">确定</view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

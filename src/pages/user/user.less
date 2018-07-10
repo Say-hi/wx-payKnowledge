@@ -1,0 +1,124 @@
+@import "../../common/variable";
+.user-info-wrap {
+  background-color: #f4f4f4;
+  .user-info {
+    background-color: #fff;
+    .arrow {
+      display: flex;
+      align-items: center;
+      &:after {
+        width: 10rpx;
+        height: 10rpx;
+      }
+      image {
+        width: 120rpx;
+        height: 120rpx;
+        margin-right: 40rpx;
+      }
+      .f24 {
+        margin-top: 20rpx;
+      }
+    }
+  }
+  .user-operation {
+    display: flex;
+    align-items: center;
+    margin-top: 50rpx;
+    .u-o-item {
+      flex: 1;
+      border-right: 1rpx solid #999;
+      height: 30rpx;
+      &:nth-last-child(1) {
+        border-right: 1rpx solid #fff;
+      }
+    }
+  }
+}
+
+.user-order-wrap {
+  padding-top: 0;
+  padding-bottom: 10rpx;
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .f28 {
+      color: #9a9a9a;
+      transform: translateX(-15%);
+    }
+    &:after {
+      right: 0;
+      width: 10rpx;
+      height: 10rpx;
+    }
+  }
+}
+
+.bgh20 {
+  height: 20rpx;
+  background-color: #f4f4f4;
+}
+
+.tab-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  //padding: 20rpx 0;
+  //padding-top: 10rpx;
+  .tab-item {
+    //flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 130rpx;
+    justify-content: flex-end;
+    image {
+      max-width: 58rpx;
+    }
+    .f24 {
+      margin-top: 24rpx;
+    }
+    .tab-nubmer {
+      background: #f33;
+      //min-width: 25rpx;
+      //min-height: 25rpx;
+      padding: 4rpx 10rpx;
+      border-radius: 50rpx;
+      text-align: center;
+      line-height: 25rpx;
+      font-size: 20rpx;
+      top: 10rpx;
+      right: -10rpx;
+    }
+  }
+}
+.tab-wrap4 {
+  flex-direction: column;
+  justify-content: flex-start;
+  button {
+    background-color: #fff;
+    text-align: left;
+    padding-left: 0;
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    &:after {
+      border: none;
+      border-radius: 0;
+    }
+  }
+  .tab4-item {
+    width: 100%;
+    &:after {
+      width: 14rpx;
+      height: 14rpx;
+    }
+  }
+}
+.tab5 {
+  padding-top: 10rpx;
+}
+
+.tab4 {
+  padding-bottom: 0;
+}

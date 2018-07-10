@@ -1,0 +1,99 @@
+{
+//  群信息小程序页面分布
+  "pages": [
+    "pages/userAccount/userAccount", // 我的账户
+    "pages/vipCenter/vipCenter", // 会员中心
+    "pages/userInfo/userInfo", // 个人资料
+    "pages/user/user", // 我的
+    "pages/reservation/reservation", // 预约报名
+    "pages/coProduction/coProduction", // 合作生产详情
+    "pages/shop/shop", // 商城
+    "pages/articleList/articleList", // 文章列表
+    "pages/index/index", // 首页
+    "pages/articleDetail/articleDetail", // 文章详情
+    "pages/commentList/commentList", // 评论列表
+    "pages/articleCategories/articleCategories", // 文章分类
+    "pages/coupon/coupon", // 优惠卷
+    "pages/goodsList/goodsList", // 商品列表
+    "pages/searchHistory/searchHistory", // 搜索
+    "pages/categories/categories", // 商品分类
+    "pages/goodsDetail/goodsDetail", // 产品详情
+    "pages/submitOrder/submitOrder", // 提交订单
+    "pages/killList/killList", // 秒杀商品列表
+    "pages/activityDetail/activityDetail", // 活动详情
+    "pages/activityList/activityList", // 活动专区
+    "pages/colunmsDetail/colunmsDetail", // 专栏详情
+    "pages/colunmsList/colunmsList", // 专栏列表
+    "pages/commentDetail/commentDetail", // 评论详情
+    "pages/quesitonDetail/quesitonDetail", // 问答详情
+    "pages/releaseQuestion/releaseQuestion", // 发布问题
+    "pages/releaseCommunity/releaseCommunity", // 发布社群动态
+    "pages/communityCenter/communityCenter", // 社群中心
+    "pages/videoDetail/videoDetail", // 视频详情
+    "pages/releaseVideo/releaseVideo", // 发布视频
+    "pages/videoList/videoList" // 视频课程
+    // Dont remove this comment
+  ],
+  // Window configuration
+  // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#window
+  "window": {
+    // 类型：HexColor；默认值：#000000
+    // 导航栏背景颜色，如"#000000"
+    "navigationBarBackgroundColor": "#ffffff",
+    // 类型：String；默认值：white
+    // 导航栏标题颜色，仅支持 black/white
+    "navigationBarTextStyle": "black",
+    // 类型：String；默认值：无
+    // 导航栏标题文字内容
+    "navigationBarTitleText": "脑籽社群",
+    // 类型：HexColor；默认值：#ffffff
+    // 窗口的背景色
+    "backgroundColor": "#ffffff",
+    // 类型：String；默认值：dark
+    // 下拉背景字体、loading 图的样式，仅支持 dark/light
+    "backgroundTextStyle": "light",
+    // 类型：Boolean；默认值：false
+    // 是否开启下拉刷新，详见页面相关事件处理函数。
+    // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数
+    "enablePullDownRefresh": false
+  },
+//  "tabBar": {
+//    "color": "#999999",
+//    "selectedColor": "#ff6501",
+//    "borderStyle": "white",
+//    "backgroundColor": "#fff",
+//    "list": [
+//      {
+//        "text": "首页",
+//        "pagePath": "pages/index/index",
+//        "iconPath": "images/index.png",
+//        "selectedIconPath": "images/index_hl.png"
+//      },
+////      {
+////        "text": "点餐",
+////        "pagePath": "pages/menu/menu",
+////        "iconPath": "images/menu.png",
+////        "selectedIconPath": "images/menu_hl.png"
+////      },
+//      {
+//        "text": "购物车",
+//        "pagePath": "pages/car/car",
+//        "iconPath": "images/car.png",
+//        "selectedIconPath": "images/car_hl.png"
+//      },
+//      {
+//        "text": "我的",
+//        "pagePath": "pages/user/user",
+//        "iconPath": "images/user.png",
+//        "selectedIconPath": "images/user_hl.png"
+//      }
+//    ]
+//  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  // Debug log to console
+  // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#debug
+  "debug": true
+}

@@ -1,0 +1,10 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "../components/my-tip/my-tip",
+    "my-navigator-tab": "../components/my-navigator-tab/my-navigator-tab"
+  },
+  // 类型：HexColor；默认值：#000000
+  // 是否开启下拉刷新，详见页面相关事件处理函数。
+  "enablePullDownRefresh": false
+}

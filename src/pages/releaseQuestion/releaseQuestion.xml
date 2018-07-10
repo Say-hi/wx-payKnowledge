@@ -1,0 +1,16 @@
+<form bindsubmit="formSubmit">
+<view class="question-area pr p10">
+  <textarea name="content" class="f32 bb" bindinput="inputValue" data-type="content" maxlength="50" placeholder="请描述您的问题，并使用问号“？”结束">
+    <view class="h-a-c-left br fw7 tac l36 f24">?</view>
+  </textarea>
+  <view class="f24 c999 pa">剩余{{ 50 - (content.length || 0) }}字</view>
+</view>
+<view><text class="f24 p20 c999">示例:</text><text class="f32 c333">这是一个问题？</text></view>
+<view class="p30 pf">
+  <button formType="submit" class="f34 lh88 cfff release-btn">提交问题</button>
+</view>
+</form>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

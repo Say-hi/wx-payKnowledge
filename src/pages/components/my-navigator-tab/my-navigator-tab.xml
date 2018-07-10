@@ -1,0 +1,10 @@
+<view class="tab-wrap tab-wrap2 bt1 bottom-operation {{ propNav[1].active ? 'special' : '' }}">
+    <navigator open-type="reLaunch" url="{{ item.active ? '': item.url }}"
+               wx:for="{{ propNav }}"
+               wx:key="*5"
+               hover-class="none"
+               class="tab-item f24 c333">
+        <image mode="widthFix" src="{{ item.i }}"></image>
+        <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>
+    </navigator>
+</view>

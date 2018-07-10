@@ -1,0 +1,251 @@
+<view class="swiper-wrap pr">
+  <swiper autoplay
+          circular
+          class="banner">
+    <swiper-item  wx:for="1234"
+                  wx:key="*143">
+      <image catchtap="{{ index == 0 ? '': 'showImage' }}"
+             data-index="{{ index }}"
+             mode="aspectFit"
+             class="{{ type != 'kill' ? 'bofang-center' : '' }}"
+             src="{{ testImg }}"></image>
+    </swiper-item>
+  </swiper>
+  <view wx:if="{{ type === 'kill' }}"
+        class="kill pa">
+    <view class="cfff k-left">
+      <view class="f44">￥{{ goodsInfo.shop_price }}</view>
+      <view class="kill-b-l">
+        <view class="f24">￥{{ goodsInfo.market_price }}</view>
+        <view class="iconfont f22 icon-miaosha1">
+          秒杀商品
+        </view>
+      </view>
+    </view>
+    <view class="k-right">
+      <view class="cfff content-time p10">
+        <!--<view class="f24 tac">秒杀进行中</view>-->
+        <view class="k-r-w">
+          <view class="f30 k-r-t">{{ goodsInfo.status == 1 ? '开始倒计时' : goodsInfo.status == 2 ? '结束倒计时' : '秒杀已结束' }}</view>
+          <view class="f20 content-times">
+            <view class="h br5">{{ goodsInfo.h }}</view>
+            <view class="c000">:</view>
+            <view class="m br5">{{ goodsInfo.m }}</view>
+            <view class="c000">:</view>
+            <view class="s br5">{{ goodsInfo.s }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="f32 c000 p20">阿斯顿发撒旦飞洒地方</view>
+<view class="f36 goods-price p020">￥15.20 <text wx:if="{{ type !== 'kill' }}" class="f30 main-text-color">/件</text>　<text wx:if="{{ type !== 'kill' }}" class="f30 c999 del-money">￥321.21</text></view>
+<view class="f24 c999 sale p020 bd1">
+  <view class="sale-left">
+    <text>已售: 30
+      <!--<text wx:if="{{ type === 'kill' }}">%</text>-->
+    </text>
+    <view wx:if="{{ type === 'kill' }}"
+          class="content-length br14">
+      <view class="content-length-in"
+            style="width: {{ 130 * (goodsInfo.per / 100) }}rpx"></view>
+    </view>
+  </view>
+  <button open-type="share" class="jwq icon-fenxiang main-text-color"></button>
+</view>
+
+<view class="tips lh76">
+  <view wx:for="{{ tipsArr }}"
+        wx:key="*99"
+        class="jwq icon-queren f24 c999">{{ item }}</view>
+</view>
+
+<view wx:if="{{ type == 'bulkP' }}" class="bulk-purchase p020">
+  <navigator url="../rulers/rulers?type=bulkP&id={{ options.id }}"
+             hover-class="none"
+             class="b-p-title arrow bd1">
+    <view class="f24 tt cfff">拼团</view>
+    <view class="f30 c666">查看拼团规则</view>
+  </navigator>
+  <image mode="widthFix" src="../../images/bulk-purchase.png"></image>
+</view>
+
+<view wx:if="{{ type == 'bulkP' && nowStartArr.length > 0 }}" class="now-bp p20">
+  <view class="f30 c000 bd1 fw7 lh60">进行中的拼团:</view>
+  <view wx:for="{{ nowStartArr }}"
+        wx:key="*687"
+        class="p200 now-bp-w">
+    <image class="br"
+           src="{{ item.image }}"></image>
+    <view class="now-bp-t">
+      <text class="f26 c000">{{ item.title }}</text>
+      <text class="f24 c999" wx:if="{{ item.status == 2 }}">还差<text class="main-text-color">{{item.virtual_num - item.join_num}}</text>人 剩余{{ item.h }}:{{ item.m }}:{{ item.s }} </text>
+      <text class="f24 c999" wx:if="{{ item.status == 3 }}">拼团已结束</text>
+    </view>
+    <view>
+      <text class="f32 main-text-color">￥{{ item.price }}</text>
+      <text wx:if="{{ item.status != 3 }}"
+            catchtap="closeBuy"
+            data-type="buy"
+            data-end="{{ item.is_end * 1 }}"
+            data-index="{{ index }}"
+            class="f26 cfff join br5">去参团</text>
+    </view>
+  </view>
+</view>
+
+<view class="tab tab1 lh88">
+  <view data-index="1"
+        class="{{ tabChooseNow == 1 ? 'active' : '' }} tac tab-item tr7"
+        catchtap="tabChoose">详情</view>
+  <view data-index="2"
+        class="{{ tabChooseNow == 2 ? 'active' : '' }} tac tab-item tr7"
+        catchtap="tabChoose">评价</view>
+</view>
+<import src="../../wxParse/wxParse"></import>
+<view wx:if="{{ tabChooseNow == 1 }}">
+  <template is="wxParse" data="{{ wxParseData: introduce.nodes }}"></template>
+</view>
+<view wx:else class="p20">
+  <view class="tab tab2 f28">
+    <view data-index="1"
+          class="{{ tabChooseNow2 == 1 ? 'active' : '' }} tac tab-item tr7 br5"
+          catchtap="tabChoose2">全部({{ commentStatistics.c0 || 0 }})</view>
+    <view data-index="2"
+          class="{{ tabChooseNow2 == 2 ? 'active' : '' }} tac tab-item tr7 br5"
+          catchtap="tabChoose2">好评({{ commentStatistics.c1 || 0 }})</view>
+    <view data-index="3"
+          class="{{ tabChooseNow2 == 3 ? 'active' : '' }} tac tab-item tr7 br5"
+          catchtap="tabChoose2">中评({{ commentStatistics.c2 || 0 }})</view>
+    <view data-index="4"
+          class="{{ tabChooseNow2 == 4 ? 'active' : '' }} tac tab-item tr7 br5"
+          catchtap="tabChoose2">差评({{ commentStatistics.c3 || 0 }})</view>
+  </view>
+  <view catchtap="onlyPic"
+        class="jwq icon-xuanze c666 f24 {{ onlyPic ? 'active' : '' }}">晒图({{ commentStatistics.c4 || 0 }})</view>
+
+  <view class="c-right pr bd1"
+        wx:key="*97"
+        wx:for="{{ commentArr }}">
+    <image src="{{ item.head_pic }}"
+           class="br user-img pa"></image>
+    <view class="f24 c666 c-t">
+      <text>{{ item.username }}</text><text class="f22 c999">{{ item.add_time }}</text>
+    </view>
+    <view class="star">
+      <text wx:for="12345"
+            wx:key="*97"
+            wx:for-item="sitem"
+            class="iconfont icon-xingxing {{ item.goods_rank > index ? 'active' : '' }}"></text>
+    </view>
+    <view class="user-t f24 c333">{{ item.content }}</view>
+    <view wx:if="{{ onlyPic }}" class="user-pic">
+      <image wx:for="{{ item.img }}"
+             wx:key="*364"
+             wx:for-item="iitem"
+             mode="aspectFit"
+             catchtap="showImg"
+             src="{{ iitem }}"></image>
+    </view>
+  </view>
+  <view class="tac f32 c999 lh80">{{ commentArr.length ? more ? '加载更多' : '没有更多了' : '暂无相关评论' }}</view>
+</view>
+<view class="zw"></view>
+<view class="bottom-btn f20 c666 bt1">
+    <navigator url="../shop/shop"
+               open-type="reLaunch"
+               class='tac f24'>
+      <image mode="widthFix" src="{{ bottomTab[0].img }}"></image>
+      <view>{{ bottomTab[0].name }}</view>
+    </navigator>
+    <navigator url='../car/car'
+               class='tac f24'>
+      <image mode="widthFix" src="{{ bottomTab[1].img }}"></image>
+      <view>{{ bottomTab[1].name }}</view>
+    </navigator>
+    <view catchtap="closeBuy" data-type="car" class='f32 tac cfff'>加入购物车</view>
+    <view catchtap="closeBuy" data-type="buy" data-now="now" class='f32 tac cfff'>立即购买</view>
+</view>
+<view wx:if="{{ shareChoose }}"
+      class="mask {{ small ? 'small' : '' }}">
+    <view wx:if="{{ !showCanvas }}"
+          class="share-choose">
+        <view class="s-c-c p200">
+            <button open-type="share"
+                    class="tac br10 pr p20 iconfont icon-weixin">分享给朋友</button>
+            <button catchtap="getSharePic"
+                    class="tac br10 pr p20 iconfont icon-tupian">商品海报</button>
+        </view>
+        <view catchtap="shareShow"
+              class="tac lh80 f30 c333">关闭</view>
+    </view>
+    <view wx:if="{{ showCanvas }}"
+          class="canvas-wrap br15" >
+      <view catchtap="closeImg" class="close c999 tar iconfont icon-guanbi"></view>
+      <!--margin: 0;padding: 0;解决某些机型有边距出现的问题-->
+      <!--<view class="canvas-wrap2" >-->
+        <canvas id="qwe"  canvas-id='myCanvas' style='margin: 0;padding: 0;display: block;'></canvas>
+      <!--</view>-->
+      <view catchtap="saveImgToUser" class="save-photo br15 lh80 cfff f30 tac">保存图片</view>
+      <view class="save-text c999 f24 tac">保存至相册可以分享到朋友圈</view>
+    </view>
+</view>
+<!--购买弹窗-->
+<view wx:if="{{ buy }}"
+      class="mask {{ small ? 'small' : '' }}">
+  <view class="buy-bottom">
+    <view class="b-b-t bd1">
+      <image class="br10"
+             mode="widthFix"
+             src="{{ testImg }}"></image>
+      <view class="b-b-t-r p20">
+        <view catchtap="closeBuy"
+              wx:if="{{ bulkpChoose < 0 }}"
+              class="f28 c333 jwq icon-guanbi">阿斯顿发送到发送到发阿斯顿发送到发送到发阿斯顿发送到发送到发阿斯顿发送到发送到发</view>
+        <view class="f36 main-text-color goods-price">￥3132  <text class="through-line f24 c999">￥354</text></view>
+
+        <view catchtap="closeBuy"
+              wx:if="{{ type == 'bulkP' && bulkpChoose >= 0  }}"
+              class="f28 c333 iconfont icon-guanbi">{{ nowStartArr[bulkpChoose].goods_name }}</view>
+
+        <!--<view wx:if="{{ type == 'bulkP' && bulkpChoose < 0 && bulkpSelf != 1}}"-->
+              <!--class="f24 c999"><text>{{ goodsInfo.virtual_num }}人团　原价:　￥{{ goodsInfo.market_price }}</text></view>-->
+        <!--<view wx:if="{{ type == 'bulkP' && bulkpChoose >= 0}}"-->
+              <!--class="f24 c999">{{ nowStartArr[bulkpChoose].virtual_num }}人团　原价:　￥{{ nowStartArr[bulkpChoose].goods_price }}</view>-->
+      </view>
+    </view>
+    <view class="b-b-number p20">
+      <view class="f30 c000">数量</view>
+      <view class="f24 c666" >库存:2132</view>
+      <!--<view class="f24 c666" wx:if="{{ type == 'bulkP' && bulkpChoose >= 0  }}">库存:{{ nowStartArr[bulkpChoose].goods_num }}</view>-->
+      <view class="choose-count">
+        <view catchtap="chooseMenuNum" data-type="del" data-index="{{ index }}" class="del order-btn cfff">-</view>
+        <view class="order-num main-text-color">{{ goodsInfo.num || 1 }}</view>
+        <view catchtap="chooseMenuNum" data-type="add" data-index="{{ index }}" class="add order-btn cfff main-text-color">+</view>
+      </view>
+    </view>
+    <view catchtap="buyConfirm"
+          class="tac f34 cfff confirm lh80">确定</view>
+  </view>
+</view>
+
+<view wx:if="{{ videoShow }}"
+      class="mask">
+<video class='video-content'
+       autoplay
+       src="{{ goodsInfo.video }}"></video>
+<view catchtap="showVideo"
+      class='video-content tac video-content-close-btn'>关闭</view>
+</view>
+
+<view wx:if="{{ needSetting }}" class="mask">
+  <view class="open-setting">
+    <button catchtap="openSetting">开启授权</button>
+  </view>
+</view>
+        <!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ needUserInfo }}" is="getUserInfo"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

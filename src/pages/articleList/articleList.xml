@@ -1,0 +1,23 @@
+<navigator url="../searchHistory/searchHistory?type=article" class="search bb">
+  <view class="jwq icon-sousuo"></view>
+  <input disabled confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
+</navigator>
+<view class="ar-list-wrap p30" >
+  <navigator url="../articleDetail/articleDetail" class="ar-inside bd1 p200" wx:for="123123123" wx:key="*236">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+    <view class="ar-i-r">
+      <view class="f24 c333">阿斯顿发撒旦法</view>
+      <view class="h-a-operation">
+        <view class="jwq lh70 f24 c999 icon-pinglun">{{ 50 * index }}</view>
+        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+      </view>
+    </view>
+  </navigator>
+  <view wx:if="{{ !rightArr.length }}" class="tac">还没有相关的配内容哦~</view>
+</view>
+<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

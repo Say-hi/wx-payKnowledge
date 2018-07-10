@@ -1,0 +1,271 @@
+@import "../../common/variable";
+page {
+  background-color: #f4f4f4;
+}
+
+.send-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  .fw7 {
+    &:before {
+      margin-right: 10rpx;
+      color: @mainTextColor;
+    }
+  }
+  .f26 {
+    &:before {
+      margin-right: 10rpx;
+      color: #d1d1d1;
+    }
+  }
+  .active {
+    &:before {
+      color: @mainTextColor;
+    }
+  }
+}
+
+.time {
+  background-color: @mainBackgroundColor;
+  padding: 20rpx;
+  padding-left: 70rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 20rpx;
+    color: #fff;
+    font-size: 40rpx;
+    transform: translateY(-50%);
+  }
+}
+
+.address {
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 20rpx;
+  image {
+    width: 100%;
+  }
+  .address-s {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    padding: 0 20rpx;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 140rpx;
+    .a-s-t {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .open-setting {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    transform: translate(0, 0);
+    button {
+      width: 50% !important;
+    }
+  }
+}
+.icon-xianxiamendian {
+  display: flex;
+  align-items: center;
+  &:before {
+    color: @mainTextColor;
+    margin-right: 10rpx;
+  }
+  &:after {
+    right: 30rpx;
+    width: 10rpx;
+    height: 10rpx;
+  }
+  picker {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.fuck-address-img {
+  width: 100%;
+  height: 6rpx;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAFCAIAAABTmYLRAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjAzRTZCQTAzRUUwRDExRTdBQTI0RjdGOUI5RENCMUUyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjAzRTZCQTA0RUUwRDExRTdBQTI0RjdGOUI5RENCMUUyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDNFNkJBMDFFRTBEMTFFN0FBMjRGN0Y5QjlEQ0IxRTIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDNFNkJBMDJFRTBEMTFFN0FBMjRGN0Y5QjlEQ0IxRTIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6JbafXAAABgUlEQVR42nxRwWoUURCs7nkzk+wm5LJRiMIqeFBREEFM0JNHvzgn8SAYSDB4iIJG0IMSA4ZdSCbZff260oNK8OA2vENXd1fXqxaSAI/OZftLtg51qiEUpRVHJYji39DI3a3Oiejm7Sjll/dk2EQGica99/J2HwNQPQD8NxgN5MBOJ83Tx/ZkMwXkxv0f5XiK1VaNsHhChUr5l4ieFVKakuE53x3rsK2yM0Xjz+/ce6c4QW5jlFgYmtFN0mjM+w8cHgrkw8QPf9loeamU2MJho5bdRUSvFARp0xehRXzGR9eqh+sI6Uji1unrXe+mWKvhioCwQIN4KVVT48WzPFxpMUvfpnz1lefzdpZNqxgWXvw2i9qb+4eLgjNXoZ2q3Fzj5jiwYqluSH+zIx8PqkHCtAYNWGhBIU3xfKvc2KhQsrVyeNIdT7hUJeu39BqDID4ft+rPeyUdLL0NneD6qtxa8eLSN1gpnz7L/ExTi6AIEll4grAxJdy57YNl5fxiVl8KMAB60dBYcZ+7uQAAAABJRU5ErkJggg==);
+  background-repeat: repeat;
+}
+
+.fuck-time-choose {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 70rpx;
+  &:after {
+    right: 30rpx;
+    width: 10rpx;
+    height: 10rpx;
+  }
+  .icon-shijian::before {
+    margin-right: 10rpx;
+  }
+}
+input {
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  flex: 1;
+}
+.fuck-score {
+  display: flex;
+  align-items: center;
+}
+
+.goods-w {
+  background-color: #fff;
+  padding: 30rpx;
+  padding-top: 0;
+  .shop-top {
+    display: flex;
+    align-items: center;
+  }
+  .shopImg {
+    max-width: 38rpx;
+    margin-right: 10rpx;
+  }
+  //border-top: 20rpx solid @tabBgColor;
+  .goods {
+    display: flex;
+    align-items: center;
+    background-color: @tabBgColor;
+    padding-right: 20rpx;
+    margin-bottom: 20rpx;
+    image {
+      width: 140rpx;
+      height: 140rpx;
+      margin-right: 30rpx;
+    }
+    .g-i {
+      flex: 1;
+    }
+    .g-b {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .g-d {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .arrow {
+      padding-right: 20rpx;
+      &:after {
+        width: 10rpx;
+        height: 10rpx;
+        right: 0;
+      }
+    }
+  }
+}
+
+.m-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  z-index: 999;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .main-text-color {
+    color: #f00;
+  } 
+  .icon-gouwuche {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    background-color: @mainBackgroundColor;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 50rpx;
+    position: relative;
+    transform: translateY(-50%);
+    margin-left: 20rpx;
+    text {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 13rpx;
+      height: 33rpx;
+      padding: 0 10rpx;
+      border-radius: 33rpx;
+      line-height: 33rpx;
+      transform: translateX(25%);
+      background-color: #ff9000;
+    }
+  }
+  .m-money {
+    flex: 1;
+    padding-left: 30rpx;
+  }
+  .confirm {
+    height: 100%;
+    width: 220rpx;
+    line-height: 88rpx;
+    background-color: #cd9b00;
+  }
+}
+
+.icon-zhuyidapx {
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  background-color: #fff;
+  &:before {
+    color: @mainBackgroundColor;
+    font-size: 40rpx;
+    margin-right: 20rpx;
+    vertical-align: middle;
+  }
+}
+
+.zw {
+  height: 88rpx;
+}
+
+.mask-sas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  > view {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 100rpx;
+    height: 100rpx;
+    image {
+      max-width: 50rpx;
+      margin-right: 20rpx;
+    }
+  }
+  .back {
+    margin-top: 20rpx;
+  }
+}

@@ -1,0 +1,80 @@
+@import "../../common/variable";
+page {
+  background-color: #f4f4f4;
+}
+.user-out {
+  margin-top: 30rpx;
+  background-color: #fff;
+  padding-left: 30rpx;
+  .user {
+    display: flex;
+    align-items: center;
+    .fw7 {
+      width: 170rpx;
+    }
+    input {
+      margin-left: 60rpx;
+      flex: 1;
+      height: 80rpx;
+    }
+  }
+}
+
+.choose-item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .choose-text {
+    flex: 1;
+  }
+  .chooseBox {
+    width: 39rpx;
+    height: 39rpx;
+    border: 2rpx solid #7f7f7f;
+    &:before {
+      content: '';
+      width: 0rpx;
+      height: 0rpx;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -64%);
+      transition: all 0.3s;
+      border: 2rpx solid #fff;
+    }
+  }
+  .active {
+    border-color: #cd9b00;
+    &:before {
+      content: '';
+      width: 20rpx;
+      height: 10rpx;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -64%) rotateZ(-45deg);
+      border: 2rpx solid #cd9b00;
+      border-color: #fff #fff #cd9b00 #cd9b00;
+    }
+  }
+}
+
+textarea {
+  margin-top: 30rpx;
+  width: 100%;
+  height: 234rpx;
+  background-color: #fff;
+}
+
+.upinfo {
+  margin-top: 40rpx;
+  .f30 {
+    background-color: #cd9b00;
+    width: 90%;
+    display: inline-block;
+  }
+  .f28 {
+    margin-top: 20rpx;
+  }
+}

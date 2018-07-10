@@ -1,0 +1,24 @@
+<view class="bt1 p30 f30">
+  <view wx:for="{{ userInfoArr }}" wx:key="*94" data-type="{{ item.type }}" catchtap="userInfoChange" class="bd1 user-info-item {{ item.type != 'img' ? 'arrow' : '' }}">
+    <text class="c444">{{ item.l }}</text>
+    <text wx:if="{{ item.type != 'img' }}" class="c999">{{ item.r }}</text>
+    <image wx:if="{{ item.type == 'img' }}" class="br" src="{{ item.r }}"></image>
+  </view>
+</view>
+<view class="mask" wx:if="{{ maskShow }}">
+  <view class="mask-in bbr10 tac ">
+  <form bindsubmit="formSubmit">
+    <view>请输入修改内容</view>
+    <input name="content" placeholder="请输入修改内容" focus="{{ focus }}" class="bd1" maxlength="{{ type == 'phone' ? '11' : '-1' }}" type="{{ type == 'phone' ? 'number' : '' }}" />
+    <view class="mask-btn">
+      <button catchtap="maskChange" class="c999">取消</button>
+      <button  formType="submit">确定</button>
+    </view>
+  </form>
+  </view>
+</view>
+<view catchtap="upData" class="fabu tac lh80 f30 c333">更新个人信息</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

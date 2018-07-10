@@ -1,0 +1,135 @@
+@import "../../common/variable";
+.tab-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  .tab-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    image {
+      max-width: 50rpx;
+      vertical-align: middle;
+      margin-right: 20rpx;
+    }
+    .f30 {
+      border-bottom: 4rpx solid #fff;
+      transition: all 0.5s;
+    }
+    .active {
+      color: #ca91ff;
+      border-bottom: 4rpx solid #ca91ff;
+    }
+  }
+}
+
+.comment-item {
+  display: flex;
+  padding: 0;
+  margin: 30rpx;
+  overflow: hidden;
+  .ci-left {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 18rpx;
+  }
+  .ci-right {
+    flex: 1;
+    .ci-l-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ci-r-text {
+      margin-top: 20rpx;
+    }
+    .c-i-img-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20rpx;
+      image {
+        max-width: 160rpx;
+        margin: 5rpx;
+      }
+    }
+  }
+  .h-a-operation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    vertical-align: middle;
+    .jwq {
+      margin-left: 40rpx;
+      display: flex;
+      align-items: center;
+      &:before {
+        font-size: 34rpx;
+        margin-right: 10rpx;
+      }
+    }
+  }
+}
+
+.fabu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4efde;
+}
+
+.hot-answer {
+  .h-a-top {
+    display: flex;
+    align-items: center;
+    padding-bottom: 14rpx;
+  }
+  .question-img {
+    width: 75rpx;
+    height: 75rpx;
+    margin-right: 20rpx;
+  }
+  .question-name {
+    flex: 1;
+  }
+  .h-a-content {
+    padding-top: 20rpx;
+    display: flex;
+    .h-a-c-left {
+      border: 4rpx solid #edbf31;
+      color: #edbf31;
+      min-width: 40rpx;
+      height: 40rpx;
+      margin-right: 14rpx;
+    }
+    .h-a-c-a {
+      margin-top: 38rpx;
+      background-color: #f2f2f2;
+      padding: 10rpx 10rpx 14rpx 18rpx;
+    }
+    .h-a-operation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      vertical-align: middle;
+      .jwq {
+        margin-left: 40rpx;
+        display: flex;
+        align-items: center;
+        &:before {
+          font-size: 34rpx;
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
+}

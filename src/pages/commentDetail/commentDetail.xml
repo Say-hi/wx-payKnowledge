@@ -1,0 +1,26 @@
+<view class="p20 comment-item">
+  <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+  <view class="ci-right">
+    <view class="f24 c999 ci-l-name">
+      <text>粗恶协亨</text>
+      <!--<text class="zan jwq f24 {{ item.zan ? 'icon-dianzan1' : 'icon-dianzan' }}">999</text>-->
+    </view>
+    <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+    <view class="f24 ci-r-content">
+      <view wx:for="1234123" wx:key="*21" class="lh60">
+        <text class="c999">asdf:</text><text class="c333">asdfasdfsadfasdfsdaf{{ index }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="zw"></view>
+<view class="write-comment bt1">
+  <view class="br5">
+    <view class="jwq icon-write"></view>
+    <input placeholder="写评论，优质评论被优先显示"/>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

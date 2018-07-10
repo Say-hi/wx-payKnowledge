@@ -1,0 +1,92 @@
+<swiper autoplay
+        indicator-dots
+        circular
+        indicator-color="{{ indicatorColor }}"
+        indicator-active-color="{{ indicatorActiveColor }}"
+        class="banner">
+  <swiper-item  wx:for="123"
+                wx:key="*0">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+  </swiper-item>
+</swiper>
+
+<view class="tab-wrap bd1">
+  <navigator url="{{ item.url }}"
+             wx:for="{{ tabArr }}"
+             wx:key="*1"
+             catchtap="{{ item.fn }}"
+             hover-class="none"
+             class="tab-item f24 c333">
+    <image mode="widthFix" src="{{ item.i }}"></image>
+    <view class="f24 c333">{{ item.t }}</view>
+  </navigator>
+</view>
+
+<view class="f32 c333 fw7 lh80 tac shop-t">正在秒杀</view>
+
+<view class="time-kill p30">
+  <!--<navigator url='../goods/goods?type=new'-->
+           <!--hover-class="none"-->
+           <!--class="content-title"><view class="f30 c333">今日上新</view><view class="arrow f24 c666">查看更多</view></navigator>-->
+  <scroll-view scroll-x
+               class="content-scroll bb">
+    <view class="content-scroll-in">
+      <navigator
+              wx:for="1234"
+              wx:key="*32"
+              url="../goodsDetail/goodsDetail?type=new&id={{ item.goods_id }}"
+              class="content-item br6">
+        <image class="br6" mode="aspectFit"
+               src="{{ testImg }}"></image>
+        <view class="p20">
+          <view class="ell2 f24 c000">阿斯顿发撒旦法死阿斯顿发撒旦法死阿斯顿发撒旦法死阿斯顿发撒旦法死</view>
+          <view>
+            <text class="main-text-color f24">￥9.00</text>　<text class="f20 c999 through-line">￥108</text>
+          </view>
+          <view class="content-sale lh50">
+            <view class="f22 c999">仅剩:4444件</view>
+            <progress class="br10" percent="20" stroke-width="6" activeColor="#ff0d0d" backgroundColor="#ffffff"></progress>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
+  <navigator hover-class="none" class="tac go-more" url="../killList/killList">
+    <view class="f32 main-text-color br5">查看更多秒杀商品</view>
+  </navigator>
+</view>
+
+<view class="p30 out-wrap">
+  <view class="f32 c333 fw7 lh50 tac shop-t">精选推荐</view>
+  <navigator url="../goodsDetail/goodsDetail" wx:for="123" wx:key="*55" class="ac-list br10">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+    <view class="p20">
+      <view class="f26 c999 ac-l-b">
+        <text class="f24 cfff">新品</text>
+        <view class="f32 c000 ell1">阿斯顿发撒旦法三大泪洒家的法律身份的阿斯利康打飞机阿斯兰多夫空军</view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<view class="zw"></view>
+<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<!--<view class="tab-wrap tab-wrap2 bt1 bottom-operation">-->
+<!--<navigator open-type="reLaunch" url="{{ item.active ? '': item.url }}"-->
+           <!--wx:for="{{ tabArr2 }}"-->
+           <!--wx:key="*5"-->
+           <!--hover-class="none"-->
+           <!--class="tab-item f24 c333 ">-->
+  <!--<image mode="widthFix" src="{{ item.i }}"></image>-->
+  <!--<view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>-->
+<!--</navigator>-->
+<!--</view>-->
+<view class="mask" wx:if="{{ redBag }}">
+  <view class="mask-bag tac">
+    <image class="{{ showOpen ? 'animated wobble' : '' }}" catchtap="{{ hasBag ? 'goToMoney' : 'openBag' }}" mode="widthFix" src="{{ redbag }}"></image>
+    <view catchtap="redbagChange" class="close cfff tac f40">×</view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>
