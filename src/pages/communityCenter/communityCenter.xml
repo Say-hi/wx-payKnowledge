@@ -11,7 +11,7 @@
   </view>
 </view>
 <view class="zw"></view>
-<view wx:if="{{ active == 0 }}" class="p20 comment-item bd1" wx:for="123" wx:key="*10">
+<view data-url="../dynamicDetail/dynamicDetail" catchtap="goDetail" wx:if="{{ active == 0 }}" class="p20 comment-item bd1" wx:for="123" wx:key="*10">
   <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
   <view class="ci-right">
     <view class="f24 c999 ci-l-name">

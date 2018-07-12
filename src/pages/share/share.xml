@@ -1,0 +1,20 @@
+<view class="top-img tac">
+  <image mode="widthFix" src="{{ codeImg }}"></image>
+  <view bindlongpress="savePhoto" class="tac f28 c666 lh80 pr">长按保存至相册</view>
+</view>
+<button class="f32 cfff share-btn" open-type="share">分享给好友</button>
+<view class="f28 c333 line-out">
+  <text class="line"></text>
+  <text class="line-text">活动说明</text>
+  <text class="line"></text>
+</view>
+<view class="f24 c999">
+  <text class="c666">活动规则:　</text>阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大
+</view>
+<view class="f24 c999">
+  <text class="c666">活动说明:　</text>阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

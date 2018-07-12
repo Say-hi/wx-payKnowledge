@@ -9,7 +9,12 @@
   <view class="mask-in bbr10 tac ">
   <form bindsubmit="formSubmit">
     <view>请输入修改内容</view>
-    <input name="content" placeholder="请输入修改内容" focus="{{ focus }}" class="bd1" maxlength="{{ type == 'phone' ? '11' : '-1' }}" type="{{ type == 'phone' ? 'number' : '' }}" />
+    <input name="content" bindinput="inputValue" data-type="phone" placeholder="请输入修改内容" focus="{{ focus }}" class="bd1" maxlength="{{ type == 'phone' ? '11' : '-1' }}" type="{{ type == 'phone' ? 'number' : '' }}" />
+    <view wx:if="{{ type == 'phone' }}"  class="r-i-w pr p020">
+      <text class="r-n-1 pa">验证码</text>
+      <input bindinput="inputValue" name="code" type="number" data-type="code" class="r-i r-n f24" placeholder="输入短信验证码"/>
+      <button class="{{ numberDisabled ? 'grow' : '' }} pa" disabled="{{ numberDisabled }}" catchtap="getNumber">{{ time }}</button>
+    </view>
     <view class="mask-btn">
       <button catchtap="maskChange" class="c999">取消</button>
       <button  formType="submit">确定</button>

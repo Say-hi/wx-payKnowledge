@@ -7,27 +7,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
-    ],
-    cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
+    autoFocus: true,
+    testImg: app.data.testImg
   },
+  answerOperation (e) {
+    let that = this
+    if (e.currentTarget.dataset.type === 'cancel') {
+      this.setData({
+        showAnswer: !that.data.showAnswer
+      })
+    } else {
 
+    }
+  },
+  showImg (e) {
+    app.showImg(e)
+  },
+  giveTip (e) {
+    this.setData({
+      componentsData: {
+        name: '123' + e.currentTarget.dataset.index,
+        id: e.currentTarget.dataset.index + 1,
+        url: app.data.testImg,
+        index: e.currentTarget.dataset.index
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('我的账户')
+    app.setBar('动态详情')
     app.getSelf(this)
     // TODO: onLoad
   },

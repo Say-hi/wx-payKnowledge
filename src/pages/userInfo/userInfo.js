@@ -9,6 +9,7 @@ Page({
   data: {
     title: 'userInfo',
     focus: true,
+    time: '获取验证码',
     userInfoArr: [
       {
         l: '头像',
@@ -41,6 +42,49 @@ Page({
         type: 'sign'
       }
     ]
+  },
+  inputValue (e) {
+    app.inputValue(e, this)
+  },
+  getNumber () {
+    if (app.checkMobile(this.data.phone)) {
+      return wx.showToast({
+        title: '请输入正确的11位手机号码'
+      })
+    }
+    this.setData({
+      numberDisabled: true
+    })
+    let time = 60
+    let that = this
+    let timer = setInterval(function () {
+      if (time <= 0) {
+        clearInterval(timer)
+        that.setData({
+          numberDisabled: false,
+          time: '重获验证码'
+        })
+        return
+      }
+      that.setData({
+        time: --time + 's'
+      })
+    }, 1000)
+    // 请求手机验证码
+    app.wxrequest({
+      url: app.getUrl().getForgetPassword,
+      data: {
+        mobile: that.data.phone
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.setToast(that, {title: '短信状态', content: '短信发送成功，请注意查收！'})
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   upData () {
     wx.navigateBack({

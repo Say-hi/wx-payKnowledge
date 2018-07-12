@@ -34,7 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('社群中心')
+    app.setBar('发布动态')
     app.getSelf(this)
     // TODO: onLoad
   },

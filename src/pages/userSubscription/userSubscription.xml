@@ -1,0 +1,110 @@
+<view class="bd1 bt1 f30 c666 tab-wrap">
+  <text class="tac {{ currentIndex == index ? 'main-text-color' : '' }}" catchtap="tabChoose" data-index="{{ index }}" wx:for="{{ tabArr}}" wx:key="*798">{{ item }}</text>
+</view>
+<view class="zw"></view>
+
+<view wx:if="{{ currentIndex == 0 }}" class="colunms list-wrap">
+  <navigator hover-class="none" url="../colunmsDetail/colunmsDetail" wx:for="1234" wx:key="*22" class="bd1 lw-item p200">
+    <image class="item-img br" src="{{ testImg }}"></image>
+    <view class="item-center">
+      <view class="f28 c333">啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方啊拉萨的减肥卡死老地方</view>
+      <view class="f26 c999">asdfasdf</view>
+      <view class="f26 c999">123人关注|12篇文章</view>
+    </view>
+    <view catchtap="follow" class="f24 cfff follow}}">取消关注</view>
+  </navigator>
+  <navigator class="tac f32 c333 lh80 follow" url="../colunmsList/colunmsList">您还没有订阅哦，点击去订阅专栏</navigator>
+</view>
+
+<view wx:if="{{ currentIndex == 1 }}" class="release">
+  <view class="release-tab lh80 f28 fw7 bd1">
+    <text class="tac {{ currentReleaseIndex == index ? 'main-text-color' : '' }}" catchtap="tabChoose" data-type="release" data-index="{{ index }}" wx:for="{{ tabReleaseArr}}" wx:key="*798">{{ item }}</text>
+  </view>
+  <view wx:if="{{ currentReleaseIndex == 0 }}" class="release-video">
+    <view catchtap="play" wx:if="{{ play }}" class="mask">
+      <video objectFit="fill" show-fullscreen-btn="{{ showFullscreenBtn }}" class="video-area" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" autoplay></video>
+    </view>
+    <navigator url="../videoDetail/videoDetail?id=${e.currentTarget.dataset.id}" catchtap="goDetail" data-id="{{ item.id }}" wx:for="1234" wx:key="*62" class="p30 video-item">
+      <view catchtap="play" data-index="{{ index }}" class="v-i-img pr">
+        <image mode="widthFix" class="br10 poster" src="{{ testImg }}"></image>
+        <image class="pa play-btn" src="{{ playImg }}"></image>
+      </view>
+      <view class="f28 video-text c333 fw7">阿斯顿发生地方撒旦发生地方撒的发生地方撒旦法撒旦飞洒地方</view>
+      <view class="f24 c999 video-bottom">
+        <view>
+          <text class="cfff video-time">5`45``</text>
+          <text>5.5万人观看</text>
+        </view>
+        <view class="h-a-operation">
+          <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+          <view data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+          <view data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseVideo/releaseVideo">发布我的视频</navigator>
+  </view>
+  <view wx:if="{{ currentReleaseIndex == 1 }}" class="release-community">
+    <navigator url='../dynamicDetail/dynamicDetail' class="p20 comment-item bd1" wx:for="123" wx:key="*101">
+      <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+      <view class="ci-right">
+        <view class="f24 c999 ci-l-name">
+          <text>粗恶协亨</text>
+          <text class="f24">2天前</text>
+        </view>
+        <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+        <view class="f28 c999 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+        <view class="c-i-img-wrap">
+          <image wx:for="132123" wx:key="*444" data-src="{{ testImg }}" catchtap="showImg" mode="widthFix" src="{{ testImg }}"></image>
+        </view>
+        <view class="h-a-operation">
+          <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+          <view data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+          <view data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseCommunity/releaseCommunity">发布我的动态</navigator>
+  </view>
+  <view wx:if="{{ currentReleaseIndex == 2 }}" class="release-article">
+    <view class="ar-list-w">
+      <navigator url="../articleDetail/articleDetail" wx:for="12344" wx:key="*334" class="ar-list bd1 p200">
+        <image mode="widthFix" class="br5 ar-l-l" src="{{ testImg }}"></image>
+        <view class="ar-l-r">
+          <view class="f32 c333">asdlfjasdlf;jkasdflaks</view>
+          <view class="f24 c999 ar-l-r-b">
+            <view>2{{ index }}天前</view>
+            <view class="h-a-operation">
+              <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+              <view data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+              <view data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseCommunity/releaseCommunity">发布我的文章</navigator>
+  </view>
+  <view wx:if="{{ currentReleaseIndex == 3 }}" class="release-question p20">
+    <navigator url="../quesitonDetail/quesitonDetail" class="h-a-content" wx:for="1234" wx:key="*980">
+      <view class="h-a-c-left br fw7 tac l36 f24">?</view>
+      <view>
+        <view class="f32 c333 fw7">阿斯顿将发生的卷发撒旦法撒旦法死到发阿斯顿将发生的卷发撒旦法撒旦法死到发</view>
+        <view class="f24 h-a-c-a">
+          <text class="c999">阿斯顿发生:</text><text class="c333">阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬</text>
+        </view>
+        <view class="h-a-operation">
+          <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+          <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+          <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseQuestion/releaseQuestion">发布我的提问</navigator>
+  </view>
+</view>
+<view wx:if="{{ currentIndex == 2 }}" class="colunms"></view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

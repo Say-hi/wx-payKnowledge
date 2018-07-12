@@ -1,6 +1,12 @@
 {
 //  群信息小程序页面分布
   "pages": [
+    "pages/userSubscription/userSubscription", // 我的订阅
+    "pages/dynamicDetail/dynamicDetail", // 活动动态
+    "pages/share/share", // 分享赢积分
+    "pages/userMessage/userMessage", // 我的消息
+    "pages/ranking/ranking", // 脑籽排行
+    "pages/userMoney/userMoney", // 充值&提现
     "pages/userAccount/userAccount", // 我的账户
     "pages/vipCenter/vipCenter", // 会员中心
     "pages/userInfo/userInfo", // 个人资料
@@ -31,7 +37,8 @@
     "pages/communityCenter/communityCenter", // 社群中心
     "pages/videoDetail/videoDetail", // 视频详情
     "pages/releaseVideo/releaseVideo", // 发布视频
-    "pages/videoList/videoList" // 视频课程
+    "pages/videoList/videoList" // 视频课程,,
+
     // Dont remove this comment
   ],
   // Window configuration

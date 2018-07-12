@@ -1,0 +1,58 @@
+@import "../../common/variable";
+page {
+  background-color: #f0eada;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.top-img {
+  background-color: #fff;
+  image {
+    width: 90%;
+  }
+  .lh80 {
+    &:before, &:after {
+      content: '';
+      width: 40rpx;
+      height: 40rpx;
+      position: absolute;
+      border-radius: 50%;
+      background-color: #f0eada;
+      top: 50%;
+    }
+    &:before {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+    &:after {
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+.share-btn {
+  margin-top: 40rpx;
+  background-color: #cd9b00;
+  border-radius: 5rpx;
+  &:before, &:after {
+    border: none;
+  }
+}
+
+.line-out {
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+  .line-text {
+    margin: 0 10rpx;
+  }
+  .line {
+    flex: 1;
+    height: 0rpx;
+    border-top: 1rpx solid #c9c9c9;
+  }
+}
+
+.f24 {
+  margin-top: 20rpx;
+}

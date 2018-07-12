@@ -7,27 +7,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
+    testImg: app.data.testImg,
+    currentIndex: 1,
+    currentReleaseIndex: 0,
+    playImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/play_btn.png',
+    tabArr: [
+      '我的订阅',
+      '我的发布',
+      '我的专栏'
     ],
-    cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
+    tabReleaseArr: [
+      '视频',
+      '动态',
+      '文章',
+      '提问'
+    ]
   },
-
+  showImg (e) {
+    app.showImg(e)
+  },
+  play (e) {
+    this.setData({
+      play: !this.data.play
+    })
+  },
+  tabChoose (e) {
+    if (e.currentTarget.dataset.type === 'release') {
+      this.setData({
+        currentReleaseIndex: e.currentTarget.dataset.index
+      })
+    } else {
+      this.setData({
+        currentIndex: e.currentTarget.dataset.index
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('我的账户')
+    app.setBar('我的订阅')
     app.getSelf(this)
     // TODO: onLoad
   },

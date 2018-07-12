@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    playImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/play_btn.png',
     showCenterPlayBtn: false,
     showFullscreenBtn: false,
     testImg: app.data.testImg,

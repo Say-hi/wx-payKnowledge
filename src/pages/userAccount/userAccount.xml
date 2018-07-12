@@ -10,8 +10,8 @@
 </view>
 <view class="u-a-operation tac lh90 f30">
   <view class="u-a-operation-out">
-    <view class="tac">充值</view>
-    <view class="tac">提现</view>
+    <navigator url="../userMoney/userMoney?type=充值" class="tac">充值</navigator>
+    <navigator url="../userMoney/userMoney?type=提现" class="tac">提现</navigator>
   </view>
 </view>
 

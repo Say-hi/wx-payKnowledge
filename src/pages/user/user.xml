@@ -36,7 +36,7 @@
     <!--<text class="f28">全部订单</text>-->
   </view>
   <view class="tab-wrap tab-wrap3 tab5">
-    <navigator open-type="reLaunch" url="{{ item.active ? '': item.url }}"
+    <navigator url="{{ item.active ? '': item.url }}"
                wx:for="{{ userServiceArr }}"
                wx:key="*5"
                hover-class="none"
@@ -61,13 +61,18 @@
                  class="">
         {{ item.t }}
       </navigator>
-      <button open-type="{{ item.open_type }}" class="lh60 f24 c444" wx:if="{{ item.type == 'button' }}">
+      <button open-type="{{ item.open_type }}" catchtap="{{ item.open_type == 'address' ? 'chooseAddress' : '' }}" class="lh60 f24 c444" wx:if="{{ item.type == 'button' }}">
         {{ item.t }}
       </button>
     </view>
   </view>
 </view>
 <view class="bgh20"></view>
+<view class="mask" wx:if="{{ needSetting }}">
+  <view class="open-setting">
+    <button open-type="openSetting" bindopensetting="openSetting">开启授权</button>
+  </view>
+</view>
 <view class="zw"></view>
 <my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
 <!--错误弹窗-->

@@ -1,0 +1,43 @@
+@import "../../common/variable";
+
+.comment-item {
+  display: flex;
+  padding: 0;
+  margin: 30rpx;
+  overflow: hidden;
+  .ci-left {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 18rpx;
+  }
+  .ci-right {
+    flex: 1;
+    .ci-l-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ci-r-text {
+      margin-top: 20rpx;
+    }
+    .ci-r-bottom {
+      margin-top: 30rpx;
+      padding: 10rpx;
+      background-color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      image {
+        width: 77rpx;
+        height: 77rpx;
+        margin-right: 10rpx;
+      }
+      .h-a-c-left {
+        border: 4rpx solid #edbf31;
+        color: #edbf31;
+        min-width: 40rpx;
+        height: 40rpx;
+        margin-right: 14rpx;
+      }
+    }
+  }
+}

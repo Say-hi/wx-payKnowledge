@@ -7,27 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
+    title: 'ranking',
+    rankingArr: [
+      'https://c.jiangwenqiang.com/workProject/payKnowledge/ranking_0.png',
+      'https://c.jiangwenqiang.com/workProject/payKnowledge/ranking_1.png',
+      'https://c.jiangwenqiang.com/workProject/payKnowledge/ranking_2.png'
     ],
-    cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
+    testImg: app.data.testImg
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('我的账户')
+    app.setBar('脑籽排行')
     app.getSelf(this)
     // TODO: onLoad
   },

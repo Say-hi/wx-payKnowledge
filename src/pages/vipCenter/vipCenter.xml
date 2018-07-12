@@ -9,7 +9,7 @@
 </view>
 <view class="zw30 bd1"></view>
 <view class="vip-title bd1"><text class="f32 c333">我的等级</text><text class="f24 c999">还需485颗达到LV2</text></view>
-<view wx:for="{{ vipLvArr }}" class="vip-lv f24 c666 p30">
+<view wx:for="{{ vipLvArr }}" wx:key="*798" class="vip-lv f24 c666 p30">
   <view class="fw7">{{ item.l }}</view>
   <view class="vip-lv-c"></view>
   <view class="c999 {{ item.apply ? 'apply' : item.r ? 'arrive' : '' }}">{{ item.apply ? '申请' : item.r ? '已达到' : '未达到' }}</view>

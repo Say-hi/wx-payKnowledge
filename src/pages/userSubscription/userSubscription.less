@@ -1,0 +1,236 @@
+@import "../../common/variable";
+.tab-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 90rpx;
+  background-color: #fff;
+  z-index: 80;
+  text {
+    flex: 1;
+  }
+}
+
+.list-wrap {
+  padding-left: 30rpx;
+  .lw-item {
+    display: flex;
+    align-items: center;
+    .item-img {
+      width: 70rpx;
+      height: 70rpx;
+      margin-right: 23rpx;
+    }
+    .item-center {
+      flex: 1;
+    }
+    .no-follow {
+      border: 2rpx solid #b68a00;
+      background-color: #cc9900;
+      padding: 10rpx 30rpx;
+      margin-right: 30rpx;
+    }
+  }
+}
+
+.follow {
+  border: 2rpx solid #b68a00;
+  background-color: #fff;
+  color: #cc9900;
+  padding: 10rpx 30rpx;
+  margin-right: 30rpx;
+}
+
+.release {
+  .release-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    .main-text-color {
+      border-bottom: 4rpx solid @mainTextColor;
+    }
+  }
+  .release-video {
+    .video-item {
+      .v-i-img {
+        .poster {
+          width: 100%;
+        }
+        .play-btn {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 108rpx;
+          height: 108rpx;
+        }
+      }
+      .video-text {
+        margin-top: 30rpx;
+      }
+      .video-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .video-time {
+          background-color: #dfad11;
+          padding: 7rpx 8rpx 6rpx 12rpx;
+          margin-right: 12rpx;
+        }
+        .h-a-operation {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          vertical-align: middle;
+          .jwq {
+            margin-left: 40rpx;
+            display: flex;
+            align-items: center;
+            &:before {
+              font-size: 34rpx;
+              margin-right: 10rpx;
+            }
+          }
+        }
+      }
+    }
+
+    .video-area {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .release-community {
+    .comment-item {
+      display: flex;
+      padding: 0;
+      margin: 30rpx;
+      overflow: hidden;
+      .ci-left {
+        width: 60rpx;
+        height: 60rpx;
+        margin-right: 18rpx;
+      }
+      .ci-right {
+        flex: 1;
+        .ci-l-name {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .ci-r-text {
+          margin-top: 20rpx;
+        }
+        .c-i-img-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 20rpx;
+          image {
+            max-width: 160rpx;
+            margin: 5rpx;
+          }
+        }
+      }
+      .h-a-operation {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        vertical-align: middle;
+        .jwq {
+          margin-left: 40rpx;
+          display: flex;
+          align-items: center;
+          &:before {
+            font-size: 34rpx;
+            margin-right: 10rpx;
+          }
+        }
+      }
+    }
+  }
+  .release-article {
+    .ar-list-w {
+      padding: 0 30rpx;
+      .ar-list {
+        display: flex;
+        align-items: center;
+        .ar-l-l {
+          max-width: 220rpx;
+          margin-right: 30rpx;
+        }
+        .ar-l-r {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .ar-l-r-b {
+            margin-top: 20rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .h-a-operation {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            vertical-align: middle;
+            .jwq {
+              margin-left: 40rpx;
+              display: flex;
+              align-items: center;
+              &:before {
+                font-size: 34rpx;
+                margin-right: 10rpx;
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+  .release-question {
+    .h-a-content {
+      padding-top: 20rpx;
+      display: flex;
+      .h-a-c-left {
+        border: 4rpx solid #edbf31;
+        color: #edbf31;
+        min-width: 40rpx;
+        height: 40rpx;
+        margin-right: 14rpx;
+      }
+      .h-a-c-a {
+        margin-top: 38rpx;
+        background-color: #f2f2f2;
+        padding: 10rpx 10rpx 14rpx 18rpx;
+      }
+      .h-a-operation {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        vertical-align: middle;
+        .jwq {
+          margin-left: 40rpx;
+          display: flex;
+          align-items: center;
+          &:before {
+            font-size: 34rpx;
+            margin-right: 10rpx;
+          }
+        }
+      }
+    }
+  }
+  .go-release {
+    margin-top: 30rpx;
+    margin-right: 0;
+  }
+}

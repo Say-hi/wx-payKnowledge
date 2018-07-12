@@ -7,27 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
-    ],
-    cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
+    title: 'userMoney',
+    focus: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
-    app.setBar('我的账户')
+  onLoad (options) {
+    app.setBar(options.type)
+    this.setData({
+      type: options.type
+    })
     app.getSelf(this)
     // TODO: onLoad
   },

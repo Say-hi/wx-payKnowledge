@@ -1,0 +1,38 @@
+<view class="ranking bt1 p30">
+  <view class="user-ranking tac">
+    <view>
+      <view>1235</view>
+      <view class="f22 c999">我的脑籽</view>
+    </view>
+    <view>
+      <image src="{{ testImg }}"></image>
+      <view class="f28 c333">阿斯顿发</view>
+    </view>
+    <view>
+      <view>1235</view>
+      <view class="f22 c999">我的排名</view>
+    </view>
+  </view>
+</view>
+<view class="lh80 f28 c999 ranking-title bt1 bd1">
+  <text class="tal p020">排名</text>
+  <text>名称</text>
+  <text class="tar p020">脑籽</text>
+</view>
+<view wx:for="112345" wx:key="*567" class="p30">
+  <view class="ranking-item bd1 p200 f28">
+    <view class="r-i-left">
+      <text wx:if="{{ index >= 3 }}">{{ (index * 1 + 1) }}</text>
+      <image mode="widthFix" wx:else src="{{ rankingArr[index] }}"></image>
+    </view>
+    <view class="r-i-c">
+      <image class="br" src="{{ testImg }}"></image>
+      <text>阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大阿斯顿发生大</text>
+    </view>
+    <view class="f28 {{ index >= 3 ? 'c666' : 'main-text-color' }}">213</view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

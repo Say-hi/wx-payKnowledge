@@ -1,0 +1,7 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "../components/my-tip/my-tip"
+  },
+  "enablePullDownRefresh": false
+}

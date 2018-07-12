@@ -13,8 +13,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
-    app.setBar('领取优惠卷')
+  onLoad (options) {
+    app.setBar(options.type || '领取优惠卷')
     app.getSelf(this)
     // TODO: onLoad
   },

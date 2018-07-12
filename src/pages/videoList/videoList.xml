@@ -1,8 +1,8 @@
 <view>
-  <view catchtap="goDetail" data-id="{{ item.id }}" wx:for="1234" wx:key="*6" class="p30 video-item">
+  <navigator url="../videoDetail/videoDetail?id=${e.currentTarget.dataset.id}" data-id="{{ item.id }}" wx:for="1234" wx:key="*6" class="p30 video-item">
     <view catchtap="play" data-index="{{ index }}" class="v-i-img pr">
       <image mode="widthFix" class="br10 poster" src="{{ testImg }}"></image>
-      <image class="pa play-btn" src="{{ imgDomain }}/workProject/payKnowledge/play_btn.png"></image>
+      <image class="pa play-btn" src="{{ playImg }}"></image>
     </view>
     <view class="f28 video-text c333 fw7">阿斯顿发生地方撒旦发生地方撒的发生地方撒旦法撒旦飞洒地方</view>
     <view class="f24 c999 video-bottom">
@@ -16,7 +16,7 @@
         <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
       </view>
     </view>
-  </view>
+  </navigator>
 </view>
 <view class="zw"></view>
 <navigator url="../releaseVideo/releaseVideo" class="fabu f32 main-text-color tac lh88">发布视频</navigator>

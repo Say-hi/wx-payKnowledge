@@ -57,7 +57,7 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service1.png',
         t: '我的订阅',
-        url: '../index/index'
+        url: '../userSubscription/userSubscription'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service2.png',
@@ -67,7 +67,7 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service3.png',
         t: '优惠卷',
-        url: '../shop/shop'
+        url: '../coupon/coupon?type=我的优惠卷'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service4.png',
@@ -86,11 +86,11 @@ Page({
       },
       {
         t: '脑籽排行',
-        url: ''
+        url: '../ranking/ranking'
       },
       {
         t: '我的消息',
-        url: ''
+        url: '../userMessage/userMessage'
       }
     ],
     userOtherServiceArr: [
@@ -115,7 +115,51 @@ Page({
       }
     ]
   },
+// 选择地址
+  chooseAddress () {
+    let that = this
+    wx.chooseAddress({
+      success (res) {
+        if (res.telNumber) { // 获取信息成功
+          wx.setStorageSync('addressInfo', res)
+          that.setData({
+            needSetting: false,
+            addressInfo: res
+          })
+        }
+      },
+      fail () {
+        wx.getSetting({
+          success (res) {
+            if (!res.authSetting['scope.address']) {
+              that.setData({
+                needSetting: true
+              })
+              app.setToast(that, {content: '需授权获取地址信息'})
+            }
+          }
+        })
+      }
+    })
+  },
 
+  openSetting () {
+    let that = this
+    wx.getSetting({
+      success (res) {
+        if (!res.authSetting['scope.address']) {
+          that.setData({
+            needSetting: true
+          })
+          app.setToast(that, {content: '需授权获取地址信息'})
+        } else {
+          that.setData({
+            needSetting: false
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

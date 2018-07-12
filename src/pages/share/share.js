@@ -7,27 +7,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
-    ],
-    cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
+    title: 'share',
+    codeImg: 'https://c.jiangwenqiang.com/api/qrcode.jpg'
   },
-
+  savePhoto () {
+    let that = this
+    wx.downloadFile({
+      url: this.data.codeImg,
+      success (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success () {
+            app.setToast(that, {content: '图片保存成功'})
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('我的账户')
+    app.setBar('分享赢积分')
     app.getSelf(this)
     // TODO: onLoad
   },
