@@ -7,35 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgDomain: app.data.imgDomain,
-    release_add_img: 'https://c.jiangwenqiang.com/workProject/payKnowledge/release_add_img.png',
-    upImgArr: [
-      app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg
-    ]
+    title: 'createColunms',
+    create_success: 'https://c.jiangwenqiang.com/workProject/payKnowledge/create_success.png'
   },
   formSubmit (e) {
-    if (!e.detail.value.name) return app.setToast(this, {content: '请输入标题'})
-    if (!e.detail.value.content || e.detail.value.content.length < 10) return app.setToast(this, {content: '请输入不少于10字的内容'})
-    if (!this.data.upImgArr.length) return app.setToast(this, {content: '请至少上传一张图片'})
-  },
-  addImg () {},
-  showImg (e) {
-    app.showImg(e)
-  },
-  del (e) {
-    this.data.upImgArr.splice(e.currentTarget.dataset.index, 1)
+    if (!e.detail.value.name) return app.setToast(this, {content: '请输入专栏名'})
+    else if (!e.detail.value.content) return app.setToast(this, {content: '请输入专栏简介'})
     this.setData({
-      upImgArr: this.data.upImgArr
+      createSuccess: true
     })
-  },
-  inputValue (e) {
-    app.inputValue(e, this)
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
-    app.setBar('发布动态')
+  onLoad (options) {
+    this.setData({
+      options
+    })
+    app.setBar(options.type || '创建专栏')
     app.getSelf(this)
     // TODO: onLoad
   },

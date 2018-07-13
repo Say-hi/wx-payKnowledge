@@ -8,7 +8,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    currentIndex: 1,
+    currentIndex: 2,
     currentReleaseIndex: 0,
     playImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/play_btn.png',
     tabArr: [

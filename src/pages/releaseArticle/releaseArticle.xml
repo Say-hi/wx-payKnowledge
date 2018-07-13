@@ -1,0 +1,33 @@
+<view class="bt1">
+  <view class="release-article-top lh50 p30">
+    <view catchtap="showClassChange" class="r-a-t-l f28 c333">{{ classArrText || '文章分类' }}</view>
+    <view catchtap="release" class="r-a-t-r f32 main-text-color">
+      <image mode="widthFix" src="{{ releaseImg }}"></image>
+      <text>发表</text>
+    </view>
+  </view>
+  <view class="zw20 bt1"></view>
+  <view class="title-input p30 f32 bt1">
+    <input data-type="name" bindinput="inputValue" maxlength="30" placeholder="请输入文章标题"/>
+    <text class="f28 c999">{{ name.length || '0' }}/30</text>
+  </view>
+  <textarea bindinput="inputValue" data-type="content" class="p30 f28" placeholder="请输入文章内容"></textarea>
+  <view class="imgArea p20">
+    <view class="upImg">
+      <view class="pr" wx:for="{{ upImgArr }}" wx:key="*151">
+        <image catchtap="showImg" data-src="{{ item }}" mode="widthFix" src="{{ item }}"></image>
+        <view catchtap="del" data-index="{{ index }}" class="jwq icon-cuowu pa"></view>
+      </view>
+      <image class="add-img" src="{{ release_add_img }}" catchtap="addImg"></image>
+    </view>
+  </view>
+</view>
+<view class="mask bt1" wx:if="{{ showClass }}">
+  <view class="mask-in" style="height: {{ showHeight ? (classArr.length * 110) : '0' }}rpx;">
+    <view catchtap="chooseClass" data-index="{{ index }}" class="bd1 f28 p30 fw7 lh50 {{ currentClassIndex == index ? 'main-text-color' : 'c666' }}" wx:for="{{ classArr }}" wx:key="*689">{{ item }}</view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

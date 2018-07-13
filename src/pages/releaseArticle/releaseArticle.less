@@ -1,0 +1,69 @@
+@import "../../common/variable";
+.release-article-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .r-a-t-r {
+    display: flex;
+    align-items: center;
+    image {
+      width: 50rpx;
+      margin-right: 20rpx;
+    }
+  }
+}
+
+.zw20 {
+  height: 20rpx;
+  background-color: #f2f2f2;
+}
+
+.title-input {
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx dashed #e2e2e2;
+  input {
+    flex: 1;
+  }
+}
+
+textarea {
+  width: 100%;
+}
+
+.imgArea {
+  .upImg {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    image {
+      max-width: 210rpx;
+      margin: 5rpx;
+    }
+    .icon-cuowu {
+      top: 10rpx;
+      right: 10rpx;
+      &:before {
+        color: #cd9b00;
+        font-size: 40rpx;
+      }
+    }
+  }
+  .add-img {
+    width: 210rpx;
+    height: 210rpx;
+  }
+}
+
+.mask {
+  top: 110rpx;
+  .mask-in {
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    height: 0;
+    transition: all 0.5s;
+    overflow: hidden;
+  }
+}

@@ -6,11 +6,11 @@
   <textarea name="content" auto-height="true" class="p20 f28" maxlength="1000" placeholder="输入内容10-1000字"></textarea>
   <view class="imgArea p20">
     <view class="upImg">
-      <view class="pr" wx:for="{{ upImgArr }}" wx:key="*11">
+      <view class="pr" wx:for="{{ upImgArr }}" wx:key="*141">
         <image catchtap="showImg" data-src="{{ item }}" mode="widthFix" src="{{ item }}"></image>
         <view catchtap="del" data-index="{{ index }}" class="jwq icon-cuowu pa"></view>
       </view>
-      <image class="add-img" src="{{ imgDomain }}/workProject/payKnowledge/release_add_img.png" catchtap="addImg"></image>
+      <image class="add-img" src="{{ release_add_img }}" catchtap="addImg"></image>
     </view>
   </view>
   <view class="p30">

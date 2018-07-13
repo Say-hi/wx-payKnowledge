@@ -103,7 +103,43 @@
     <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseQuestion/releaseQuestion">发布我的提问</navigator>
   </view>
 </view>
-<view wx:if="{{ currentIndex == 2 }}" class="colunms"></view>
+<view wx:if="{{ currentIndex == 2 }}" class="colunms">
+  <view wx:if="{{ noHave }}" class="no-colunms">
+    <view class="f32 c999">您还没有专栏</view>
+    <navigator url="../createColunms/createColunms">创建专栏</navigator>
+  </view>
+  <view wx:else>
+    <view class="ar-info p30">
+      <image class="br user-img" src="{{ testImg }}"></image>
+      <view class="f24 c666">
+        <navigator url="../createColunms/createColunms?type=修改专栏" class="f32 lh40 c333 fw7">阿斯顿发</navigator>
+        <navigator url="../createColunms/createColunms?type=修改专栏" class="lh50">asldkfjasdf</navigator>
+        <view class="lh50">作者: asldfja</view>
+        <view class="lh50">123人关注</view>
+        <navigator url="../releaseArticle/releaseArticle" class="f32 br5 no-follow jwq icon-beizhu">
+          发布文章
+        </navigator>
+      </view>
+    </view>
+    <view class="p30 f28 tab-bg">12篇文章</view>
+    <view class="ar-list-w">
+      <navigator url="../articleDetail/articleDetail" wx:for="12344" wx:key="*33" class="ar-list bd1 p200">
+        <image mode="widthFix" class="br5 ar-l-l" src="{{ testImg }}"></image>
+        <view class="ar-l-r">
+          <view class="f32 c333">asdlfjasdlf;jkasdflaks</view>
+          <view class="f24 c999 ar-l-r-b">
+            <view>2{{ index }}天前</view>
+            <view class="h-a-operation">
+              <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
+              <view data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
+              <view data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

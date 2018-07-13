@@ -18,22 +18,107 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="4" column="48" lean-forward="false" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+            <state relative-caret-position="-1290">
+              <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quesitonDetail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/quesitonDetail/quesitonDetail.xml">
+      <file leaf-file-name="userCoProduction.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+              <folding>
+                <element signature="e#156#201#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userSubscription.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="15" selection-end-column="1" />
+              <folding>
+                <element signature="e#43#263#0" expanded="false" />
+                <element signature="e#276#638#0" expanded="false" />
+                <element signature="e#648#772#0" expanded="false" />
+                <element signature="e#783#4941#0" expanded="false" />
+                <element signature="e#800#989#0" expanded="false" />
+                <element signature="e#1007#2126#0" expanded="false" />
+                <element signature="e#1025#1979#0" expanded="false" />
+                <element signature="e#1997#2122#0" expanded="false" />
+                <element signature="e#2148#3153#0" expanded="false" />
+                <element signature="e#2168#3149#0" expanded="false" />
+                <element signature="e#3173#4125#0" expanded="false" />
+                <element signature="e#3190#4121#0" expanded="false" />
+                <element signature="e#4146#4875#0" expanded="false" />
+                <element signature="e#4165#4871#0" expanded="false" />
+                <element signature="e#4968#5329#0" expanded="false" />
+                <element signature="e#5341#5753#0" expanded="false" />
+                <element signature="e#5834#6691#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userCoProduction.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+              <folding>
+                <element signature="e#81#365#0" expanded="false" />
+                <element signature="e#473#652#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userCoProduction.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userSubscription.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="568">
+              <caret line="43" column="4" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="43" selection-end-column="4" />
+              <folding>
+                <element signature="e#266#314#0" expanded="false" />
+                <element signature="e#335#389#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="releaseArticle.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/releaseArticle/releaseArticle.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-              <folding />
+              <caret line="68" column="4" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+              <folding>
+                <element signature="e#159#213#0" expanded="false" />
+                <element signature="e#410#494#0" expanded="false" />
+                <element signature="e#518#702#0" expanded="false" />
+                <element signature="e#725#1153#0" expanded="false" />
+                <element signature="e#1168#1450#0" expanded="false" />
+                <element signature="e#1482#1506#0" expanded="false" />
+                <element signature="e#1518#1648#0" expanded="false" />
+                <element signature="e#1667#1700#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,8 +126,8 @@
       <file leaf-file-name="userSubscription.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
               <folding>
                 <element signature="n#view#3;n#!!top" expanded="false" />
                 <element signature="n#view#0;n#view#3;n#!!top" expanded="false" />
@@ -60,109 +145,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colunmsDetail.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.less">
+      <file leaf-file-name="createColunms.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/createColunms/createColunms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="65" selection-end-column="1" />
-              <folding>
-                <element signature="e#42#414#0" expanded="false" />
-                <element signature="e#424#474#0" expanded="false" />
-                <element signature="e#486#1269#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colunmsDetail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.xml">
+      <file leaf-file-name="createColunms.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/createColunms/createColunms.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="28" selection-end-column="7" />
-              <folding>
-                <element signature="n#view#2;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userSubscription.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-              <folding>
-                <element signature="e#266#314#0" expanded="false" />
-                <element signature="e#335#389#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="communityCenter.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/communityCenter/communityCenter.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="52" column="9" lean-forward="true" selection-start-line="39" selection-start-column="2" selection-end-line="52" selection-end-column="9" />
-              <folding>
-                <element signature="n#view#1;n#view#3;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="communityCenter.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/communityCenter/communityCenter.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="133" column="3" lean-forward="true" selection-start-line="103" selection-start-column="2" selection-end-line="133" selection-end-column="3" />
-              <folding>
-                <element signature="e#43#641#0" expanded="false" />
-                <element signature="e#657#1458#0" expanded="false" />
-                <element signature="e#1466#1556#0" expanded="false" />
-                <element signature="e#1795#2441#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/user/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="62" column="70" lean-forward="true" selection-start-line="62" selection-start-column="70" selection-end-line="62" selection-end-column="70" />
-              <folding>
-                <element signature="e#136#744#0" expanded="false" />
-                <element signature="e#764#1422#0" expanded="false" />
-                <element signature="e#2122#2428#0" expanded="false" />
-                <element signature="e#2455#2778#0" expanded="false" />
-                <element signature="e#2811#3394#0" expanded="false" />
-                <element signature="e#3414#3762#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userSubscription.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="108" column="3" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="3" />
-              <folding>
-                <element signature="e#43#263#0" expanded="false" />
-                <element signature="e#276#638#0" expanded="false" />
-                <element signature="e#648#772#0" expanded="false" />
-                <element signature="e#800#989#0" expanded="false" />
-                <element signature="e#1007#2126#0" expanded="false" />
-                <element signature="e#1025#1979#0" expanded="false" />
-                <element signature="e#1997#2122#0" expanded="false" />
-                <element signature="e#2148#3153#0" expanded="false" />
-                <element signature="e#2168#3149#0" expanded="false" />
-                <element signature="e#3173#4125#0" expanded="false" />
-                <element signature="e#3190#4121#0" expanded="false" />
-                <element signature="e#4146#4875#0" expanded="false" />
-                <element signature="e#4165#4871#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,12 +169,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>icon-guanbi</find>
-      <find>choose-count</find>
-      <find>confirm</find>
-      <find>inputValue</find>
-      <find>openSetting</find>
-      <find>chooseAddress</find>
       <find>open-setting</find>
       <find>buyConfirm</find>
       <find>goods-</find>
@@ -201,6 +193,12 @@
       <find>c-i-img-wrap</find>
       <find>comment-item</find>
       <find>release-tab</find>
+      <find>imgArea</find>
+      <find>upImgArr</find>
+      <find>r-a-t-r</find>
+      <find>del</find>
+      <find>inputValue</find>
+      <find>ar-list-w</find>
     </findStrings>
     <dirStrings>
       <dir>G:\RenMa_work\payKnowledge\wx-fatCatShop\src\common</dir>
@@ -209,19 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pages/shop/shop.js" />
-        <option value="$PROJECT_DIR$/pages/articleCategories/articleCategories.js" />
-        <option value="$PROJECT_DIR$/common/color.less" />
-        <option value="$PROJECT_DIR$/pages/components/my-navigator-tab/my-navigator-tab.less" />
-        <option value="$PROJECT_DIR$/pages/user/user.less" />
-        <option value="$PROJECT_DIR$/pages/userInfo/userInfo.json" />
-        <option value="$PROJECT_DIR$/pages/vipCenter/vipCenter.json" />
-        <option value="$PROJECT_DIR$/pages/vipCenter/vipCenter.js" />
-        <option value="$PROJECT_DIR$/pages/vipCenter/vipCenter.less" />
-        <option value="$PROJECT_DIR$/pages/userAccount/userAccount.json" />
-        <option value="$PROJECT_DIR$/common/iconfont.less" />
-        <option value="$PROJECT_DIR$/pages/userAccount/userAccount.less" />
-        <option value="$PROJECT_DIR$/pages/userMoney/userMoney.json" />
         <option value="$PROJECT_DIR$/pages/userMoney/userMoney.less" />
         <option value="$PROJECT_DIR$/pages/userAccount/userAccount.xml" />
         <option value="$PROJECT_DIR$/pages/userMoney/userMoney.js" />
@@ -249,17 +234,30 @@
         <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.json" />
         <option value="$PROJECT_DIR$/pages/videoList/videoList.js" />
         <option value="$PROJECT_DIR$/pages/videoList/videoList.xml" />
-        <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.js" />
         <option value="$PROJECT_DIR$/pages/dynamicDetail/dynamicDetail.less" />
         <option value="$PROJECT_DIR$/pages/dynamicDetail/dynamicDetail.json" />
-        <option value="$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.js" />
         <option value="$PROJECT_DIR$/pages/communityCenter/communityCenter.xml" />
         <option value="$PROJECT_DIR$/pages/dynamicDetail/dynamicDetail.js" />
         <option value="$PROJECT_DIR$/pages/dynamicDetail/dynamicDetail.xml" />
+        <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.js" />
+        <option value="$PROJECT_DIR$/pages/createColunms/createColunms.less" />
+        <option value="$PROJECT_DIR$/pages/releaseArticle/releaseArticle.json" />
+        <option value="$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.xml" />
         <option value="$PROJECT_DIR$/pages/user/user.js" />
+        <option value="$PROJECT_DIR$/common/iconfont.less" />
         <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.less" />
-        <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.xml" />
+        <option value="$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.js" />
+        <option value="$PROJECT_DIR$/pages/releaseArticle/releaseArticle.xml" />
+        <option value="$PROJECT_DIR$/pages/releaseArticle/releaseArticle.less" />
+        <option value="$PROJECT_DIR$/pages/userCoProduction/userCoProduction.json" />
         <option value="$PROJECT_DIR$/app.json" />
+        <option value="$PROJECT_DIR$/pages/releaseArticle/releaseArticle.js" />
+        <option value="$PROJECT_DIR$/pages/userSubscription/userSubscription.xml" />
+        <option value="$PROJECT_DIR$/pages/createColunms/createColunms.js" />
+        <option value="$PROJECT_DIR$/pages/createColunms/createColunms.xml" />
+        <option value="$PROJECT_DIR$/pages/userCoProduction/userCoProduction.js" />
+        <option value="$PROJECT_DIR$/pages/userCoProduction/userCoProduction.less" />
+        <option value="$PROJECT_DIR$/pages/userCoProduction/userCoProduction.xml" />
       </list>
     </option>
   </component>
@@ -270,9 +268,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="333" />
-    <option name="y" value="5" />
-    <option name="width" value="1573" />
+    <option name="x" value="518" />
+    <option name="y" value="1" />
+    <option name="width" value="1365" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
@@ -290,8 +288,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -332,30 +328,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="userSubscription" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="communityCenter" />
+              <option name="myItemId" value="userCoProduction" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -475,24 +455,25 @@
       <workItem from="1531186753441" duration="22383000" />
       <workItem from="1531272860795" duration="12251000" />
       <workItem from="1531295732099" duration="7371000" />
-      <workItem from="1531359125660" duration="6425000" />
+      <workItem from="1531359125660" duration="21835000" />
+      <workItem from="1531445830207" duration="4975000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372169000" />
+    <option name="totallyTimeSpent" value="392554000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="333" y="5" width="1573" height="1050" extended-state="0" />
+    <frame x="518" y="1" width="1365" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19413681" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18688771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2875817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -512,170 +493,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/ranking/ranking.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="20" column="7" lean-forward="false" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userMoney/userMoney.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="7" column="113" lean-forward="false" selection-start-line="7" selection-start-column="113" selection-end-line="7" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userMessage/userMessage.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userMessage/userMessage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="84" column="64" lean-forward="true" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="178" column="6" lean-forward="false" selection-start-line="178" selection-start-column="6" selection-end-line="184" selection-end-column="7" />
-          <folding>
-            <element signature="e#125#459#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userMessage/userMessage.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#129#196#0" expanded="false" />
-            <element signature="e#239#332#0" expanded="false" />
-            <element signature="e#348#380#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userMessage/userMessage.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="11" column="65" lean-forward="false" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/vipCenter/vipCenter.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/vipCenter/vipCenter.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userInfo/userInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="46" column="27" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userInfo/userInfo.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="60" column="16" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding>
-            <element signature="e#49#199#0" expanded="false" />
-            <element signature="e#207#375#0" expanded="false" />
-            <element signature="e#383#596#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userInfo/userInfo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="19" column="44" lean-forward="false" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/coupon/coupon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/coupon/coupon.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="e#93#408#0" expanded="false" />
-            <element signature="e#427#669#0" expanded="false" />
-            <element signature="e#991#1040#0" expanded="false" />
-            <element signature="e#1052#1685#0" expanded="false" />
-            <element signature="e#1185#1683#0" expanded="false" />
-            <element signature="e#1335#1366#0" expanded="false" />
-            <element signature="e#1376#1408#0" expanded="false" />
-            <element signature="e#1425#1679#0" expanded="false" />
-            <element signature="e#1697#2061#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="47" column="7" lean-forward="false" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
-          <folding>
-            <element signature="n#view#1;n#!!top" expanded="false" />
-            <element signature="n#view#3;n#!!top" expanded="false" />
-            <element signature="n#view#0;n#view#3;n#!!top" expanded="false" />
-            <element signature="n#view#5;n#!!top" expanded="false" />
-            <element signature="n#view#7;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/share/share.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -691,19 +513,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/share/share.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="17" column="35" lean-forward="false" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -711,7 +524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,7 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -778,7 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="24" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="6" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,15 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,15 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
           <caret line="31" column="4" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="31" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,9 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="27" column="2" lean-forward="true" selection-start-line="27" selection-start-column="2" selection-end-line="29" selection-end-column="4" />
-          <folding>
-            <element signature="e#533#772#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,9 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#396#635#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -881,71 +664,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-          <folding>
-            <element signature="n#view#0;n#view#2;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/quesitonDetail/quesitonDetail.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="62" column="70" lean-forward="true" selection-start-line="62" selection-start-column="70" selection-end-line="62" selection-end-column="70" />
-          <folding>
-            <element signature="e#136#744#0" expanded="false" />
-            <element signature="e#764#1422#0" expanded="false" />
-            <element signature="e#2122#2428#0" expanded="false" />
-            <element signature="e#2455#2778#0" expanded="false" />
-            <element signature="e#2811#3394#0" expanded="false" />
-            <element signature="e#3414#3762#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="65" selection-end-column="1" />
-          <folding>
-            <element signature="e#42#414#0" expanded="false" />
-            <element signature="e#424#474#0" expanded="false" />
-            <element signature="e#486#1269#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="28" selection-end-column="7" />
-          <folding>
-            <element signature="n#view#2;n#!!top" expanded="false" />
-          </folding>
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/communityCenter/communityCenter.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
-          <caret line="52" column="9" lean-forward="true" selection-start-line="39" selection-start-column="2" selection-end-line="52" selection-end-column="9" />
-          <folding>
-            <element signature="n#view#1;n#view#3;n#!!top" expanded="false" />
-          </folding>
+          <caret line="52" column="9" lean-forward="false" selection-start-line="39" selection-start-column="2" selection-end-line="52" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/communityCenter/communityCenter.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
-          <caret line="133" column="3" lean-forward="true" selection-start-line="103" selection-start-column="2" selection-end-line="133" selection-end-column="3" />
+          <caret line="133" column="3" lean-forward="false" selection-start-line="103" selection-start-column="2" selection-end-line="133" selection-end-column="3" />
           <folding>
             <element signature="e#43#641#0" expanded="false" />
             <element signature="e#657#1458#0" expanded="false" />
@@ -955,43 +694,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/createColunms/createColunms.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
           <folding>
-            <element signature="e#266#314#0" expanded="false" />
-            <element signature="e#335#389#0" expanded="false" />
+            <element signature="e#38#60#0" expanded="false" />
+            <element signature="e#67#169#0" expanded="false" />
+            <element signature="e#179#279#0" expanded="false" />
+            <element signature="e#287#319#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.less">
+    <entry file="file://$PROJECT_DIR$/pages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="108" column="3" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="3" />
+        <state relative-caret-position="450">
+          <caret line="15" column="73" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseQuestion/releaseQuestion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseQuestion/releaseQuestion.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="35" selection-end-column="1" />
           <folding>
-            <element signature="e#43#263#0" expanded="false" />
-            <element signature="e#276#638#0" expanded="false" />
-            <element signature="e#648#772#0" expanded="false" />
-            <element signature="e#800#989#0" expanded="false" />
-            <element signature="e#1007#2126#0" expanded="false" />
-            <element signature="e#1025#1979#0" expanded="false" />
-            <element signature="e#1997#2122#0" expanded="false" />
-            <element signature="e#2148#3153#0" expanded="false" />
-            <element signature="e#2168#3149#0" expanded="false" />
-            <element signature="e#3173#4125#0" expanded="false" />
-            <element signature="e#3190#4121#0" expanded="false" />
-            <element signature="e#4146#4875#0" expanded="false" />
-            <element signature="e#4165#4871#0" expanded="false" />
+            <element signature="e#157#496#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/user/user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="47" column="7" lean-forward="false" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/user/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="106" column="7" lean-forward="true" selection-start-line="106" selection-start-column="7" selection-end-line="106" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/colunmsDetail/colunmsDetail.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="e#42#414#0" expanded="false" />
+            <element signature="e#424#474#0" expanded="false" />
+            <element signature="e#486#1269#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/iconfont.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding>
+            <element signature="e#40#5673#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseCommunity/releaseCommunity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseArticle/releaseArticle.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseArticle/releaseArticle.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="55" column="1" lean-forward="false" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
+          <folding>
+            <element signature="e#54#257#0" expanded="false" />
+            <element signature="e#265#314#0" expanded="false" />
+            <element signature="e#329#437#0" expanded="false" />
+            <element signature="e#448#466#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseArticle/releaseArticle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="26" column="204" lean-forward="false" selection-start-line="26" selection-start-column="204" selection-end-line="26" selection-end-column="204" />
+          <folding>
+            <element signature="n#view#2;n#view#0;n#!!top" expanded="false" />
+            <element signature="n#view#3;n#view#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/releaseArticle/releaseArticle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="68" column="4" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+          <folding>
+            <element signature="e#159#213#0" expanded="false" />
+            <element signature="e#410#494#0" expanded="false" />
+            <element signature="e#518#702#0" expanded="false" />
+            <element signature="e#725#1153#0" expanded="false" />
+            <element signature="e#1168#1450#0" expanded="false" />
+            <element signature="e#1482#1506#0" expanded="false" />
+            <element signature="e#1518#1648#0" expanded="false" />
+            <element signature="e#1667#1700#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/createColunms/createColunms.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/createColunms/createColunms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
           <folding>
             <element signature="n#view#3;n#!!top" expanded="false" />
             <element signature="n#view#0;n#view#3;n#!!top" expanded="false" />
@@ -1008,10 +906,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="43" column="4" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="43" selection-end-column="4" />
+          <folding>
+            <element signature="e#266#314#0" expanded="false" />
+            <element signature="e#335#389#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userSubscription/userSubscription.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="e#43#263#0" expanded="false" />
+            <element signature="e#276#638#0" expanded="false" />
+            <element signature="e#648#772#0" expanded="false" />
+            <element signature="e#783#4941#0" expanded="false" />
+            <element signature="e#800#989#0" expanded="false" />
+            <element signature="e#1007#2126#0" expanded="false" />
+            <element signature="e#1025#1979#0" expanded="false" />
+            <element signature="e#1997#2122#0" expanded="false" />
+            <element signature="e#2148#3153#0" expanded="false" />
+            <element signature="e#2168#3149#0" expanded="false" />
+            <element signature="e#3173#4125#0" expanded="false" />
+            <element signature="e#3190#4121#0" expanded="false" />
+            <element signature="e#4146#4875#0" expanded="false" />
+            <element signature="e#4165#4871#0" expanded="false" />
+            <element signature="e#4968#5329#0" expanded="false" />
+            <element signature="e#5341#5753#0" expanded="false" />
+            <element signature="e#5834#6691#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="48" lean-forward="false" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        <state relative-caret-position="-1290">
+          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding>
+            <element signature="e#156#201#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="62" column="19" lean-forward="true" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
+          <folding>
+            <element signature="e#81#365#0" expanded="false" />
+            <element signature="e#473#652#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/userCoProduction/userCoProduction.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
           <folding />
         </state>
       </provider>

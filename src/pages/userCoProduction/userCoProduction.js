@@ -7,35 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgDomain: app.data.imgDomain,
-    release_add_img: 'https://c.jiangwenqiang.com/workProject/payKnowledge/release_add_img.png',
-    upImgArr: [
-      app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg
+    currentIndex: 0,
+    testImg: app.data.testImg,
+    tabArr: [
+      '审核中',
+      '已通过',
+      '未通过'
     ]
   },
-  formSubmit (e) {
-    if (!e.detail.value.name) return app.setToast(this, {content: '请输入标题'})
-    if (!e.detail.value.content || e.detail.value.content.length < 10) return app.setToast(this, {content: '请输入不少于10字的内容'})
-    if (!this.data.upImgArr.length) return app.setToast(this, {content: '请至少上传一张图片'})
-  },
-  addImg () {},
-  showImg (e) {
-    app.showImg(e)
-  },
-  del (e) {
-    this.data.upImgArr.splice(e.currentTarget.dataset.index, 1)
+  tabChoose (e) {
     this.setData({
-      upImgArr: this.data.upImgArr
+      currentIndex: e.currentTarget.dataset.index
     })
-  },
-  inputValue (e) {
-    app.inputValue(e, this)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('发布动态')
+    app.setBar('预约生产')
     app.getSelf(this)
     // TODO: onLoad
   },

@@ -7,16 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgDomain: app.data.imgDomain,
+    title: 'releaseArticle',
+    classArrText: null,
+    classArr: [
+      '军事',
+      '体育',
+      '文化',
+      '风俗'
+    ],
+    releaseImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/release.png',
     release_add_img: 'https://c.jiangwenqiang.com/workProject/payKnowledge/release_add_img.png',
     upImgArr: [
       app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg
     ]
   },
-  formSubmit (e) {
-    if (!e.detail.value.name) return app.setToast(this, {content: '请输入标题'})
-    if (!e.detail.value.content || e.detail.value.content.length < 10) return app.setToast(this, {content: '请输入不少于10字的内容'})
-    if (!this.data.upImgArr.length) return app.setToast(this, {content: '请至少上传一张图片'})
+  chooseClass (e) {
+    this.setData({
+      currentClassIndex: e.currentTarget.dataset.index,
+      classArrText: this.data.classArr[e.currentTarget.dataset.index]
+    })
+    this.showClassChange()
+  },
+  showClassChange () {
+    if (this.data.showClass) {
+      this.setData({
+        showHeight: !this.data.showHeight
+      })
+      setTimeout(() => {
+        this.setData({
+          showClass: !this.data.showClass
+        })
+      }, 520)
+    } else {
+      this.setData({
+        showClass: !this.data.showClass
+      })
+      setTimeout(() => {
+        this.setData({
+          showHeight: !this.data.showHeight
+        })
+      }, 20)
+    }
+  },
+  release () {
+    if (!this.data.name) return app.setToast(this, {content: '请输入文章标题'})
+    else if (!this.data.content) return app.setToast(this, {content: '请输入文章内容'})
+    else if (!this.data.currentClassIndex && this.data.currentIndex !== 0) return app.setToast(this, {content: '请选择文章分类'})
   },
   addImg () {},
   showImg (e) {
@@ -35,7 +71,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    app.setBar('发布动态')
+    app.setBar('发布文章')
     app.getSelf(this)
     // TODO: onLoad
   },

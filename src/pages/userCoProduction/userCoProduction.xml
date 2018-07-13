@@ -1,0 +1,23 @@
+<view class="bd1 bt1 f30 c666 tab-wrap">
+  <text class="tac {{ currentIndex == index ? 'main-text-color' : '' }}" catchtap="tabChoose" data-index="{{ index }}" wx:for="{{ tabArr}}" wx:key="*798">{{ item }}</text>
+</view>
+<view class="zw"></view>
+<view class="zw20"></view>
+<view class="p30 cop-item bd1" wx:for="123" wx:key="*9564">
+  <navigator url="../coProduction/coProduction" class="c-i-top">
+    <image mode="widthFix" src="{{ testImg }}"></image>
+    <view class="f28 c666 ell2">阿卡家四大行反馈乐尽哀生法兰克将撒旦教和南方</view>
+  </navigator>
+  <view class="f28 c999 c-i-t">
+    <text>预约时间:</text>
+    <text>3241654</text>
+  </view>
+  <view class="f28 c999 c-i-t">
+    <text>预约审核状态:</text>
+    <text class="{{ currentIndex == 0 ? 'check' : currentIndex == 1 ? 'access' : 'ng' }}">{{ currentIndex == 0 ? '审核中' : currentIndex == 1 ? '已通过' : '未通过' }}</text>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

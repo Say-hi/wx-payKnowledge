@@ -1,7 +1,10 @@
 {
 //  群信息小程序页面分布
   "pages": [
+    "pages/userCoProduction/userCoProduction", // 用户预约生产
+    "pages/releaseArticle/releaseArticle", // 发布文章
     "pages/userSubscription/userSubscription", // 我的订阅
+    "pages/createColunms/createColunms", // 创建专栏
     "pages/dynamicDetail/dynamicDetail", // 活动动态
     "pages/share/share", // 分享赢积分
     "pages/userMessage/userMessage", // 我的消息
@@ -37,8 +40,7 @@
     "pages/communityCenter/communityCenter", // 社群中心
     "pages/videoDetail/videoDetail", // 视频详情
     "pages/releaseVideo/releaseVideo", // 发布视频
-    "pages/videoList/videoList" // 视频课程,,
-
+    "pages/videoList/videoList" // 视频课程
     // Dont remove this comment
   ],
   // Window configuration

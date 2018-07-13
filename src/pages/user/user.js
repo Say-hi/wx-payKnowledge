@@ -111,6 +111,7 @@ Page({
       },
       {
         t: '分享赢积分',
+        url: '../share/share',
         type: 'url'
       }
     ]

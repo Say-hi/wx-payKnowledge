@@ -1,0 +1,22 @@
+<view class="bt1 p30 f32 c333">
+  <form bindsubmit="formSubmit">
+    <view>专栏名称</view>
+    <input name="name"/>
+    <view>专栏简介</view>
+    <textarea name="content"></textarea>
+    <view class="tac">
+      <button formType="submit" class="f34 cfff">{{ options.type || '创建专栏' }}</button>
+    </view>
+  </form>
+</view>
+<view class="mask" wx:if="{{ createSuccess }}">
+  <view class="mask-in">
+    <image mode="widthFix" src="{{ create_success }}"></image>
+    <navigator open-type="redirect" url="../releaseArticle/releaseArticle" class="tac br5 f32 cfff">发布文章</navigator>
+    <navigator open-type="navigateBack" class="tac br5 f32 c333 back">返回</navigator>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>
