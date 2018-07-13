@@ -1,5 +1,5 @@
 <view class="p30 out-wrap">
-  <navigator url="{{ options.type == 'coProduction' ? '../coProduction/coProduction' : '../activityDetail/activityDetail' }}" wx:for="123" wx:key="*55" class="ac-list br10">
+  <navigator url="{{ options.type == '微工坊列表' ? '../coProduction/coProduction' : '../activityDetail/activityDetail' }}" wx:for="123" wx:key="*55" class="ac-list br10">
     <image mode="widthFix" src="{{ testImg }}"></image>
     <view class="p20">
       <view class="f32 c000 ell1">阿斯顿发撒旦法三大泪洒家的法律身份的阿斯利康打飞机阿斯兰多夫空军</view>

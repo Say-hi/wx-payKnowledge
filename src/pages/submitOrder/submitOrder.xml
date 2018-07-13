@@ -3,9 +3,9 @@
   <!--<text catchtap="chooseSendType" data-index="2" class="iconfont f26 c333 icon-xuanze-danxuan {{ active == 2 ? 'active' : '' }}">门店自取</text>-->
   <!--<text catchtap="chooseSendType" data-index="1" class="iconfont f26 c333 icon-xuanze-danxuan {{ active == 1 ? 'active' : '' }}">送货上门</text>-->
 <!--</view>-->
-<view wx:if="{{ lostTime }}" class="time iconfont icon-dengdaifukuan">
+<view wx:if="{{ lostTime }}" class="time jwq icon-daifukuan">
   <view class="f32 cfff">等待买家付款</view>
-  <view class="f24 cfff">{{ timeText ?  '剩余' + timeText + '付款, 超时将自动取消订单' : '该订单超时已取消' }}</view>
+  <view class="f24 cfff">{{ timeText ?  '剩余' + timeText + '付款, 超时将自动关闭订单' : '该订单超时已取消' }}</view>
 </view>
 <!--<view catchtap="chooseShopAddress" class="address">-->
 <!--<view class="address">-->
@@ -49,7 +49,7 @@
 <view class="goods-w">
   <view class="lh70 f28 c333 shop-top">
     <image mode="widthFix" class="shopImg" src="{{ shopImg }}"></image>
-    <text>肥猫团购商城</text>
+    <text>脑籽商城</text>
   </view>
   <view wx:for="12" wx:key="*39" class="goods">
     <image src="{{ testImg }}"></image>
@@ -105,21 +105,6 @@
   </view>
   <!--<view catchtap="showLostTime" class="f36 cfff confirm tac">提交订单</view>-->
   <view catchtap="choosePay" class="f36 cfff confirm tac">{{ lostTime ? '支付订单' : '提交订单' }}</view>
-</view>
-<view wx:if="{{ maodouPay }}" class="mask maodoupay">
-  <form bindsubmit="formSubmit">
-    <view class="mask-in p20">
-      <view class="tac f32 c333 fw7">猫豆支付密码</view>
-      <view>
-        <input bindinput="inputValue" data-type="pwd" maxlength="6" type="number" focus="{{ focus }}" name="pwd" placeholder="请输入您的猫豆支付密码" />
-        <view catchtap="getinput" class="pwd-show">
-          <view wx:for="123456" class="tac lh80">{{ pwd.length > index ? '·' : '' }}</view>
-        </view>
-      </view>
-        <button formType="submit">确认</button>
-        <button catchtap="sd">取消</button>
-    </view>
-  </form>
 </view>
 
 <view class="mask" wx:if="{{ showActionSheet }}">

@@ -1,0 +1,75 @@
+<view class="time jwq {{ type == '代发货' ? 'icon-yifukuan' : type == '确认收货' ? 'icon-yifahuo' : type == '完成' ? 'icon-jiaoyichenggong' : ''}}">
+  <view class="f36 cfff lh70">交易成功</view>
+  <view class="f24 cfff lh70">交易成功</view>
+</view>
+
+<view class="goods-w">
+<view class="lh70 f28 c333 shop-top">
+  <image mode="widthFix" class="shopImg" src="{{ shopImg }}"></image>
+  <text>脑籽商城</text>
+</view>
+<view wx:for="{{ menuArr }}" wx:key="*2134" class="goods">
+  <image src="{{ item.src }}"></image>
+  <view class="g-i">
+    <view class="f30 c333">{{ item.goodsname }}</view>
+    <view class="f24 c999">规格： {{ item.spec_name ? item.spec_name : '标准尺寸' }}</view>
+    <view class="g-b">
+      <view class="f30 c333">
+        <text class="f24">￥</text>{{ item.price }}
+      </view>
+      <view class="f24 c999">×{{ item.num }}</view>
+    </view>
+  </view>
+</view>
+<view class="g-d bd1 lh80 f24">
+  <view class="c333 fw7">配送费</view>
+  <view><text>￥</text>{{ dispatch_fee }}</view>
+</view>
+<view class="g-d bd1 lh80 f24">
+  <view class="c333 fw7">优惠卷</view>
+  <view class="f24 c999">{{ coupon_price * 1 ? '优惠金额' + coupon_price + '元' : '未使用优惠卷' }}</view>
+</view>
+<!--<view class="g-d bd1 lh80 f24">-->
+<!--<view class="c333 fw7">预计送达时间</view>-->
+<!--<view>{{ sendtime }}</view>-->
+<!--</view>-->
+<view class="g-d bd1 lh80">
+  <view>　</view>
+  <view>
+    <text class="f24">小计:<text class="f28 c666">￥{{ allMoney }}</text></text>
+  </view>
+</view>
+  <view catchtap="call" class="iconfont icon-dianhua tac f30 c333 lh70">联系商家</view>
+</view>
+<view class="address">
+<!--<image mode="widthFix" src="../../images/add_address.png"></image>-->
+  <view class="address-s">
+    <view class="a-s-t">
+      <text class="f26 c666">收货人: {{ addressInfo.userName }}</text>
+      <text class="f26 c666">{{ addressInfo.telNumber }}</text>
+    </view>
+    <view class="f26 c666">
+      收货地址: {{ addressInfo.provinceName }}
+    </view>
+  </view>
+</view>
+<view class="f-b">
+  <text class="f26 lh60 c999"><text class="c666">订单编号:　</text>{{ orderInfo.order_number }}</text>
+  <text class="f26 lh60 c999"><text class="c666">创建时间:　</text>{{ orderInfo.time }}</text>
+  <text class="f26 lh60 c999"><text class="c666">付款时间:　</text>{{ orderInfo.pay_time }}</text>
+  <text class="f26 lh60 c999"><text class="c666">发货时间:　</text>{{ orderInfo.pay_time }}</text>
+  <text class="f26 lh60 c999"><text class="c666">确认时间:　</text>{{ orderInfo.pay_time }}</text>
+</view>
+<view class="o-btn f28 c999">
+  <navigator url="../express/express">
+    <view>查看物流</view>
+  </navigator>
+  <navigator url="../evaluation/evaluation">
+    <view class="cfff">评价晒图</view>
+  </navigator>
+</view>
+
+        <!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

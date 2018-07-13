@@ -185,7 +185,7 @@ Page({
   },
   // 倒计时
   showLostTime (startTime) {
-    let endTime = startTime * 1000 + 900000 // 超时15分钟
+    let endTime = startTime * 1000 + 3600000 // 超时1小时
     let timer = setInterval(() => {
       if (endTime - new Date().getTime() <= 0) {
         // todo 取消订单

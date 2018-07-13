@@ -7,17 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    testImg: app.data.testImg
+    shopImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/gd1.png',
+    title: 'orderStatus'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad (options) {
-    this.setData({
-      options
-    })
-    app.setBar(options.type || '活动专区')
+  onLoad () {
+    app.setBar('订单信息')
     app.getSelf(this)
     // TODO: onLoad
   },

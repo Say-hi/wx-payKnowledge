@@ -35,22 +35,22 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order1.png',
         t: '代付款',
-        url: '../userOrder/userOrder?type=1'
+        url: '../order/order?type=1'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order2.png',
         t: '待发货',
-        url: '../userOrder/userOrder?type=2'
+        url: '../order/order?type=2'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order3.png',
         t: '待收货',
-        url: '../userOrder/userOrder?type=3'
+        url: '../order/order?type=3'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order4.png',
         t: '待评价',
-        url: '../userOrder/userOrder?type=4'
+        url: '../order/order?type=4'
       }
     ],
     userServiceArr: [
@@ -62,7 +62,7 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service2.png',
         t: '预约生产',
-        url: '../articleCategories/articleCategories'
+        url: '../userCoProduction/userCoProduction'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service3.png',
@@ -72,7 +72,7 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service4.png',
         t: '我的活动',
-        url: ''
+        url: '../activityList/activityList?type=我的活动'
       }
     ],
     userOperationArr: [

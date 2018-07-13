@@ -1,0 +1,71 @@
+@import "../../common/variable";
+
+page {
+  background-color: @tabBgColor;
+}
+
+.e-top {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  image {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+  }
+}
+textarea {
+  width: 100%;
+  background-color: #fff;
+}
+.img-up {
+  display: flex;
+  background-color: #fff;
+}
+.icon-camera2 {
+  color: #a8a8a8;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1rpx dashed #999;
+  margin-left: 20rpx;
+  word-break: keep-all;
+  height: 130rpx;
+  &:before {
+    color: #999;
+    font-size: 50rpx;
+  }
+}
+
+.icon-dianpu {
+  background-color: #fff;
+  &:before {
+    margin-right: 20rpx;
+  }
+}
+.star-w {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  .main-text-color {
+    margin-left: 20rpx;
+  }
+  .icon-xingxing, .icon-shoucang1 {
+    margin: 0 10rpx;
+  }
+  .active {
+    color: @mainTextColor;
+  }
+}
+
+.confirm-btn {
+  line-height: 88rpx;
+  padding: 30rpx;
+  button {
+    background-color: #cd9b00;
+  }
+}
+
+.i-a-img {
+  width: 200rpx;
+}

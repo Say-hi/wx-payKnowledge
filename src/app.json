@@ -1,6 +1,12 @@
 {
 //  群信息小程序页面分布
   "pages": [
+    "pages/index/index", // 首页
+    "pages/express/express", // 物流信息
+    "pages/evaluation/evaluation", // 订单评价
+    "pages/orderStatus/orderStatus", // 订单状态
+    "pages/order/order", // 订单
+    "pages/car/car", // 购物车
     "pages/userCoProduction/userCoProduction", // 用户预约生产
     "pages/releaseArticle/releaseArticle", // 发布文章
     "pages/userSubscription/userSubscription", // 我的订阅
@@ -18,7 +24,6 @@
     "pages/coProduction/coProduction", // 合作生产详情
     "pages/shop/shop", // 商城
     "pages/articleList/articleList", // 文章列表
-    "pages/index/index", // 首页
     "pages/articleDetail/articleDetail", // 文章详情
     "pages/commentList/commentList", // 评论列表
     "pages/articleCategories/articleCategories", // 文章分类
@@ -30,7 +35,7 @@
     "pages/submitOrder/submitOrder", // 提交订单
     "pages/killList/killList", // 秒杀商品列表
     "pages/activityDetail/activityDetail", // 活动详情
-    "pages/activityList/activityList", // 活动专区
+    "pages/activityList/activityList", // 活动专区 & 微工坊列表 & 我的活动
     "pages/colunmsDetail/colunmsDetail", // 专栏详情
     "pages/colunmsList/colunmsList", // 专栏列表
     "pages/commentDetail/commentDetail", // 评论详情

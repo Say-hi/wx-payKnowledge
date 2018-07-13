@@ -13,7 +13,7 @@
   </view>
 </view>
 <view class="p30 user-order-wrap bd1 bt1">
-  <navigator url="../userOrder/userOrder?type=0" class="f32 c444 fw7 bd1 arrow lh70">
+  <navigator url="../order/order?type=0" class="f32 c444 fw7 bd1 arrow lh70">
     <text>我的订单</text>
     <text class="f28">全部订单</text>
   </navigator>
@@ -58,7 +58,7 @@
            wx:key="*59">
       <navigator wx:if="{{ item.type == 'url' }}" url="{{ item.url }}"
                  hover-class="none"
-                 class="">
+                 class="nav">
         {{ item.t }}
       </navigator>
       <button open-type="{{ item.open_type }}" catchtap="{{ item.open_type == 'address' ? 'chooseAddress' : '' }}" class="lh60 f24 c444" wx:if="{{ item.type == 'button' }}">

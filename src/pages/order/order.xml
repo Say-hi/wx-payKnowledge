@@ -1,0 +1,63 @@
+<view class="tab f30 lh80">
+  <text catchtap="chooseTab" data-index="0" class="{{ currentIndex == 0 ? 'show main-text-color' : 'noshow' }}">全部</text>
+  <text catchtap="chooseTab" data-index="1" class="{{ currentIndex == 1 ? 'show main-text-color' : 'noshow' }}">待付款</text>
+  <text catchtap="chooseTab" data-index="2" class="{{ currentIndex == 2 ? 'show main-text-color' : 'noshow' }}">待发货</text>
+  <text catchtap="chooseTab" data-index="3" class="{{ currentIndex == 3 ? 'show main-text-color' : 'noshow' }}">待收货</text>
+  <text catchtap="chooseTab" data-index="4" class="{{ currentIndex == 4 ? 'show main-text-color' : 'noshow' }}">已收货</text>
+</view>
+<view class="zw"></view>
+<view class="order"
+      wx:key="*41"
+      wx:for="{{ orderList }}">
+  <view class="o-t f24 c999 lh50"><text>2018-05-05 12:45</text><text class="f24 main-text-color">{{ item.order_status_desc || item.status_str }}</text></view>
+  <view class="goods">
+    <image src="{{ item.goods_list[0].image }}"></image>
+    <view class="g-i">
+      <view class="f30 c333">{{ item.goods_list[0].goods_name }}</view>
+      <!--<view class="f24 c999">规格：{{ item.goods_list[0].spec_key_name || '标准' }}</view>-->
+      <view class="g-b">
+        <view class="f30 c333">
+          <text class="f24">￥</text>{{ item.goods_list[0].final_price }}　<text class="through-line f22 c999">￥1234</text>
+        </view>
+        <view class="f24 c999">×{{ item.goods_list[0].goods_num }}</view>
+      </view>
+    </view>
+  </view>
+  <view class="tac o-m bd1">
+    <!--<text class="f24 main-text-color"></text>-->
+    <view class="f24 c666 o-price">
+      <text>共{{ item.order_goods_num }}件商品　　合计: <text class="f30 f00">￥ {{ item.total_amount }}</text>(不含送货费)</text>
+      <!--<text>送货费: <text class="f30 c999">￥{{ item.shipping_price }}</text></text>-->
+    </view>
+  </view>
+  <view class="o-btn f28 c999">
+    <view class="f28 c666" catchtap="cancel" data-id="{{ item.order_id }}">取消订单</view>
+    <navigator url="../submitOrder/submitOrder?id={{ item.order_id }}&type=second&time={{ item.add_time }}" >
+      <view class="cfff" data-id="{{ item.id }}">确认付款</view>
+    </navigator>
+    <view catchtap="orderMsg" data-pid="{{ item.pickup_id }}" class="cfff" data-id="{{ item.order_id }}">提醒发货</view>
+    <!--<navigator url="../refund/refund?id={{ item.order_id }}&money={{ item.total_amount }}" wx:if="{{ item.order_status_code == 'WAITRECEIVE' || item.order_status_code == 'WAITSEND' }}"><view>申请退款</view></navigator>-->
+    <!--<navigator url="../refund/refund?id={{ item.order_id }}&money={{ item.total_amount }}"><view>申请退款</view></navigator>-->
+    <view class="cfff" data-id="{{ item.id }}">确认收货</view>
+    <navigator url='../orderStatus/orderStatus?type={{ item.order_id }}'>
+      <view>查看订单</view>
+    </navigator>
+    <navigator url='../car/car?id={{ item.order_id }}'>
+      <view>再次购买</view>
+    </navigator>
+    <navigator url='../express/express?id={{ item.order_id }}'>
+      <view>查看物流</view>
+    </navigator>
+    <!--<navigator url="../evaluation/evaluation?id={{ item.order_id }}"><view class="cfff">评价晒图</view></navigator>-->
+    <navigator url="../evaluation/evaluation?id={{ item.order_id }}"><view class="cfff">评价晒图</view></navigator>
+  </view>
+</view>
+
+<view wx:if="{{ !orderList.length }}" class="tac no-goods">
+  <image src="../../images/order_bg.png"></image>
+  <view class="tac f24 c999">亲，您还没有相关的订单哟~</view>
+</view>
+
+        <!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

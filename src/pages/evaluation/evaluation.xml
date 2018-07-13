@@ -1,0 +1,38 @@
+<form bindsubmit="confirm">
+    <view class="e-top p20 bd1">
+      <image src="{{ goods[0].image }}"></image>
+      <view class="ell1 f30 c333">{{ goods[0].goods_name }}</view>
+    </view>
+    <textarea name="content" class="bb p20 f30" placeholder="亲，您对这个商品满意吗？您的评价会帮助我们选择更好的商品哦~"></textarea>
+    <view class="img-up p20">
+      <view catchtap="upImage" class="jwq p20 icon-camera2 f20">上传图片</view>
+      <image wx:for="{{ imgArr }}"
+             wx:key="*989"
+             src="{{ item }}"
+             mode="widthFix"
+             class="i-a-img"></image>
+    </view>
+    <view class="jwq icon-dianpu p20 f30 c333 fw7">店铺评分</view>
+    <view wx:for="{{ scoreArr }}"
+          class="star-w p20"
+          wx:key="*2345">
+      <text class="f29 c666">{{ item.t }}　</text>
+      <text wx:for="12345"
+            wx:key="*023495"
+            wx:for-item="sItem"
+            wx:for-index="sIndex"
+            catchtap="starChoose"
+            data-oindex="{{ index }}"
+            data-index="{{ sIndex }}"
+            class="jwq c999 {{ sIndex <= item.c ? 'icon-xingxing active' : 'icon-shoucang1' }}"></text>
+      <text class="main-text-color f26">{{ item.tr }}</text>
+    </view>
+    <view class="tac f30 confirm-btn cfff">
+      <button type="danger" class="cfff f32" formType="submit">提交评价</button>
+    </view>
+</form>
+
+        <!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

@@ -20,7 +20,8 @@ Page({
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/shop2.png',
         t: '微工坊',
-        url: '../activityList/activityList?type=coProduction'
+        // url: '../activityList/activityList?type=coProduction'
+        url: '../activityList/activityList?type=微工坊列表'
       },
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/shop3.png',
