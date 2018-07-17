@@ -1,3 +1,11 @@
+<view class="a-title f40 c333 fw7">LAJDFLAJDSFLSAJFlaksdf阿隆索的减肥啦死到</view>
+<view class="user-info">
+    <view class="user-info-s">
+        <image class="br" src="{{ testImg }}"></image>
+        <view class="f30" style="color: #576b95;">asdkfjh</view>
+    </view>
+    <view class="f24 c000">2天前</view>
+</view>
 <view class="zw"></view>
 <view class="operation-wrap">
     <view class="h-a-operation">

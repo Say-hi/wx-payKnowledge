@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'articleDetail'
+    testImg: app.data.testImg
   },
   giveTip (e) {
     this.setData({
@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    app.setBar('文章详情')
     app.getSelf(this)
     // TODO: onLoad
   },

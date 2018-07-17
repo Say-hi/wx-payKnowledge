@@ -2,6 +2,8 @@
 //  群信息小程序页面分布
   "pages": [
     "pages/index/index", // 首页
+    "pages/articleDetail/articleDetail", // 文章详情
+    "pages/articleList/articleList", // 文章列表
     "pages/express/express", // 物流信息
     "pages/evaluation/evaluation", // 订单评价
     "pages/orderStatus/orderStatus", // 订单状态
@@ -23,8 +25,7 @@
     "pages/reservation/reservation", // 预约报名
     "pages/coProduction/coProduction", // 合作生产详情
     "pages/shop/shop", // 商城
-    "pages/articleList/articleList", // 文章列表
-    "pages/articleDetail/articleDetail", // 文章详情
+
     "pages/commentList/commentList", // 评论列表
     "pages/articleCategories/articleCategories", // 文章分类
     "pages/coupon/coupon", // 优惠卷
