@@ -11,6 +11,7 @@ Page({
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
     show: true,
+    hot: 'https://c.jiangwenqiang.com/workProject/payKnowledge/hot.png',
     tabArr: [
       {
         i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/tab1.png',
@@ -197,6 +198,9 @@ Page({
         index: e.currentTarget.dataset.index
       }
     })
+  },
+  zan (e) {
+    console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载

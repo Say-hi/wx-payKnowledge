@@ -11,7 +11,7 @@
         </view>
         <form bindsubmit="_formSubmit">
             <view class="inputMoney-wrap">
-                <input name="money" class="inputMoney" type="number" placeholder="其他数额"/>
+                <input name="money" class="inputMoney" value="{{ userInputValue }}" type="number" placeholder="其他数额"/>
             </view>
             <view class="pay">
                 <button formType="submit">立即打赏</button>

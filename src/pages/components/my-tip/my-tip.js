@@ -24,15 +24,20 @@ Component({
   methods: {
     _choosePay (e) {
       this.setData({
-        currentIndex: e.currentTarget.dataset.index
+        currentIndex: e.currentTarget.dataset.index,
+        userInputValue: this.data.numArr[e.currentTarget.dataset.index]
       })
     },
-    _formSubmit () {
-
+    _formSubmit (e) {
+      let { money } = e.detail.value
+      console.log(money)
+      console.log(this.data.propUser)
+      this._close()
     },
     _close () {
       this.setData({
         show: false,
+        userInputValue: null,
         currentIndex: -1
       })
     },

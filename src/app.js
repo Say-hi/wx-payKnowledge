@@ -43,7 +43,7 @@ const wxParse = require('./wxParse/wxParse')
 // moment.locale('zh-cn')
 App({
   data: {
-    name: '肥猫团购',
+    name: '脑籽知识商城',
     baseDomain: 'http://group.lanzhangxiu.cn',
     testImg: 'https://c.jiangwenqiang.com/api/old3.png',
     imgDomain: 'https://c.jiangwenqiang.com'

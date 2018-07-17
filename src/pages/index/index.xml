@@ -9,7 +9,7 @@
     <image mode="widthFix" src="{{ testImg }}"></image>
   </swiper-item>
 </swiper>
-<view class="tab-wrap">
+<view class="tab-wrap" >
     <navigator url="{{ item.url }}"
            wx:for="{{ tabArr }}"
            wx:key="*1"
@@ -24,7 +24,7 @@
 </view>
 <view class="hot pr">
     <view class="hot-title">
-        <image mode="widthFix" src="{{ testImg }}"></image>
+        <image mode="widthFix" src="{{ hot }}"></image>
         <text class="f32 c333 fw7">热门推荐</text>
     </view>
 </view>
