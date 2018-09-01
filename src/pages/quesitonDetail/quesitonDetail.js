@@ -7,18 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
+    page: 0,
     autoFocus: true,
+    communityArr: [],
     testImg: app.data.testImg
   },
-  giveTip (e) {
+  ds (e) {
+    let {index, integral} = e.detail
+    this.data.communityArr[index].integral += (integral * 1)
     this.setData({
-      componentsData: {
-        name: '123' + e.currentTarget.dataset.index,
-        id: e.currentTarget.dataset.index + 1,
-        url: app.data.testImg,
-        index: e.currentTarget.dataset.index
-      }
+      communityArr: this.data.communityArr
     })
+  },
+  zan (e) {
+    app.dianzan(e, 'communityArr', this)
+  },
+  inputValue (e) {
+    app.inputValue(e, this)
+  },
+  giveTip (e) {
+    app.setComponentsData(this, e)
+    // this.setData({
+    //   componentsData: {
+    //     name: '123' + e.currentTarget.dataset.index,
+    //     id: e.currentTarget.dataset.index + 1,
+    //     url: app.data.testImg,
+    //     index: e.currentTarget.dataset.index
+    //   }
+    // })
   },
   answerOperation (e) {
     let that = this
@@ -27,18 +44,76 @@ Page({
         showAnswer: !that.data.showAnswer
       })
     } else {
-
+      if (!that.data.pwd) return app.setToast(that, {content: '请输入您的回答'})
+      app.wxrequest({
+        url: app.getUrl().operationAnswer,
+        data: {
+          key: app.gs(),
+          query_id: that.data.answerObj.id,
+          answer: that.data.pwd
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.code === 1) {
+            that.setData({
+              page: 0,
+              showAnswer: !that.data.showAnswer,
+              communityArr: []
+            }, that.getAnswer)
+          } else {
+            app.setToast(that, {content: res.data.msg})
+          }
+        }
+      })
     }
+  },
+  getAnswer () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().answer,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page,
+        query_id: that.data.answerObj.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          for (let v of res.data.data.data) {
+            v.create_time = app.moment(v.create_time)
+          }
+          that.setData({
+            total: res.data.data.total,
+            communityArr: that.data.communityArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getAnswer()
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
-    app.setBar('社群中心')
+  onLoad (options) {
+    app.setBar('问答详情')
     app.getSelf(this)
+    this.setData({
+      answerObj: app.gs('answerObj')
+    }, this.getAnswer)
     // TODO: onLoad
   },
-
+  goComment (e) {
+    app.su('answerObj', this.data.communityArr[e.currentTarget.dataset.index])
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

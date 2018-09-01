@@ -2,6 +2,7 @@
 {
   "usingComponents": {
     "my-tip": "../components/my-tip/my-tip",
+    "my-login": "../components/my-login/my-login",
     "my-navigator-tab": "../components/my-navigator-tab/my-navigator-tab"
   },
   // 类型：HexColor；默认值：#000000

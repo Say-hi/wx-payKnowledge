@@ -1,11 +1,21 @@
 <!-- 可用组件：https://mp.weixin.qq.com/debug/wxadoc/dev/component/ -->
 <view class="up p30 bt1">
   <view catchtap="videoOperation" data-type="add" class="jwq icon-shangchuan f28 ">上传本地视频</view>
-  <view catchtap="videoOperation" data-type="del" wx:if="{{ videoSrc }}" class="jwq icon-shanchu f24 c666">删除</view>
+  <view catchtap="videoOperation" data-type="del" wx:if="{{ videoSrc.id }}" class="jwq icon-shanchu f24 c666">删除</view>
 </view>
-<view wx:if="{{ videoSrc && !success }}" class="p30">
-  <video objectFit="cover" src="{{ videoSrc }}" class="video-area"></video>
+<view wx:if="{{ videoSrc.id && !success }}" class="p30">
+  <video bindtimeupdate="{{ !duration ? 'getDurationTime' : '' }}" autoplay="{{true}}" objectFit="cover" src="{{ videoSrc.url }}" class="video-area"></video>
 </view>
+
+<view class="up p30 bt1">
+  <view catchtap="imageOperation" data-type="add" class="jwq icon-shangchuan f28 ">上传视频封面图</view>
+  <view catchtap="imageOperation" data-type="del" wx:if="{{ imageSrc.id }}" class="jwq icon-shanchu f24 c666">删除</view>
+</view>
+
+<view wx:if="{{ imageSrc.id && !success }}" class="p30">
+  <image mode="widthFix" src="{{ imageSrc.url }}"  class="video-area"></image>
+</view>
+
 <form bindsubmit="formSubmit">
   <view class="p30">
     <view class="f32 fw7 lh60">视频描述</view>

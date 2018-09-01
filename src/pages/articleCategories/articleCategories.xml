@@ -5,19 +5,19 @@
   </navigator>
   <view class="scroll-wrap">
     <scroll-view class="scroll-left" scroll-y="true">
-      <view class="p20 f30 bd1 tac {{ left == index ? 'leftActive' : '' }}" catchtap="leftChoose" data-index="{{ index }}" wx:for="{{ leftArr }}" data-place="{{ item.value }}" wx:key="*234">{{ item.label }}</view>
+      <view class="p20 f30 bd1 tac {{ left == index ? 'leftActive' : '' }}" catchtap="leftChoose" data-index="{{ index }}" wx:for="{{ leftArr }}" data-place="{{ item.id }}" wx:key="*234">{{ item.name }}</view>
     </scroll-view>
 
-    <scroll-view class="scroll-right p20" scroll-y="true">
-      <image mode="widthFix" class="sr-t-img" src="{{ testImg }}"></image>
-      <navigator url="../articleDetail/articleDetail" class="ar-inside bd1 p200" wx:for="123123123" wx:key="*236">
-        <image mode="widthFix" src="{{ testImg }}"></image>
+    <scroll-view bindscrolltolower="onreachbottom"  class="scroll-right p20" scroll-y="true">
+      <image mode="widthFix" class="sr-t-img" src="{{ imgDomain }}{{ leftArr[left].picture }}"></image>
+      <navigator hover-class="none" url="../articleDetail/articleDetail?id={{ item.id }}" class="ar-inside bd1 p200" wx:for="{{ rightArr }}" wx:key="*236">
+        <image wx:if="{{ item.picture }}" mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
         <view class="ar-i-r">
-          <view class="f24 c333">阿斯顿发撒旦法</view>
+          <view class="f24 c333">{{ item.title }}</view>
           <view class="h-a-operation">
-            <view class="jwq lh70 f24 c999 icon-pinglun">{{ 50 * index }}</view>
-            <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-            <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+            <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
+            <view catchtap="zan" data-index="{{ index }}" data-type="article" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+            <view catchtap="giveTip" data-id="{{ item.id }}" data-type="article" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
           </view>
         </view>
       </navigator>
@@ -26,7 +26,8 @@
   </view>
   <my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
 </view>
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-login></my-login>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
         <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

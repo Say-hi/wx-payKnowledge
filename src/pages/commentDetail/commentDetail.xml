@@ -1,23 +1,24 @@
 <view class="p20 comment-item">
-  <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+  <image class="br user-img ci-left" mode="aspectFill" src="{{ info.avatar }}"></image>
   <view class="ci-right">
     <view class="f24 c999 ci-l-name">
-      <text>粗恶协亨</text>
+      <text>{{ info.username }}</text>
       <!--<text class="zan jwq f24 {{ item.zan ? 'icon-dianzan1' : 'icon-dianzan' }}">999</text>-->
     </view>
-    <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
-    <view class="f24 ci-r-content">
-      <view wx:for="1234123" wx:key="*21" class="lh60">
-        <text class="c999">asdf:</text><text class="c333">asdfasdfsadfasdfsdaf{{ index }}</text>
+    <view class="f32 c333 fw7 ci-r-text">{{ info.content }}</view>
+    <view class="f24 ci-r-content" wx:if="{{ info.replys.length > 0 }}">
+      <view wx:for="{{ info.replys }}" wx:key="*21" class="lh60">
+        <text class="c999">{{ item.username }}:</text><text class="c333">{{ item.content }}</text>
       </view>
     </view>
+    <view class="tac f24 c999 p20" wx:else>快来回复小伙伴的评论吧</view>
   </view>
 </view>
 <view class="zw"></view>
 <view class="write-comment bt1">
-  <view class="br5">
+  <view class="br5 f26">
     <view class="jwq icon-write"></view>
-    <input placeholder="写评论，优质评论被优先显示"/>
+    <input bindconfirm="upReply" confirm-type="done" bindinput="inputValue" data-type="pwd" placeholder="写评论，优质评论被优先显示"/>
   </view>
 </view>
 <!--错误弹窗-->

@@ -167,6 +167,9 @@ Page({
   onLoad () {
     app.setBar('我的')
     app.getSelf(this)
+    this.setData({
+      tabArr2: app.setNav()
+    })
     // TODO: onLoad
   },
 

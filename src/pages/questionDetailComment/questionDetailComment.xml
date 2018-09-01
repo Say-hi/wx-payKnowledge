@@ -1,0 +1,50 @@
+<view class="bt1 hot-answer p30">
+  <view class="h-a-top">
+    <image class="br question-img" src="{{ answerObj.avatar }}"></image>
+    <view class="f24 c999 question-name">{{ answerObj.username }}</view>
+  </view>
+  <view class="h-a-content">
+    <view>
+      <view class="f32 c333 fw7">{{ answerObj.answer }}</view>
+    </view>
+  </view>
+</view>
+<view class="f28 c999 lh60 bd1 p20 qd-title">
+  <text>{{ total }}回复</text>
+  <view catchtap="answerOperation" data-type="cancel" class="jwq br10 p020 icon-combinedshapecopy2">回复</view>
+</view>
+
+<view class="comment-item bd1" wx:for="{{ communityArr }}" wx:key="*8">
+<image class="br user-img ci-left" mode="aspectFill" src="{{ item.avatar }}"></image>
+<view class="ci-right">
+  <view class="f24 c999 ci-l-name">
+    <text>{{ item.username }}</text>
+    <!--<text class="zan jwq f24 {{ item.zan ? 'icon-dianzan1' : 'icon-dianzan' }}">999</text>-->
+  </view>
+  <view class="f32 c333 fw7 ci-r-text">{{ item.content }}</view>
+  <!--<view class="f24 ci-r-content"><text class="c999">asdf:</text><text class="c333">阿斯顿发撒旦法</text></view>-->
+  <view class="f24 c999 ci-r-bottom lh60">
+    <text>{{ item.create_time }}</text>
+    <!--<view class="h-a-operation">-->
+      <!--<view catchtap="goComment" data-index="{{ index }}" data-url="../questionDetailComment/questionDetailComment?id={{ item.id }}" class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>-->
+      <!--<view catchtap="zan" data-type="comment" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>-->
+      <!--<view catchtap="giveTip" data-type="answer" data-id="{{ item.id }}" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>-->
+    <!--</view>-->
+  </view>
+</view>
+</view>
+<view hidden="{{ communityArr.length >= 1 }}" class="tac f24 c999 p20">还没有人抢到这个沙发哟，快来回答吧</view>
+
+<view wx:if="{{ showAnswer }}" class="answer mask">
+  <view class="a-bottom">
+    <view class="a-b-top p20 f30 c999 bd1">
+      <text catchtap="answerOperation" data-type="cancel">取消</text>
+      <text class="main-text-color" catchtap="answerOperation" data-type="confirm">发布</text>
+    </view>
+    <textarea bindinput="inputValue" data-type="pwd" auto-focus="{{ autoFocus }}" class="p20 f24" placeholder="输入您的回复,优质回复被优先显示"></textarea>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>

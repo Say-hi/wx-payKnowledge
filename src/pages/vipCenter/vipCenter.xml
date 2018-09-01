@@ -16,12 +16,15 @@
 </view>
 <view class="zw"></view>
 <view class="tac f28 vip-bottom">
-  <text catchtap="showDescC">会员权限说明</text>
+  <text catchtap="showDescC">{{ vipDesc.title }}</text>
 </view>
 <view class="mask" wx:if="{{ showMask }}">
   <view class="mask-in br10 tac">
-    <view class="mask-title f32 c333 fw7 lh80">会员权限说明</view>
-    <view class="f24 c666 p20 tal">阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大阿斯顿发撒旦法三大</view>
+    <view class="mask-title f32 c333 fw7 lh80">{{ vipDesc.title }}</view>
+    <import src="../../wxParse/wxParse"></import>
+    <view class="f24 c666 p20 tal">
+      <template is="wxParse" data="{{ wxParseData: content.nodes }}"></template>
+    </view>
     <view catchtap="showDescC" class="f30 fw7 lh80 c333 confirm">确定</view>
   </view>
 </view>

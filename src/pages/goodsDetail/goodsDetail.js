@@ -8,11 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     testImg: app.data.testImg,
     tabChooseNow: '1',
     tabChooseNow2: '1',
     page: 0,
     commentArr: [],
+    num: 1,
     bottomTab: [
       {
         name: '商城',
@@ -51,8 +53,9 @@ Page({
   },
   onlyPic () {
     this.setData({
+      page: 0,
       onlyPic: !this.data.onlyPic
-    })
+    }, this.getComment)
   },
   // 顶栏切换
   tabChoose (e) {
@@ -68,8 +71,7 @@ Page({
       tabChooseNow2: e.currentTarget.dataset.index,
       page: 0,
       commentArr: []
-    })
-    this.getComment(e.currentTarget.dataset.index)
+    }, this.getComment)
   },
   // 放大图片
   showImage (e) {
@@ -298,22 +300,22 @@ Page({
   // 数量选择
   chooseMenuNum (e) {
     if (e.currentTarget.dataset.type === 'del') {
-      if (this.data.goodsInfo.num === 1) return
-      --this.data.goodsInfo.num
+      if (this.data.num === 1) return
+      --this.data.num
     } else {
-      if (!this.data.goodsInfo.num) {
-        this.data.goodsInfo.num = 1
+      if (!this.data.num) {
+        this.data.num = 1
       } else {
-        if (this.data.goodsInfo.buy_limit <= this.data.goodsInfo.num) return app.setToast(this, {content: `亲，每人限购${this.data.goodsInfo.buy_limit}件哦`})
-        if (this.data.nowStartArr.length && this.data.bulkpChoose >= 0) {
-          if (this.data.nowStartArr[this.data.bulkpChoose].goods_num <= this.data.goodsInfo.num && this.data.bulkpChoose >= 0) return app.setToast(this, {content: '超出库存啦'})
-        }
-        if (this.data.goodsInfo.store_count <= this.data.goodsInfo.num) return app.setToast(this, {content: '超出库存啦'})
-        ++this.data.goodsInfo.num
+        // if (this.data.goodsInfo.buy_limit <= this.data.num) return app.setToast(this, {content: `亲，每人限购${this.data.goodsInfo.buy_limit}件哦`})
+        // if (this.data.nowStartArr.length && this.data.bulkpChoose >= 0) {
+        //   if (this.data.nowStartArr[this.data.bulkpChoose].goods_num <= this.data.num && this.data.bulkpChoose >= 0) return app.setToast(this, {content: '超出库存啦'})
+        // }
+        // if (this.data.goodsInfo.store_count <= this.data.num) return app.setToast(this, {content: '超出库存啦'})
+        ++this.data.num
       }
     }
     this.setData({
-      goodsInfo: this.data.goodsInfo
+      num: this.data.num
     })
   },
   // 将选择的物品放置缓存
@@ -358,9 +360,14 @@ Page({
   // 购买确认
   buyConfirm () {
     this.closeBuy()
-    wx.navigateTo({
-      url: '../submitOrder/submitOrder'
-    })
+    if (this.data.buyType === 'car') {
+      app.setToast(this, {content: '已添加至购物车'})
+    } else {
+      wx.navigateTo({
+        url: '../submitOrder/submitOrder'
+      })
+    }
+    //
     // if (this.data.buyType === 'car') {
     //   this.addToCar()
     // } else {
@@ -471,32 +478,32 @@ Page({
       })
     }
   },
-  getComment (commentType) {
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().ajaxComment,
-      data: {
-        goods_id: that.data.goodsInfo.goods_id,
-        commentType,
-        p: ++that.data.page
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          that.getQrCode()
-          for (let v of res.data.data.commentlist) {
-            v.add_time = new Date(v.add_time * 1000).toLocaleDateString()
-          }
-          that.setData({
-            commentArr: that.data.commentArr.concat(res.data.data.commentlist),
-            more: res.data.data.commentlist.length < 10 ? 0 : 1
-          })
-        } else {
-          app.setToast(that, {content: res.data.msg})
-        }
-      }
-    })
-  },
+  // getComment (commentType) {
+  //   let that = this
+  //   app.wxrequest({
+  //     url: app.getUrl().ajaxComment,
+  //     data: {
+  //       goods_id: that.data.goodsInfo.goods_id,
+  //       commentType,
+  //       p: ++that.data.page
+  //     },
+  //     success (res) {
+  //       wx.hideLoading()
+  //       if (res.data.status === 200) {
+  //         that.getQrCode()
+  //         for (let v of res.data.data.commentlist) {
+  //           v.add_time = new Date(v.add_time * 1000).toLocaleDateString()
+  //         }
+  //         that.setData({
+  //           commentArr: that.data.commentArr.concat(res.data.data.commentlist),
+  //           more: res.data.data.commentlist.length < 10 ? 0 : 1
+  //         })
+  //       } else {
+  //         app.setToast(that, {content: res.data.msg})
+  //       }
+  //     }
+  //   })
+  // },
   // 获取设置
   openSetting () {
     let that = this
@@ -520,12 +527,58 @@ Page({
       app.wxlogin(this.getGoodsInfo, this.options.id)
     }
   },
+  getGoods () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().product,
+      data: {
+        id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          app.WP('content', 'html', res.data.data.content, that, 0)
+          that.setData({
+            info: res.data.data
+          }, that.getComment)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  getComment () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopComment,
+      data: {
+        goods_id: that.data.info.id,
+        grade: that.data.tabChooseNow2 * 1 === 1 ? '' : that.data.tabChooseNow2 - 2 <= 2 ? that.data.tabChooseNow2 - 2 : '',
+        is_picture: that.data.onlyPic ? 1 : 0,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            commentArr: that.data.commentArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     app.setBar('商品详情')
     app.getSelf(this)
+    this.setData({
+      options
+    }, this.getGoods)
     // if (options.scene) {
     //   let scene = decodeURIComponent(options.scene).split('&')
     //   options.type = scene[0]
@@ -560,7 +613,8 @@ Page({
     // TODO: onLoad
   },
   onReachBottom () {
-    if (!this.data.more) return app.setToast(this, {content: '没有更多内容了'})
+    if (this.data.tabChooseNow <= 1) return
+    else if (this.data.more) return app.setToast(this, {content: '没有更多内容了'})
     this.getComment(this.data.tabChooseNow2)
   },
   /**

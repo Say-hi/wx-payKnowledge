@@ -1,5 +1,5 @@
 <view class="p30 bt1">
-  <image wx:for="12341234" mode="widthFix" src="{{ testImg }}"></image>
+  <image catchtap="getTicket" wx:for="{{ couponList }}" data-id="{{ item.id }}" mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
 </view>
 <!--错误弹窗-->
 <import src="../template/template"></import>

@@ -3,6 +3,7 @@
 {
   "usingComponents": {
     "my-tip": "../components/my-tip/my-tip",
+    "my-login": "../components/my-login/my-login",
     "my-navigator-tab": "../components/my-navigator-tab/my-navigator-tab"
   },
   // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数

@@ -2,6 +2,8 @@
 //  群信息小程序页面分布
   "pages": [
     "pages/index/index", // 首页
+    "pages/videoList/videoList", // 视频课程,
+    "pages/fotTest/fotTest", // 测试页面
     "pages/articleDetail/articleDetail", // 文章详情
     "pages/articleList/articleList", // 文章列表
     "pages/express/express", // 物流信息
@@ -25,7 +27,6 @@
     "pages/reservation/reservation", // 预约报名
     "pages/coProduction/coProduction", // 合作生产详情
     "pages/shop/shop", // 商城
-
     "pages/commentList/commentList", // 评论列表
     "pages/articleCategories/articleCategories", // 文章分类
     "pages/coupon/coupon", // 优惠卷
@@ -45,8 +46,9 @@
     "pages/releaseCommunity/releaseCommunity", // 发布社群动态
     "pages/communityCenter/communityCenter", // 社群中心
     "pages/videoDetail/videoDetail", // 视频详情
-    "pages/releaseVideo/releaseVideo", // 发布视频
-    "pages/videoList/videoList" // 视频课程
+    "pages/questionDetailComment/questionDetailComment", // 问题回答详情的评论
+    "pages/releaseVideo/releaseVideo" // 发布视频,
+
     // Dont remove this comment
   ],
   // Window configuration

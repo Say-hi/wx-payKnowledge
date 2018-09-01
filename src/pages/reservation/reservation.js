@@ -44,6 +44,16 @@ Page({
   onLoad () {
     app.setBar('预约报名')
     app.getSelf(this)
+    let conditionArr = []
+    for (let v of app.gs('yuyue')) {
+      conditionArr.push({
+        t: v,
+        choose: false
+      })
+    }
+    this.setData({
+      conditionArr: app.gs('yuyue')
+    })
     // TODO: onLoad
   },
 

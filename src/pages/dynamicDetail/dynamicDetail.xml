@@ -1,42 +1,43 @@
 <view class="bt1 p30">
   <view class="comment-item">
-    <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+    <image class="br user-img ci-left" mode="aspectFill" src="{{ info.avatar }}"></image>
     <view class="ci-right">
       <view class="f24 c999 ci-l-name">
-        <text>粗恶协亨</text>
-        <text class="f24">2天前</text>
+        <text>{{ info.username }}</text>
+        <text class="f24">{{ info.create_time }}</text>
       </view>
-      <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
-      <view class="f28 c999 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+      <view class="f32 c333 fw7 ci-r-text">{{ info.title }}</view>
+      <view class="f28 c999 ci-r-text">{{ info.content }}</view>
       <view class="c-i-img-wrap">
-        <image wx:for="132123" wx:key="*449" data-src="{{ testImg }}" catchtap="showImg" mode="widthFix" src="{{ testImg }}"></image>
+        <image wx:for="{{ info.pictures }}" wx:key="*449" data-src="{{ imgDomain }}{{ pItem }}" catchtap="showImg" mode="aspectFill" wx:for-item="pItem" src="{{ imgDomain }}{{ pItem }}"></image>
       </view>
     </view>
   </view>
 </view>
 <view class="f28 c999 lh60 bd1 p20 qd-title">
-  <text>660回复</text>
+  <text>{{ total }}回复</text>
   <view catchtap="answerOperation" data-type="cancel" class="jwq br10 p020 icon-combinedshapecopy2">回复</view>
 </view>
-<view class="comment-item bd1" wx:for="123" wx:key="*8345">
-  <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+<view class="comment-item bd1" wx:for="{{ commentArr }}" wx:key="*8345">
+  <image class="br user-img ci-left" mode="aspectFill" src="{{ item.avatar }}"></image>
   <view class="ci-right">
     <view class="f24 c999 ci-l-name">
-      <text>粗恶协亨</text>
+      <text>{{ item.username }}</text>
       <!--<text class="zan jwq f24 {{ item.zan ? 'icon-dianzan1' : 'icon-dianzan' }}">999</text>-->
     </view>
-    <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+    <view class="f32 c333 fw7 ci-r-text">{{ item.content }}</view>
     <!--<view class="f24 ci-r-content"><text class="c999">asdf:</text><text class="c333">阿斯顿发撒旦法</text></view>-->
     <view class="f24 c999 ci-r-bottom">
-      <text>2分钟前</text>
+      <text>{{ item.create_time }}</text>
       <view class="h-a-operation">
-        <navigator hover-class="none" url="../commentDetail/commentDetail" class="jwq lh70 f24 c999 icon-pinglun">40</navigator>
-        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+        <navigator hover-class="none" url="../commentDetail/commentDetail?id={{ item.id }}" class="jwq lh70 f24 c999 icon-pinglun">{{ item.reply }}</navigator>
+        <view catchtap="zan" data-type="comment" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+        <view catchtap="giveTip" data-index="{{ index }}" data-id="{{ item.id }}" data-type="dynamic" data-userid="{{ item.user_id }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
       </view>
     </view>
   </view>
 </view>
+<view hidden="{{ commentArr.length >= 1 }}" class="tac f24 c999 p20">还没有人抢到这个沙发哟，快来评论吧</view>
 <view class="zw"></view>
 <navigator url="../releaseCommunity/releaseCommunity" class="fabu f32 main-text-color tac lh88">发布动态</navigator>
 <view wx:if="{{ showAnswer }}" class="answer mask">
@@ -45,11 +46,11 @@
       <text catchtap="answerOperation" data-type="cancel">取消</text>
       <text class="main-text-color" catchtap="answerOperation" data-type="confirm">发布</text>
     </view>
-    <textarea auto-focus="{{ autoFocus }}" class="p20 f24" placeholder="输入您的回答,优质评论被优先显示"></textarea>
+    <textarea bindinput="inputValue" data-type="pwd" auto-focus="{{ autoFocus }}" class="p20 f24" placeholder="输入您的回答,优质评论被优先显示"></textarea>
   </view>
 </view>
 
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 
         <!--错误弹窗-->
 <import src="../template/template"></import>

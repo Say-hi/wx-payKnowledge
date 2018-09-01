@@ -8,6 +8,8 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
+    page: 0,
+    commentArr: [],
     imgDomain: app.data.imgDomain
   },
   play (e) {
@@ -15,24 +17,110 @@ Page({
       play: !this.data.play
     })
   },
+  // random (array) {
+  //   if (typeof array !== 'object' || array.length <= 0) return console.log('传入有效数组')
+  //   return array.sort(() => {
+  //     return .5 - Math.random()
+  //   })
+  // },
   giveTip (e) {
-    this.play()
-    this.setData({
-      componentsData: {
-        name: '123' + e.currentTarget.dataset.index,
-        id: e.currentTarget.dataset.index + 1,
-        url: app.data.testImg,
-        index: e.currentTarget.dataset.index
+    // this.setData({
+    //   componentsData: {
+    //     user_id: e.currentTarget.dataset.userid,
+    //     obj_id: e.currentTarget.dataset.id,
+    //     type: e.currentTarget.dataset.type,
+    //     index: e.currentTarget.dataset.index
+    //   }
+    // })
+    app.setComponentsData(this, e)
+  },
+  getDetail (id) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().video,
+      data: {
+        key: app.gs(),
+        video_id: id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          let m = (res.data.data.duration / 60).toFixed(0)
+          let s = res.data.data.duration % 60
+          res.data.data.duration = m + '`' + s + '``'
+          that.setData({
+            info: res.data.data
+          }, that.getComment)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
       }
+    })
+  },
+  getComment () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().comment,
+      data: {
+        key: app.gs(),
+        type: 1,
+        obj_id: that.data.info.id,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          for (let v of res.data.data.data) {
+            v.create_time = app.momentFormat(v.create_time, 'MM-DD')
+          }
+          that.setData({
+            commentArr: that.data.commentArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getComment()
+  },
+  ds (e) {
+    let {integral} = e.detail
+    this.data.info.integral += (integral * 1)
+    this.setData({
+      info: this.data.info
+    })
+  },
+  zan (e) {
+    app.dianzan(e, 'info', this)
+  },
+  zan2 (e) {
+    app.dianzan(e, 'commentArr', this)
+  },
+  inputValue (e) {
+    app.inputValue(e, this)
+  },
+  upComment () {
+    let that = this
+    app.upComment(this, this.data.info.id, 'video', () => {
+      that.data.info.comment += 1
+      that.setData({
+        page: 0,
+        info: that.data.info,
+        commentArr: []
+      }, that.getComment)
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('视频课程')
     app.getSelf(this)
-    // TODO: onLoad
+    this.getDetail(options.id)
   },
 
   /**

@@ -5,17 +5,17 @@
   </navigator>
   <view class="scroll-wrap">
     <scroll-view class="scroll-left" scroll-y="true">
-      <view class="p20 f30 bd1 tac {{ left == index ? 'leftActive' : '' }}" catchtap="leftChoose" data-index="{{ index }}" wx:for="{{ leftArr }}" data-place="{{ item.value }}" wx:key="*234">{{ item.label }}</view>
+      <view class="p20 f30 bd1 tac {{ left == index ? 'leftActive' : '' }}" catchtap="leftChoose" data-index="{{ index }}" wx:for="{{ leftArr }}" data-place="{{ item.value }}" wx:key="*234">{{ item.name }}</view>
     </scroll-view>
 
     <scroll-view class="scroll-right" scroll-y="true">
-      <navigator url="../goodsList/goodsList" class="inside {{ right == index ? 'rightActive' : '' }}" data-id="{{ item.employeeId }}" catchtap="goDetail" data-index="{{ index }}" wx:for="123123123" wx:key="*236">
+      <navigator url="../goodsList/goodsList?id={{ item.id }}&pid={{ item.pid }}" class="inside {{ right == index ? 'rightActive' : '' }}" data-id="{{ item.id }}" catchtap="goDetail" data-index="{{ index }}" wx:for="{{ leftArr[left].child }}" wx:key="*236">
         <view class="i-wrap tac f28 c333">
-          <image mode="aspectFill" src="{{ testImg }}"></image>
-          <view>值</view>
+          <image mode="aspectFill" src="{{ imgDomain }}{{ item.picture }}"></image>
+          <view>{{ item.name }}</view>
         </view>
       </navigator>
-      <view wx:if="{{ !rightArr.length }}" class="tac">还没有相关的配内容哦~</view>
+      <view hidden="{{ leftArr[left].child.length > 0 }}" class="tac f28 c999 p20">还没有相关的配内容哦~</view>
     </scroll-view>
   </view>
 </view>

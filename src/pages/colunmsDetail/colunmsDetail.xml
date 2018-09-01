@@ -1,33 +1,38 @@
 <view class="bt1 ar-info p30">
-  <image class="br user-img" src="{{ testImg }}"></image>
-  <view class="f24 c666">
-    <view class="f32 lh40 c333 fw7">阿斯顿发</view>
-    <view class="lh50">asldkfjasdf</view>
-    <view class="lh50">作者: asldfja</view>
-    <view class="lh50">123人关注</view>
-    <view class="f32 br5 {{ follow ? 'follow' : 'no-follow' }}">
-      {{ follow ? '- 取关专栏' : '+ 关注专栏' }}
+  <image class="br user-img"  src="{{ info.avatar }}"></image>
+  <view class="f24 c666 ar-i-r">
+    <view class="f32 lh40 c333 fw7">{{ info.name }}</view>
+    <view class="lh50">{{ info.info }}</view>
+    <view class="lh50">作者: {{ info.username }}</view>
+    <view class="lh50">{{ info.like }}人关注</view>
+    <view catchtap="zan" data-index="-1" data-id="{{ info.id }}" data-type="column" class="f32 br5 tac {{ info.is_like == 1 ? 'follow' : 'no-follow' }}">
+      {{ info.is_like == 1 ? '- 取关专栏' : '+ 关注专栏' }}
+    </view>
+    <view catchtap="giveTip" data-type="" data-id="{{ info.user_id }}" data-userid="{{ info.user_id }}" class="f32 mt20 tac no-follow br5 jwq icon-zhifufangshi">
+      打赏作者
     </view>
   </view>
 </view>
-<view class="p30 f28 tab-bg">12篇文章</view>
+<view class="p30 f28 tab-bg">{{ info.article }}篇文章</view>
 <view class="ar-list-w">
-  <navigator url="../articleDetail/articleDetail" wx:for="12344" wx:key="*33" class="ar-list bd1 p200">
-    <image mode="widthFix" class="br5 ar-l-l" src="{{ testImg }}"></image>
+  <navigator hover-class="none" url="../articleDetail/articleDetail?id={{ item.id }}" wx:for="{{ rightArr }}" wx:key="*33" class="ar-list bd1 p200">
+    <image wx:if="{{ item.picture }}" mode="widthFix" class="br5 ar-l-l" src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="ar-l-r">
-      <view class="f32 c333">asdlfjasdlf;jkasdflaks</view>
+      <view class="f32 c333">{{ item.title }}</view>
       <view class="f24 c999 ar-l-r-b">
-        <view>2{{ index }}天前</view>
+        <view>{{ item.create_time }}</view>
         <view class="h-a-operation">
-          <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
-          <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-          <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+          <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
+          <view catchtap="zan2" data-type="article" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+          <view catchtap="giveTip" data-type="article" data-id="{{ item.id }}" data-userid="{{ info.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
         </view>
       </view>
     </view>
   </navigator>
+  <view class="tac f24 c999 p20" hidden="{{ rightArr.length > 1 }}">作者还没有发表过文章诶</view>
 </view>
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

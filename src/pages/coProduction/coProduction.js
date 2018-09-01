@@ -14,13 +14,44 @@ Page({
     this.setData({
       currentTab: e.currentTarget.dataset.index
     })
+    let s = e.currentTarget.dataset.index * 1 === 0 ? 'content' : 'review'
+    app.WP('content', 'html', this.data.info[s], this, 0)
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().workshop,
+      data: {
+        workshop_id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          app.WP('content', 'html', res.data.data.content, that, 0)
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  goUrl (e) {
+    app.su('yuyue', this.data.info.condition)
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('微工坊')
     app.getSelf(this)
+    this.setData({
+      options
+    }, this.getData)
     // TODO: onLoad
   },
 

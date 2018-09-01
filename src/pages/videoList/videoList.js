@@ -7,11 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
+    page: 0,
+    videoList: [],
     playImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/play_btn.png',
     showCenterPlayBtn: false,
     showFullscreenBtn: false,
-    testImg: app.data.testImg,
-    imgDomain: app.data.imgDomain
+    testImg: app.data.testImg
   },
   goDetail (e) {
     wx.navigateTo({
@@ -24,14 +26,59 @@ Page({
     })
   },
   giveTip (e) {
+    app.setComponentsData(this, e)
+    // this.setData({
+    //   componentsData: {
+    //     user_id: e.currentTarget.dataset.userid,
+    //     obj_id: e.currentTarget.dataset.id,
+    //     type: e.currentTarget.dataset.type,
+    //     index: e.currentTarget.dataset.index
+    //   }
+    // })
+  },
+  ds (e) {
+    let {index, integral} = e.detail
+    this.data.videoList[index].integral += (integral * 1)
     this.setData({
-      componentsData: {
-        name: '123' + e.currentTarget.dataset.index,
-        id: e.currentTarget.dataset.index + 1,
-        url: app.data.testImg,
-        index: e.currentTarget.dataset.index
+      videoList: this.data.videoList
+    })
+  },
+  getVideoList () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().videos,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          for (let v of res.data.data.data) {
+            if (!v.duration) {
+              v.duration = '未知时长'
+              continue
+            }
+            let m = (v.duration / 60).toFixed(0)
+            let s = v.duration % 60
+            v.duration = m + '`' + s + '``'
+          }
+          that.setData({
+            videoList: that.data.videoList.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
       }
     })
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getVideoList()
+  },
+  zan (e) {
+    app.dianzan(e, 'videoList', this)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -39,6 +86,7 @@ Page({
   onLoad () {
     app.setBar('视频课程')
     app.getSelf(this)
+    this.getVideoList()
     // TODO: onLoad
   },
 
@@ -74,6 +122,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.setData({
+      page: 0,
+      videoList: []
+    }, this.getVideoList)
     // TODO: onPullDownRefresh
   }
 })

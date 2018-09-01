@@ -9,7 +9,7 @@
     <view class="jwq icon-shanchu" bindtap="cleanHistory"></view>
   </view>
   <view class="menu2-comment">
-    <view bindtap="chooseTip" data-choose="{{ index }}" class="menu2-comment-item {{ chooseHistory == index ?  'active' : '' }}" wx:for="{{ history }}" wx:key="unique">
+    <view bindtap="chooseTip" data-content="{{ item }}" data-choose="{{ index }}" class="menu2-comment-item {{ chooseHistory == index ?  'active' : '' }}" wx:for="{{ history }}" wx:key="unique">
       {{ item }}
     </view>
   </view>

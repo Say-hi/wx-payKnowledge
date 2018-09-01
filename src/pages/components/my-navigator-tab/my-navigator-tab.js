@@ -31,12 +31,13 @@ Component({
     }
   },
   data: {
-    testImg: app.data.testImg,
+    imgDomain: app.data.imgDomain,
     naozai: 'https://c.jiangwenqiang.com/workProject/payKnowledge/naozai.png',
     currentIndex: -1,
     numArr: ['2', '5', '10', '20', '50', '100']
   },
   methods: {
+
     _choosePay (e) {
       this.setData({
         currentIndex: e.currentTarget.dataset.index

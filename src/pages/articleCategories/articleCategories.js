@@ -7,101 +7,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
+    page: 0,
     basedomain: app.data.basedomain,
     testImg: app.data.testImg,
     show: true,
     height: windowHeight - 55,
-    leftArr: [
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      },
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类123'
-      }
-    ],
+    leftArr: [],
     left: 0,
     rightArr: [],
-    tabArr2: [
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom1.png',
-        t: '发现',
-        url: '../index/index'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom2.png',
-        t: '分类',
-        url: '',
-        active: true
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
-        t: '商城',
-        url: '../shop/shop'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom4.png',
-        t: '我的',
-        url: '../user/user'
-      }
-    ]
+    tabArr2: []
   },
   giveTip (e) {
-    this.setData({
-      componentsData: {
-        name: '123' + e.currentTarget.dataset.index,
-        id: e.currentTarget.dataset.index + 1,
-        url: app.data.testImg,
-        index: e.currentTarget.dataset.index
-      }
-    })
+    // this.setData({
+    //   componentsData: {
+    //     name: '123' + e.currentTarget.dataset.index,
+    //     id: e.currentTarget.dataset.index + 1,
+    //     url: app.data.testImg,
+    //     index: e.currentTarget.dataset.index
+    //   }
+    // })
+    app.setComponentsData(this, e)
   },
   // 搜索
   search (e) {
@@ -114,9 +40,11 @@ Page({
   },
   leftChoose (e) {
     this.setData({
+      page: 0,
+      rightArr: [],
       left: e.currentTarget.dataset.index,
       playChoose: -1
-    })
+    }, this.getRight)
     // this.getData(this.data.value, e.currentTarget.dataset.place)
   },
   // 播放音乐
@@ -156,7 +84,7 @@ Page({
             rightArr: res.data.result || []
           })
         } else {
-          app.setToast(that, {content: res.data.message})
+          app.setToast(that, {content: res.data.msg})
         }
       }
     })
@@ -175,10 +103,63 @@ Page({
           })
           that.getData(type, res.data.result[0].value)
         } else {
-          app.setToast(that, {content: res.data.message})
+          app.setToast(that, {content: res.data.msg})
         }
       }
     })
+  },
+  getLeft () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().getArticleCagegory,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            leftArr: res.data.data
+          }, that.getRight)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  getRight () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().articles,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page,
+        category_id: that.data.leftArr[that.data.left].id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            rightArr: that.data.rightArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  onreachbottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getRight()
+  },
+  ds (e) {
+    let {index, integral} = e.detail
+    this.data.rightArr[index].integral += (integral * 1)
+    this.setData({
+      rightArr: this.data.rightArr
+    })
+  },
+  zan (e) {
+    app.dianzan(e, 'rightArr', this)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -186,6 +167,10 @@ Page({
   onLoad (options) {
     app.setBar('文章分类')
     app.getSelf(this)
+    this.setData({
+      tabArr2: app.setNav()
+    })
+    this.getLeft()
     // if (options.type === '广告' || options.type === '彩铃' || options.type === '专题') {
     //   app.setBar(options.type)
     //   this.setData({

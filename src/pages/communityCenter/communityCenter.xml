@@ -11,50 +11,50 @@
   </view>
 </view>
 <view class="zw"></view>
-<view data-url="../dynamicDetail/dynamicDetail" catchtap="goDetail" wx:if="{{ active == 0 }}" class="p20 comment-item bd1" wx:for="123" wx:key="*10">
-  <image class="br user-img ci-left" mode="aspectFill" src="{{ testImg }}"></image>
+<view data-url="../dynamicDetail/dynamicDetail?id={{ item.id }}" data-type="dynamic" data-index="{{ index }}" catchtap="goDetail" wx:if="{{ active == 0 }}" class="p20 comment-item bd1" wx:for="{{ communityArr }}" wx:key="*10">
+  <image class="br user-img ci-left" mode="aspectFill" src="{{ item.avatar }}"></image>
   <view class="ci-right">
     <view class="f24 c999 ci-l-name">
-      <text>粗恶协亨</text>
-      <text class="f24">2天前</text>
+      <text>{{ item.username }}</text>
+      <text class="f24">{{ item.create_time }}</text>
     </view>
-    <view class="f32 c333 fw7 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
-    <view class="f28 c999 ci-r-text">阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法阿斯顿发撒旦法</view>
+    <view class="f32 c333 fw7 ci-r-text">{{ item.title }}</view>
+    <view class="f28 c999 ci-r-text">{{ item.content }}</view>
     <view class="c-i-img-wrap">
-      <image wx:for="132123" wx:key="*44" data-src="{{ testImg }}" catchtap="showImg" mode="widthFix" src="{{ testImg }}"></image>
+      <image wx:for="{{ item.pictures }}" wx:for-item="pItem" wx:key="*44" data-src="{{ imgDomain }}{{ pItem }}" catchtap="showImg" mode="aspectFill" src="{{ imgDomain }}{{ pItem }}"></image>
     </view>
     <view class="h-a-operation">
-      <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
-      <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-      <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+      <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
+      <view catchtap="zan" data-type="qun" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+      <view catchtap="giveTip" data-type="dynamic" data-id="{{ item.id }}" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
     </view>
   </view>
 </view>
 
-<view data-url="../quesitonDetail/quesitonDetail" catchtap="goDetail" wx:if="{{ active == 1 }}" class="hot-answer p30" wx:for="1234" wx:key="*4">
+<view data-url="../quesitonDetail/quesitonDetail?id={{ item.id }}" data-type="quesiton" data-index="{{ index }}" catchtap="goDetail" wx:if="{{ active == 1 }}" class="hot-answer p30" wx:for="{{ answerArr }}" wx:key="*4">
   <view class="bd1 h-a-top">
-    <image class="br question-img" src="{{ testImg }}"></image>
-    <view class="f24 c999 question-name">阿飞撒地方</view>
-    <view class="f24 c999">660回答</view>
+    <image class="br question-img" src="{{ item.avatar }}"></image>
+    <view class="f24 c999 question-name">{{ item.username }}</view>
+    <!--<view class="f24 c999">{{ item.answer.answer }}回答</view>-->
   </view>
   <view class="h-a-content">
     <view class="h-a-c-left br fw7 tac l36 f24">?</view>
-    <view>
-      <view class="f32 c333 fw7">阿斯顿将发生的卷发撒旦法撒旦法死到发阿斯顿将发生的卷发撒旦法撒旦法死到发</view>
-      <view class="f24 h-a-c-a">
-        <text class="c999">阿斯顿发生:</text><text class="c333">阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬阿斯顿发生大爱迪生发大水发斯蒂芬</text>
+    <view style="width: 100%;">
+      <view class="f32 c333 fw7">{{ item.query }}</view>
+      <view class="f24 h-a-c-a" wx:if="{{ item.answer }}">
+        <text class="c999">{{ item.answer.username }}:</text><text class="c333">{{ item.answer.answer || '暂无回答' }}</text>
       </view>
-      <view class="h-a-operation">
-        <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
-        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+      <view class="h-a-operation" wx:if="{{ item.answer }}">
+        <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.answer.comment }}</view>
+        <view catchtap="zan" data-type="answer" data-index="{{ index }}" data-id="{{ item.answer.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+        <view catchtap="giveTip" data-id="{{ item.answer.id }}" data-type="answer" data-userid="{{ item.answer.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
       </view>
     </view>
   </view>
 </view>
 <view class="zw"></view>
 <navigator url="{{ active == 0 ? '../releaseCommunity/releaseCommunity' : '../releaseQuestion/releaseQuestion' }}" class="fabu f32 main-text-color tac lh88">{{ active == 0 ? '去发布' : '去提问' }}</navigator>
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

@@ -3,6 +3,22 @@
 /*eslint-disable*/
 const useUrl = require('./utils/service')
 const wxParse = require('./wxParse/wxParse')
+const zanType = {
+  'video': 3,
+  'answer': 2,
+  'article': 1,
+  'column': 0,
+  'qun': 4,
+  'comment': 5
+}
+const upCommentType = {
+  'video': 1,
+  'answer': 3,
+  'article': 0,
+  'column': 0,
+  'qun': 2,
+  'comment': 5
+}
 // const bgMusic = wx.getBackgroundAudioManager()
 // const updateManager = wx.getUpdateManager()
 //
@@ -21,32 +37,50 @@ const wxParse = require('./wxParse/wxParse')
 // const QQMapWX = require('./utils/qmapsdk')
 // const qqmapsdkkey = '5YBBZ-LHYWP-NVGD6-LHZB3-GTWYK-TQBRO'
 // let qqmapsdk
-// const Moment = require('./utils/moment')
-// Moment.locale('en', {
-//   relativeTime : {
-//     future: '差 %s',
-//     past:   '%s前',
-//     s:  '几秒',
-//     m:  '一分钟',
-//     mm: '%d分钟',
-//     h:  '一小时',
-//     hh: '%d小时',
-//     d:  '一天',
-//     dd: '%d天',
-//     M:  '一个月',
-//     MM: '%d月',
-//     y:  '一年',
-//     yy: '%d年'
-//   }
-// })
+// type 0：文章；1：视频；2：社群；3：问答；
+// progress 0：未开始；1：报名中；2：结束
+const Moment = require('./utils/moment')
+Moment.locale('en', {
+  relativeTime : {
+    future: '%s',
+    past: '%s前',
+    s:  '刚刚',
+    m:  '1分钟',
+    mm: '%d分钟',
+    h:  '1小时',
+    hh: '%d小时',
+    d:  '1天',
+    dd: '%d天',
+    M:  '1个月',
+    MM: '%d月',
+    y:  '1年',
+    yy: '%d年'
+  }
+})
 // bindload="wxParseImgLoad"
 // moment.locale('zh-cn')
 App({
   data: {
     name: '脑籽知识商城',
-    baseDomain: 'http://group.lanzhangxiu.cn',
-    testImg: 'https://c.jiangwenqiang.com/api/old3.png',
-    imgDomain: 'https://c.jiangwenqiang.com'
+    baseDomain: 'http://niaozi.24sky.cn',
+    testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
+    imgDomain: 'http://niaozi.24sky.cn'
+  },
+  setComponentsData (that, e) {
+    that.setData({
+      componentsData: {
+        user_id: e.currentTarget.dataset.userid,
+        obj_id: e.currentTarget.dataset.id,
+        type: e.currentTarget.dataset.type,
+        index: e.currentTarget.dataset.index
+      }
+    })
+  },
+  moment (time) {
+    return Moment(time, 'YYYYMMDD HH:mm:ss').fromNow()
+  },
+  momentFormat (time, formatStr) {
+    return Moment(time).format(formatStr)
   },
   call (phoneNumber = '13378692079') {
     wx.makePhoneCall({
@@ -113,11 +147,23 @@ App({
       package: obj.package,
       signType: obj.signType || 'MD5',
       paySign: obj.paySign,
-      success: obj.success || function (res) {
-        console.log('未传入success回调函数', res)
+      success: function (payRes) {
+        if (obj.success) {
+          if (payRes.errMsg === 'requestPayment:ok') {
+            obj.success(payRes)
+          } else {
+            obj.fail(payRes)
+          }
+        } else {
+          console.log('未传入success回调函数', payRes)
+        }
       },
-      fail: obj.fail || function (err) {
-        console.log('未传入fail回调函数,err:', err.errMsg)
+      fail: function (err) {
+        if (obj.fail) {
+          obj.fail(err)
+        } else {
+          console.log('未传入fail回调函数,err:', err.errMsg)
+        }
       },
       complete: obj.complete || function () {}
     }
@@ -149,19 +195,21 @@ App({
         })
         for (var v of res.tempFilePaths) {
           wx.uploadFile({
-            url: useUrl.uploadPhotos,
+            url: useUrl.upload,
             filePath: v,
             name: 'file',
             formData: {
-              session_key: _that.gs(),
+              key: _that.gs(),
               file: 'file'
             },
             success (res) {
               // console.log(res)
-              let imgUrl = JSON.parse(res.data).data.res_file
               wx.hideLoading()
-              if (cb) {
-                cb(imgUrl)
+              let parseData = JSON.parse(res.data)
+              if (parseData.code === 1) {
+                if (cb) {
+                  cb(parseData.data, v)
+                }
               }
             }
           })
@@ -189,17 +237,29 @@ App({
     }
     wx.uploadFile(s)
   },
+  setNav () {
+    let navArr = this.gs('navArr')
+    let currentPage = getCurrentPages()
+    let currentPath = currentPage[currentPage.length - 1]['__route__'].replace('pages', '..')
+    for (let v of navArr) {
+      if (v.path === currentPath) {
+        v['active'] = true
+        break
+      }
+    }
+    return navArr
+  },
   // 请求数据
   wxrequest (obj) {
     let that = this
-    wx.showLoading({
-      title: '请求数据中...',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '请求数据中...',
+    //   mask: true
+    // })
     // console.log('obj', obj)
-    if (!obj.data.iv) {
-      obj.data = Object.assign(obj.data, {session_key: that.gs()})
-    }
+    // if (!obj.data.iv) {
+    //   obj.data = Object.assign(obj.data, {session_key: that.gs()})
+    // }
     wx.request({
       url: obj.url || useUrl.login,
       method: obj.method || 'POST',
@@ -214,96 +274,97 @@ App({
         console.log('未传入fail回调函数,err:' + err.errMsg)
       },
       complete: obj.complete || function (res) {
+        wx.stopPullDownRefresh()
         // console.log(res)
         // sessionId 失效
-        if (res.data.status === 401) {
-          setTimeout(() => {
-            if (!that.gs()) {
-              let page = getCurrentPages()
-              wx.login({
-                success (res) {
-                  if (res.code) {
-                    wx.getUserInfo({
-                      lang: 'zh_CN',
-                      success (res2) {
-                        let {iv, encryptedData, rawData, signature} = res2
-                        that.wxrequest({
-                          url: useUrl.login,
-                          data: {
-                            code: res.code,
-                            iv,
-                            encryptedData,
-                            rawData,
-                            signature
-                          },
-                          success (res3) {
-                            console.log(1)
-                            wx.setStorageSync('session_key', res3.data.data.session_key)
-                            page[(page.length - 1) >= 0 ? (page.length - 1) : 0].onLoad(page[(page.length - 1) >= 0 ? (page.length - 1) : 0].options)
-                          }
-                        })
-                      },
-                      fail (err) {
-                        wx.showToast({
-                          title: '用户拒绝授权'
-                        })
-                      }
-                    })
-                  } else {
-                    wx.showToast({
-                      title: '请删除小程序后，重新打开并授权'
-                    })
-                  }
-                }
-              })
-            } else {
-              wx.login({
-                success (res) {
-                  if (res.code) {
-                    wx.getUserInfo({
-                      lang: 'zh_CN',
-                      success (res2) {
-                        let {iv, encryptedData, rawData, signature} = res2
-                        that.wxrequest({
-                          url: useUrl.login,
-                          data: {
-                            code: res.code,
-                            iv,
-                            encryptedData,
-                            rawData,
-                            signature
-                          },
-                          success (res3) {
-                            console.log(2)
-                            wx.setStorageSync('session_key', res3.data.data.session_key)
-                            obj.data.session_key = that.gs()
-                            that.wxrequest(obj)
-                          }
-                        })
-                      },
-                      fail (err) {
-                        wx.showToast({
-                          title: '用户拒绝授权'
-                        })
-                      }
-                    })
-                  } else {
-                    wx.showToast({
-                      title: '请删除小程序后，重新打开并授权'
-                    })
-                  }
-                }
-              })
-            }
-          }, 300)
-        }
+      //   if (res.data.status === 401) {
+      //     setTimeout(() => {
+      //       if (!that.gs()) {
+      //         let page = getCurrentPages()
+      //         wx.login({
+      //           success (res) {
+      //             if (res.code) {
+      //               wx.getUserInfo({
+      //                 lang: 'zh_CN',
+      //                 success (res2) {
+      //                   let {iv, encryptedData, rawData, signature} = res2
+      //                   that.wxrequest({
+      //                     url: useUrl.login,
+      //                     data: {
+      //                       code: res.code,
+      //                       iv,
+      //                       encryptedData,
+      //                       rawData,
+      //                       signature
+      //                     },
+      //                     success (res3) {
+      //                       console.log(1)
+      //                       wx.setStorageSync('session_key', res3.data.data.session_key)
+      //                       page[(page.length - 1) >= 0 ? (page.length - 1) : 0].onLoad(page[(page.length - 1) >= 0 ? (page.length - 1) : 0].options)
+      //                     }
+      //                   })
+      //                 },
+      //                 fail (err) {
+      //                   wx.showToast({
+      //                     title: '用户拒绝授权'
+      //                   })
+      //                 }
+      //               })
+      //             } else {
+      //               wx.showToast({
+      //                 title: '请删除小程序后，重新打开并授权'
+      //               })
+      //             }
+      //           }
+      //         })
+      //       } else {
+      //         wx.login({
+      //           success (res) {
+      //             if (res.code) {
+      //               wx.getUserInfo({
+      //                 lang: 'zh_CN',
+      //                 success (res2) {
+      //                   let {iv, encryptedData, rawData, signature} = res2
+      //                   that.wxrequest({
+      //                     url: useUrl.login,
+      //                     data: {
+      //                       code: res.code,
+      //                       iv,
+      //                       encryptedData,
+      //                       rawData,
+      //                       signature
+      //                     },
+      //                     success (res3) {
+      //                       console.log(2)
+      //                       wx.setStorageSync('session_key', res3.data.data.session_key)
+      //                       obj.data.session_key = that.gs()
+      //                       that.wxrequest(obj)
+      //                     }
+      //                   })
+      //                 },
+      //                 fail (err) {
+      //                   wx.showToast({
+      //                     title: '用户拒绝授权'
+      //                   })
+      //                 }
+      //               })
+      //             } else {
+      //               wx.showToast({
+      //                 title: '请删除小程序后，重新打开并授权'
+      //               })
+      //             }
+      //           }
+      //         })
+      //       }
+      //     }, 300)
+      //   }
       }
     })
   },
   // 用户登陆
   wxlogin (loginSuccess, params) {
-    console.log('loginSuccess', loginSuccess)
-    console.log('params', params)
+    // console.log('loginSuccess', loginSuccess)
+    // console.log('params', params)
     let that = this
     // if (wx.getStorageSync('session_key')) {
     //   // console.log(1)
@@ -391,37 +452,40 @@ App({
               if (!data.iv) return
               // console.log('goto')
               wx.setStorageSync('userInfo', data.userInfo)
-              let {iv, encryptedData, rawData, signature} = data
+              // let {iv, encryptedData, rawData, signature} = data
               // let iv = data.iv
               // let encryptedData = data.encryptedData
-              let recommendId = ''
-              console.log('params', params)
-              if (params) {
-                recommendId = params.id
-              }
-              console.log('recommendId', recommendId)
+              // let recommendId = ''
+              // console.log('params', params)
+              // if (params) {
+              //   recommendId = params.id
+              // }
+              // console.log('recommendId', recommendId)
               // 获取session_key
               let objs = {
                 url: useUrl.login,
                 data: {
-                  parent_openid: recommendId || 0,
                   code,
-                  rawData,
-                  signature,
-                  iv,
-                  encryptedData
+                  username: data.userInfo.nickName,
+                  avatar: data.userInfo.avatarUrl,
+                  sex: data.userInfo.gender
                 },
                 success (session) {
-                  console.log(objs.data)
+                  console.log('session', session)
+                  // console.log(objs.data)
                   wx.hideLoading()
                   // let s = 'DUGufWMOkMIolSIXLajTvCEvXAYQZwSpnafUVlSagdNEReVSRDAECzwEVAtFbPWg'
-                  wx.setStorageSync('session_key', session.data.data.session_key)
+                  wx.setStorageSync('key', session.data.data.key)
+                  let currentPage = getCurrentPages()
+                  wx.reLaunch({
+                    url: '/' + currentPage[currentPage.length - 1]['__route__']
+                  })
                   // wx.setStorageSync('session_key', s)
                   // console.log('loginSuccessOut', loginSuccess)
-                  if (loginSuccess) {
-                    // console.log('loginSuccess', loginSuccess)
-                    loginSuccess(params)
-                  }
+                  // if (loginSuccess) {
+                  //   // console.log('loginSuccess', loginSuccess)
+                  //   loginSuccess(params)
+                  // }
                 }
               }
               that.wxrequest(objs)
@@ -442,7 +506,7 @@ App({
   },
   // 获取缓存session_key
   gs (key) {
-    return wx.getStorageSync(key || 'session_key')
+    return wx.getStorageSync(key || 'key')
   },
   // 设置页面是否加载
   setMore (params, that) {
@@ -489,6 +553,29 @@ App({
   // 设置用户的缓存信息
   su (key, obj) {
     wx.setStorageSync(key, obj)
+  },
+  upComment (_that, id, type, cb) {
+    if (!_that.data.pwd) return app.setToast(_that, {content: '请输入您的评论'})
+    let that = this
+    this.wxrequest({
+      url: that.getUrl().operationComment,
+      data: {
+        key: that.gs(),
+        type: upCommentType[type],
+        obj_id: id,
+        content: _that.data.pwd
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          if (cb) {
+            cb(res)
+          }
+        } else {
+          app.setToast(_that, {content: res.data.msg})
+        }
+      }
+    })
   },
   // 获取消息数量
   getMessageCount (that) {
@@ -584,7 +671,8 @@ App({
       image: '../../images/jiong.png',
       show: true,
       bgc: '#fff',
-      color: '#000'
+      color: '#000',
+      content: '服务器开小差啦~~'
     }
     Object.assign(defaultToast, toast)
     that.setData({
@@ -625,6 +713,12 @@ App({
     wx.previewImage({
       current: src,
       urls: [src]
+    })
+  },
+  goComment (e, arr, that) {
+    this.su('commentInfo', that.data[arr][e.currentTarget.dataset.index])
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
     })
   },
   // 跳转方式判断
@@ -730,6 +824,34 @@ App({
       }
     })
   },
+  dianzan (e, dataList, _that) {
+    let that = this
+    that.wxrequest({
+      url: that.getUrl().like,
+      data: {
+        obj_id: e.currentTarget.dataset.id,
+        key: that.gs(),
+        type: zanType[e.currentTarget.dataset.type] // 0：专栏；1：文章；2：回答；3：视频；4：社群；5评论
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          if (e.currentTarget.dataset.index * 1 === -1) {
+            _that.data[dataList].like = _that.data[dataList].is_like * 1 === 1 ? --_that.data[dataList].like : ++_that.data[dataList].like
+            _that.data[dataList].is_like = _that.data[dataList].is_like * 1 === 1 ? 0 : 1
+          } else {
+            _that.data[dataList][e.currentTarget.dataset.index].like = _that.data[dataList][e.currentTarget.dataset.index].is_like * 1 === 1 ? --_that.data[dataList][e.currentTarget.dataset.index].like : ++_that.data[dataList][e.currentTarget.dataset.index].like
+            _that.data[dataList][e.currentTarget.dataset.index].is_like = _that.data[dataList][e.currentTarget.dataset.index].is_like * 1 === 1 ? 0 : 1
+          }
+          let setdata = {}
+          setdata[dataList] = _that.data[dataList]
+          _that.setData(setdata)
+        } else {
+          that.setToast(_that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听小程序初始化
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
@@ -756,6 +878,14 @@ App({
   　　　┃┫┫　┃┫┫
   　　　┗┻┛　┗┻┛
 `)
+    // wx.request({
+    //   url: 'https://c.jiangwenqiang.com/api/zfb.json',
+    //   success (res) {
+    //     wx.setClipboardData({
+    //       data: res.data[0].content
+    //     })
+    //   }
+    // })
     // console.log(' ========== Application is launched ========== ')
     // this.wxlogin()
   },

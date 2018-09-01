@@ -1,7 +1,7 @@
 <view wx:if="{{ show }}" class="mask">
     <view class="mask-in maskIn">
-        <image class="tip-img" src="{{ propUser.url }}"></image>
-        <view class="user-name">{{ propUser.name }}</view>
+        <image class="tip-img" src="{{ userInfo.avatar }}"></image>
+        <view class="user-name">{{ userInfo.username }}</view>
         <view class="ds-t">
             <text>打赏脑籽</text>
             <image mode="widthFix" class="tip-img2" src="{{ naozai }}"></image>
@@ -17,6 +17,6 @@
                 <button formType="submit">立即打赏</button>
             </view>
         </form>
-        <view catchtap="_close" class="close">×</view>
+        <view catchtap="_closeT" class="close">×</view>
     </view>
 </view>

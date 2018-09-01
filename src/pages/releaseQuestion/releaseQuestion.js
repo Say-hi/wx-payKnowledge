@@ -14,6 +14,28 @@ Page({
   },
   formSubmit (e) {
     if (!e.detail.value.content) return app.setToast(this, {content: '请输入您的问题'})
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().releaseQuery,
+      data: {
+        key: app.gs(),
+        query: e.detail.value.content
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '提问成功',
+            mask: true
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1200)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

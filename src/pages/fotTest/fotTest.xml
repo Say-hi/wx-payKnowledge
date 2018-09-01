@@ -1,0 +1,3 @@
+<!-- 可用组件：https://mp.weixin.qq.com/debug/wxadoc/dev/component/ -->
+<button wx:for="{{ testArr }}" catchtap="{{ item.fun }}">{{ item.name }}</button>
+<!--错误弹窗-->

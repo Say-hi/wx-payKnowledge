@@ -7,13 +7,92 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chooseIndex: 0,
+    page: 0,
+    time: '',
+    goodsList: [],
+    imgDomain: app.data.imgDomain,
+    chooseIndex: -1,
     testImg: app.data.testImg
+  },
+  getTime () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopseckill,
+      data: {
+        page: 1,
+        time: '00:00'
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          let index = 0
+          let timeArr = that.data.timeArr || []
+          if (!that.data.timeArr) {
+            res.data.data.time.push('25:00')
+            let times = res.data.data.time
+            let now = new Date().getHours()
+            for (let [i, v] of times.entries()) {
+              if (parseInt(times[i]) <= now && now < parseInt(times[i * 1 + 1])) {
+                timeArr.push({
+                  time: v,
+                  status: '秒杀中'
+                })
+                index = i
+              } else if (parseInt(times[i]) <= now && now >= parseInt(times[i * 1 + 1])) {
+                timeArr.push({
+                  time: v,
+                  status: '已结束'
+                })
+              } else {
+                timeArr.push({
+                  time: v,
+                  status: '未开始'
+                })
+              }
+            }
+            timeArr.pop()
+          }
+          that.setData({
+            timeArr: timeArr,
+            chooseIndex: index
+          }, that.getData)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopseckill,
+      data: {
+        page: ++that.data.page,
+        time: that.data.timeArr[that.data.chooseIndex].time
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            goodsList: that.data.goodsList.concat(res.data.data.seckill.data),
+            more: res.data.data.seckill.data.length < res.data.data.seckill.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   chooseTime (e) {
     this.setData({
+      page: 0,
+      goodsList: [],
       chooseIndex: e.currentTarget.dataset.index
-    })
+    }, this.getData)
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getData()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -21,6 +100,7 @@ Page({
   onLoad () {
     app.setBar('商品列表')
     app.getSelf(this)
+    this.getTime()
     // TODO: onLoad
   },
 

@@ -8,7 +8,7 @@
   <view class="zw"></view>
 </view>
 
-<navigator url="../reservation/reservation" class="bookCo cfff f30 fw7 tac lh80">预约</navigator>
+<view hidden="{{ info.progress != 0 }}" catchtap="goUrl" data-url="../reservation/reservation" class="bookCo cfff f30 fw7 tac lh80">预约</view>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

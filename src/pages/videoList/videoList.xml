@@ -1,30 +1,30 @@
 <view>
-  <navigator url="../videoDetail/videoDetail?id=${e.currentTarget.dataset.id}" data-id="{{ item.id }}" wx:for="1234" wx:key="*6" class="p30 video-item">
-    <view catchtap="play" data-index="{{ index }}" class="v-i-img pr">
-      <image mode="widthFix" class="br10 poster" src="{{ testImg }}"></image>
+  <navigator hover-class="none" url="../videoDetail/videoDetail?id={{ item.id }}" data-id="{{ item.id }}" wx:for="{{ videoList }}" wx:key="*6" class="p30 video-item">
+    <view data-index="{{ index }}" class="v-i-img pr">
+      <image mode="widthFix" class="br10 poster" src="{{ imgDomain }}{{ item.picture }}"></image>
       <image class="pa play-btn" src="{{ playImg }}"></image>
     </view>
-    <view class="f28 video-text c333 fw7">阿斯顿发生地方撒旦发生地方撒的发生地方撒旦法撒旦飞洒地方</view>
+    <view class="f28 video-text c333 fw7">{{ item.title }}</view>
     <view class="f24 c999 video-bottom">
       <view>
-        <text class="cfff video-time">5`45``</text>
-        <text>5.5万人观看</text>
+        <text class="cfff video-time">{{ item.duration }}</text>
+        <text>{{ item.view }}人观看</text>
       </view>
       <view class="h-a-operation">
-        <view class="jwq lh70 f24 c999 icon-pinglun">40</view>
-        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">12</view>
+        <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
+        <view catchtap="zan" data-type="video" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+        <view catchtap="giveTip" data-id="{{ item.id }}" data-type="video" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
       </view>
     </view>
   </navigator>
 </view>
 <view class="zw"></view>
 <navigator url="../releaseVideo/releaseVideo" class="fabu f32 main-text-color tac lh88">发布视频</navigator>
-<view catchtap="play" wx:if="{{ play }}" class="mask">
-  <video objectFit="fill" show-fullscreen-btn="{{ showFullscreenBtn }}" class="video-area" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" autoplay></video>
-</view>
+<!--<view catchtap="play" wx:if="{{ play }}" class="mask">-->
+  <!--<video objectFit="fill" show-fullscreen-btn="{{ showFullscreenBtn }}" class="video-area" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" autoplay></video>-->
+<!--</view>-->
 
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

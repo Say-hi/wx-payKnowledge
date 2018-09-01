@@ -9,16 +9,51 @@ Page({
   data: {
     imgDomain: app.data.imgDomain,
     release_add_img: 'https://c.jiangwenqiang.com/workProject/payKnowledge/release_add_img.png',
-    upImgArr: [
-      app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg
-    ]
+    upImgArr: []
   },
   formSubmit (e) {
     if (!e.detail.value.name) return app.setToast(this, {content: '请输入标题'})
     if (!e.detail.value.content || e.detail.value.content.length < 10) return app.setToast(this, {content: '请输入不少于10字的内容'})
     if (!this.data.upImgArr.length) return app.setToast(this, {content: '请至少上传一张图片'})
+    let pictures = []
+    let that = this
+    for (let v of this.data.upImgArr) {
+      pictures.push(v.id)
+    }
+    pictures = pictures.join(',')
+    app.wxrequest({
+      url: app.getUrl().releaseCommunity,
+      data: {
+        key: app.gs(),
+        title: e.detail.value.name,
+        content: e.detail.value.content,
+        pictures
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '发布成功',
+            mask: true
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1200)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
-  addImg () {},
+  addImg () {
+    let that = this
+    app.wxUploadImg((res, v) => {
+      that.data.upImgArr.push({url: v, id: res.id})
+      that.setData({
+        upImgArr: that.data.upImgArr
+      })
+    })
+  },
   showImg (e) {
     app.showImg(e)
   },

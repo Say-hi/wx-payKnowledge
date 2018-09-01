@@ -74,6 +74,7 @@
   </view>
 </view>
 <view class="zw"></view>
+<my-login></my-login>
 <my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
 <!--错误弹窗-->
 <import src="../template/template"></import>

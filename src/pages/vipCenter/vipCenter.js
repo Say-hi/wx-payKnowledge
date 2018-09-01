@@ -30,9 +30,48 @@ Page({
     ],
     cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
   },
+  getVipD () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().help,
+      data: {
+        id: 1
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          app.WP('content', 'html', res.data.data.content, that, 0)
+          that.setData({
+            vipDesc: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   showDescC () {
     this.setData({
       showMask: !this.data.showMask
+    })
+  },
+  getUserVip () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().usergroup,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
   },
   /**
@@ -41,6 +80,8 @@ Page({
   onLoad () {
     app.setBar('会员中心')
     app.getSelf(this)
+    this.getVipD()
+    this.getUserVip()
     // TODO: onLoad
   },
 

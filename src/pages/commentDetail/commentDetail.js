@@ -9,13 +9,58 @@ Page({
   data: {
     testImg: app.data.testImg
   },
-
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().commentInfo,
+      data: {
+        key: app.gs(),
+        id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  upReply () {
+    if (!this.data.pwd) return app.setToast(this, {content: '请输入回复内容'})
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().reply,
+      data: {
+        key: app.gs(),
+        comment_id: that.data.info.id,
+        content: that.data.pwd
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.getData()
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  inputValue (e) {
+    app.inputValue(e, this)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('评论详情')
     app.getSelf(this)
+    this.setData({
+      options
+    }, this.getData)
     // TODO: onLoad
   },
 

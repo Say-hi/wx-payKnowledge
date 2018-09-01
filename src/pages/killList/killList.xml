@@ -3,14 +3,14 @@
                class="content-scroll bb">
     <view class="content-scroll-in">
       <view
-              wx:for="123456"
+              wx:for="{{ timeArr }}"
               wx:key="*37"
               catchtap="chooseTime"
               data-index="{{ index }}"
               class="content-item c999 p10 {{ chooseIndex == index ? 'active' : '' }}">
         <view class="tac fw7 f28">
-          <view class="f32">00:00</view>
-          <view>{{ index == 1 ? '已结束已结束已结束已结束' : '已结束' }}</view>
+          <view class="f32">{{ item.time }}</view>
+          <view>{{ item.status }}</view>
         </view>
       </view>
     </view>
@@ -18,23 +18,24 @@
 </view>
 
 <view class="p30 gl-out">
-  <navigator url="../goodsDetail/goodsDetail" class="goods-list bd1" wx:for="123" wx:key="*66">
-    <image mode="widthFix" src="{{ testImg }}"></image>
+  <navigator url="{{ timeArr[chooseIndex].status == '秒杀中' ? '../goodsDetail/goodsDetail?id=' + item.goods_id : '' }}" class="goods-list bd1" wx:for="{{ goodsList }}" wx:key="*66">
+    <image mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="gl-right">
-      <view class="f32 c000">阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方</view>
+      <view class="f32 c000">{{ item.goods_name }}</view>
       <view class="gl-r-center">
-        <text class="f36">￥365.22</text>
+        <text class="f36">￥{{ item.s_price }}</text>
         <text class="f28 cfff gl-r-c-r">马上抢</text>
       </view>
       <view class="gl-r-bottom">
-        <text class="through-line f24 c999">￥365.22</text>
+        <text class="through-line f24 c999">￥{{ item.price }}</text>
         <view class="gl-r-b-r">
-          <view class="f22 c999">仅剩:44444件</view>
-          <progress class="br10" percent="20" stroke-width="6" activeColor="#ff0d0d" backgroundColor="#ffffff"></progress>
+          <view class="f22 c999">仅剩:{{ item.stock - item.sales }}件</view>
+          <progress class="br10" percent="{{ (item.sales / item.stock) * 100 }}" stroke-width="6" activeColor="#ff0d0d" backgroundColor="#ffffff"></progress>
         </view>
       </view>
     </view>
   </navigator>
+  <view hidden="{{ goodsList.length >= 1 }}" class="p20 tac f28 c999">该时段暂无商品</view>
 </view>
 <!--错误弹窗-->
 <import src="../template/template"></import>

@@ -7,18 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     basedomain: app.data.basedomain,
     testImg: app.data.testImg,
     show: true,
     height: windowHeight - 55,
-    leftArr: [
-      {
-        label: '分类分类分'
-      },
-      {
-        label: '分类2'
-      }
-    ],
+    leftArr: [],
     left: 0,
     rightArr: []
   },
@@ -75,7 +69,7 @@ Page({
             rightArr: res.data.result || []
           })
         } else {
-          app.setToast(that, {content: res.data.message})
+          app.setToast(that, {content: res.data.msg})
         }
       }
     })
@@ -94,10 +88,53 @@ Page({
           })
           that.getData(type, res.data.result[0].value)
         } else {
-          app.setToast(that, {content: res.data.message})
+          app.setToast(that, {content: res.data.msg})
         }
       }
     })
+  },
+  getLeft () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopCategory,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            leftArr: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  getRight () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().articles,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page,
+        category_id: that.data.leftArr[that.data.left].id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            rightArr: that.data.rightArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  onreachbottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getRight()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -105,22 +142,7 @@ Page({
   onLoad (options) {
     app.setBar('商品分类')
     app.getSelf(this)
-    // if (options.type === '广告' || options.type === '彩铃' || options.type === '专题') {
-    //   app.setBar(options.type)
-    //   this.setData({
-    //     show: true,
-    //     type: options.type,
-    //     value: options.value
-    //   })
-    //   this.placeList(options.value)
-    // } else {
-    //   app.setBar(options.type)
-    //   this.setData({
-    //     show: false,
-    //     value: options.value
-    //   })
-    //   this.getData(options.value, '')
-    // }
+    this.getLeft()
     // TODO: onLoad
   },
 

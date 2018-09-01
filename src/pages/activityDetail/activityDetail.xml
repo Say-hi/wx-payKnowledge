@@ -1,19 +1,19 @@
-<image class="top-img" mode="widthFix" src="{{ testImg }}"></image>
+<image class="top-img" mode="widthFix" src="{{ imgDomain }}{{ info.picture }}"></image>
 <view class="p30 info-out">
-  <view class="f30 c333 ">阿斯顿发撒旦飞洒地方</view>
-  <view class="f26 c666 bd1 lh70">浏览123次</view>
-  <view class="bd1 info"> <text class="jwq icon-time f30 c999">时间:</text> <text class="f30 c333">阿斯顿发撒旦</text></view>
-  <view class="bd1 info"><text class="jwq icon-icon- f30 c999">地点: </text><text class="f30 c333">阿斯顿发撒旦</text></view>
-  <view class="info"><text class="jwq icon-zhifufangshi f30 c999">费用: </text><text class="f30 c333">阿斯顿发撒旦</text></view>
+  <view class="f30 c333 ">{{ info.title }}</view>
+  <view class="f26 c666 bd1 lh70">浏览{{ info.count }}次</view>
+  <view class="bd1 info"> <text class="jwq icon-time f30 c999">时间:</text> <text class="f30 c333">{{ info.start_time }} ~ {{ info.end_time }}</text></view>
+  <view class="bd1 info"><text class="jwq icon-icon- f30 c999">地点: </text><text class="f30 c333">{{ info.address }}</text></view>
+  <view class="info"><text class="jwq icon-zhifufangshi f30 c999">费用: </text><text class="f30 c333">{{ info.price }}元</text></view>
 </view>
 
 <view class="f30 c333 fw7 bd1 tac lh70">活动详情</view>
 <view class="p30">
     <import src="../../wxParse/wxParse"></import>
-    <template is="wxParse" data="{{ wxParseData: introduce.nodes }}"></template>
+    <template is="wxParse" data="{{ wxParseData: content.nodes }}"></template>
 </view>
 <view class="zw"></view>
-<view catchtap="showApply" class="fabu f32 cfff tac lh88">立即报名</view>
+<view catchtap="{{ info.status == 1 ? '' : 'showApply' }}" class="fabu f32 cfff tac lh88">{{ info.status == 1 ? '您已报名成功参加此活动' : '立即报名' }}</view>
 <view class="mask" wx:if="{{ apply }}">
     <view class="p30 apply-mask">
         <view catchtap="showApply" class="jwq icon-cuowu"></view>
@@ -21,9 +21,9 @@
             <view class="f30 c333">姓名<text class="must">(必填)</text></view>
             <input name="name"/>
             <view class="f30 c333">性别<text class="must">(必填)</text></view>
-            <input name="gender"/>
+            <input catchtap="sexChoose" disabled value="{{ sexChoose }}" name="sex"/>
             <view class="f30 c333">工作<text class="must">(必填)</text></view>
-            <input name="job"/>
+            <input name="work"/>
             <view class="f30 c333">手机<text class="must">(必填)</text></view>
             <input type="number" maxlength="11" name="phone"/>
             <view class="zw"></view>

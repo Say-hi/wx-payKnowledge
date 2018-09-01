@@ -1,20 +1,26 @@
-<view class="a-title f40 c333 fw7">LAJDFLAJDSFLSAJFlaksdf阿隆索的减肥啦死到</view>
+<view class="a-title f40 c333 fw7">{{ info.title }}</view>
 <view class="user-info">
     <view class="user-info-s">
-        <image class="br" src="{{ testImg }}"></image>
-        <view class="f30" style="color: #576b95;">asdkfjh</view>
+        <image class="br" src="{{ info.user.avatar }}"></image>
+        <view class="f30" style="color: #576b95;">{{ info.user.username }}</view>
     </view>
-    <view class="f24 c000">2天前</view>
+    <view class="f24 c000">{{ info.create_time }}</view>
+</view>
+<view class="p20 f28 c333">
+{{ info.content }}
+</view>
+<view class="p20 dfimg">
+    <image mode="aspectFill" catchtap="showImg" data-src="{{ imgDomain }}{{ item }}" wx:for="{{ info.pictures }}" src="{{ imgDomain }}{{ item }}"></image>
 </view>
 <view class="zw"></view>
 <view class="operation-wrap">
     <view class="h-a-operation">
-        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40打赏</view>
-        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40喜欢</view>
-        <navigator url="../commentList/commentList" class="jwq lh70 f24 c999 icon-pinglun">50评论</navigator>
+        <view catchtap="giveTip" data-type="article" data-id="{{ info.id }}" data-userid="{{ info.user.id }}" data-index="-1" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ info.integral }}打赏</view>
+        <view catchtap="zan" data-type="article" data-index="-1" data-id="{{ info.id }}" class="jwq lh70 f24 c999 {{ info.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ info.like }}喜欢</view>
+        <navigator url="../commentList/commentList?id={{ info.id }}" class="jwq lh70 f24 c999 icon-pinglun">{{ info.comment }}评论</navigator>
     </view>
 </view>
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

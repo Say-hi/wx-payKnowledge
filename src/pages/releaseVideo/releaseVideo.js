@@ -9,26 +9,97 @@ Page({
   data: {
     imgDomain: app.data.imgDomain
   },
+  getDurationTime (e) {
+    if (!this.data.duration) {
+      this.setData({
+        duration: e.detail.duration
+      })
+    }
+  },
   videoOperation (e) {
     let that = this
     if (e.currentTarget.dataset.type === 'add') {
       wx.chooseVideo({
-        success (res) {
-          that.setData({
-            videoSrc: res.tempFilePath
+        success (resOut) {
+          wx.showLoading({
+            title: '视频上传中...'
+          })
+          app.wxUpload({
+            url: app.getUrl().upload,
+            filePath: resOut.tempFilePath,
+            formData: {
+              key: app.gs(),
+              file: 'file'
+            },
+            success (res) {
+              wx.hideLoading()
+              let upData = JSON.parse(res.data)
+              if (upData.code === 1) {
+                that.setData({
+                  videoSrc: {
+                    url: resOut.tempFilePath,
+                    id: upData.data.id
+                  }
+                })
+              } else {
+                app.setToast(that, {content: upData.msg})
+              }
+            }
           })
         }
       })
     } else if (e.currentTarget.dataset.type === 'del') {
       that.setData({
-        videoSrc: false
+        videoSrc: {
+          url: '',
+          id: 0
+        }
+      })
+    }
+  },
+  imageOperation (e) {
+    let that = this
+    if (e.currentTarget.dataset.type === 'add') {
+      app.wxUploadImg((res, v) => {
+        that.setData({
+          imageSrc: {url: v, id: res.id}
+        })
+      })
+    } else if (e.currentTarget.dataset.type === 'del') {
+      that.setData({
+        imageSrc: {url: '', id: 0}
       })
     }
   },
   formSubmit (e) {
-    if (!this.data.videoSrc) return app.setToast(this, {content: '请上传本地视频'})
+    if (!this.data.videoSrc.id) return app.setToast(this, {content: '请上传本地视频'})
+    if (!this.data.imageSrc.id) return app.setToast(this, {content: '请上传视频封面图'})
     if (!e.detail.value.desc) return app.setToast(this, {content: '请输入描述信息'})
     let that = this
+    app.wxrequest({
+      url: app.getUrl().operationvideo,
+      data: {
+        key: app.gs(),
+        title: e.detail.value.desc,
+        picture: that.data.imageSrc.id,
+        video: that.data.videoSrc.id,
+        duration: Math.floor(that.data.duration)
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '发布成功',
+            mask: true
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1200)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
     that.setData({
       success: true
     })

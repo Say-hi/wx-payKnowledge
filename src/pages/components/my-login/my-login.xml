@@ -1,0 +1,8 @@
+<view class="mask-t user-mask" wx:if="{{ show }}">
+    <view class="mask-toast" >
+        <button open-type="getUserInfo" bindgetuserinfo="MaskGetUserInfo">
+            <image mode="aspectFill" class="mask-image" src="../../../images/jiong.png"></image>
+            <view>请您授权该小程序获取您的信息</view>
+        </button>
+    </view>
+</view>

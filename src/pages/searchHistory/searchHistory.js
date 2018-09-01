@@ -21,8 +21,7 @@ Page({
     let index = e.currentTarget.dataset.choose
     this.setData({
       chooseHistory: index
-    })
-    // this.getSearch(this.data.history[index])
+    }, this.search(e.currentTarget.dataset.content))
   },
   search (content) {
     let that = this
@@ -30,6 +29,23 @@ Page({
     let searcheText = ''
     if (content.detail) searcheText = content.detail.value
     else searcheText = content
+    app.wxrequest({
+      url: app.getUrl().articles,
+      data: {
+        key: app.gs(),
+        keyword: searcheText
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1 && res.data.data.total > 0) {
+          wx.navigateTo({
+            url: `/pages/articleList/articleList?content=${searcheText}`
+          })
+        } else {
+          app.setToast(that, {content: '未搜索到相关内容'})
+        }
+      }
+    })
     // 设置缓存
     for (let index in that.data.history) {
       // 搜索项已经存在

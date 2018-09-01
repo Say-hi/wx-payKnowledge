@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: 0,
+    imgDomain: app.data.imgDomain,
     testImg: app.data.testImg,
     redbag: 'https://c.jiangwenqiang.com/workProject/payKnowledge/redbag_close.png',
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
@@ -40,29 +42,46 @@ Page({
         fn: 'redbagChange'
       }
     ],
-    tabArr2: [
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom1.png',
-        t: '发现',
-        url: '../index/index'
+    tabArr2: [],
+    goodsList: []
+  },
+  getGoods () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().goods,
+      data: {
+        page: ++that.data.page,
+        recommend: 1
       },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom2.png',
-        t: '分类',
-        url: '../articleCategories/articleCategories'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
-        t: '商城',
-        url: '../shop/shop',
-        active: true
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom4.png',
-        t: '我的',
-        url: '../user/user'
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            goodsList: that.data.goodsList.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
       }
-    ]
+    })
+  },
+  redpack () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl(),
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   redbagChange () {
     this.setData({
@@ -81,12 +100,33 @@ Page({
       })
     }, 1100)
   },
+  shopIndex () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopIndex,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            info: res.data.data
+          }, that.getGoods)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('商城')
     app.getSelf(this)
+    this.shopIndex()
+    this.setData({
+      tabArr2: app.setNav()
+    })
     // TODO: onLoad
   },
 

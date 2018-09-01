@@ -7,25 +7,63 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     testImg: app.data.testImg
   },
-  giveTip (e) {
-    this.setData({
-      componentsData: {
-        name: '123' + e.currentTarget.dataset.index,
-        id: e.currentTarget.dataset.index + 1,
-        url: app.data.testImg,
-        index: e.currentTarget.dataset.index
+  showImg (e) {
+    app.showImg(e)
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().article,
+      data: {
+        key: app.gs(),
+        id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          res.data.data.create_time = app.moment(res.data.data.create_time)
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
       }
     })
+  },
+  giveTip (e) {
+    app.setComponentsData(this, e)
+    // this.setData({
+    //   componentsData: {
+    //     name: '123' + e.currentTarget.dataset.index,
+    //     id: e.currentTarget.dataset.index + 1,
+    //     url: app.data.testImg,
+    //     index: e.currentTarget.dataset.index
+    //   }
+    // })
+  },
+  ds (e) {
+    let {integral} = e.detail
+    this.data.info.integral += (integral * 1)
+    this.setData({
+      info: this.data.info
+    })
+  },
+  zan (e) {
+    app.dianzan(e, 'info', this)
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('文章详情')
     app.getSelf(this)
-    // TODO: onLoad
+    this.setData({
+      options
+    }, this.getData)
   },
 
   /**

@@ -3,20 +3,20 @@
   <input disabled confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
 </navigator>
 <view class="ar-list-wrap p30" >
-  <navigator url="../articleDetail/articleDetail" class="ar-inside bd1 p200" wx:for="123123123" wx:key="*236">
-    <image mode="widthFix" src="{{ testImg }}"></image>
+  <navigator hover-class="none" url="../articleDetail/articleDetail?id={{ item.id }}" class="ar-inside bd1 p200" wx:for="{{ listArr }}" wx:key="*236">
+    <image wx:if="{{ item.picture }}" mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="ar-i-r">
-      <view class="f24 c333">阿斯顿发撒旦法</view>
+      <view class="f24 c333">{{ item.title }}</view>
       <view class="h-a-operation">
-        <view class="jwq lh70 f24 c999 icon-pinglun">{{ 50 * index }}</view>
-        <view catchtap="zan" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.zan ? 'icon-xin1' : 'icon-xin' }}">40</view>
-        <view catchtap="giveTip" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">40</view>
+        <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
+        <view catchtap="zan" data-index="{{ index }}" data-type="article" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
+        <view catchtap="giveTip" data-type="article" data-id="{{ item.id }}" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
       </view>
     </view>
   </navigator>
-  <view wx:if="{{ !rightArr.length }}" class="tac">还没有相关的配内容哦~</view>
+  <view wx:if="{{ !listArr.length }}" class="tac">还没有相关的配内容哦~</view>
 </view>
-<my-tip mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
