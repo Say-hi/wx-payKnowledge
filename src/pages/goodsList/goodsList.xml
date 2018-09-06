@@ -1,23 +1,23 @@
 <view class="topFix">
-  <navigator url="../searchHistory/searchHistory" class="search bb">
+  <navigator open-type="redirect" url="../searchHistory/searchHistory?type=goods" class="search bb">
     <view class="jwq icon-sousuo"></view>
     <input disabled confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
   </navigator>
-  <view class="operation f28 c333 bd1 lh80">
+  <view hidden="{{ options.content.length > 0 }}" class="operation f28 c333 bd1 lh80">
     <view class="{{ currentTab == 0 ? 'active' : '' }}" catchtap="tabChoose" data-index="0">综合</view>
     <view class="{{ currentTab == 1 ? 'active' : '' }} {{ (angler && currentTab == 1) ? 'angler' : '' }}" catchtap="tabChoose" data-index="1">销量 <text></text></view>
     <view class="{{ currentTab == 2 ? 'active' : '' }} {{ (angler && currentTab == 2) ? 'angler' : '' }}" catchtap="tabChoose" data-index="2">价格 <text></text></view>
   </view>
 </view>
-<view class="zw"></view>
+<view class="{{ options.content.length > 0 ? 'searchzw' : 'zw' }}"></view>
 <view class="p30 gl-out">
-  <navigator url="../goodsDetail/goodsDetail" class="goods-list bd1" wx:for="123" wx:key="*66">
-    <image mode="widthFix" src="{{ testImg }}"></image>
+  <navigator url="../goodsDetail/goodsDetail?id={{ item.id }}" class="goods-list bd1" wx:for="{{ goodsList }}" wx:key="*66">
+    <image mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="gl-right">
-      <view class="f32 c000">阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方阿斯顿发生发生地方</view>
+      <view class="f32 c000">{{ item.goods_name }}</view>
       <view class="gl-r-center">
-        <text class="f36">￥365.22 <text class="through-line f24 c999">￥365.22</text></text>
-        <text class="f24 c999">已售:500</text>
+        <text class="f36">￥{{ item.price }} <text class="through-line f24 c999">￥{{ item.market }}</text></text>
+        <text class="f24 c999">已售:{{ item.sales }}</text>
       </view>
       <!--<view class="gl-r-bottom">-->
         <!--<text class="through-line f24 c999">￥365.22</text>-->
@@ -28,6 +28,7 @@
       <!--</view>-->
     </view>
   </navigator>
+<view hidden="{{ goodsList.length > 0 }}" class="tac f28 c999 p20">相关商品即将上架啦，请过段时间来看看吧</view>
 </view>
 <!--错误弹窗-->
 <import src="../template/template"></import>

@@ -9,23 +9,37 @@ Page({
   data: {
     imgDomain: app.data.imgDomain,
     currentTab: 0,
+    page: 0,
+    goodsList: [],
     testImg: app.data.testImg
   },
   tabChoose (e) {
     this.setData({
+      page: 0,
+      goodsList: [],
       angler: e.currentTarget.dataset.index * 1 === this.data.currentTab * 1 ? !this.data.angler : 0,
       currentTab: e.currentTarget.dataset.index
     }, this.getGoods)
   },
   getGoods () {
     let that = this
-    app.wxrequest({
-      url: app.getUrl().goods,
-      data: {
+    let pardata = {}
+    if (that.data.options.content) {
+      pardata = {
+        keyword: that.data.options.content,
+        page: ++that.data.page
+      }
+    } else {
+      pardata = {
         category_id: that.data.id,
         order: orderArr[that.data.currentTab],
+        page: ++that.data.page,
         by: !that.data.angler ? 'asc' : 'desc'
-      },
+      }
+    }
+    app.wxrequest({
+      url: app.getUrl().goods,
+      data: pardata,
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1) {
@@ -39,6 +53,10 @@ Page({
       }
     })
   },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getGoods()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -47,7 +65,8 @@ Page({
     app.getSelf(this)
     this.setData({
       id: options.id,
-      pid: options.pid
+      pid: options.pid,
+      options
     }, this.getGoods)
     // TODO: onLoad
   },

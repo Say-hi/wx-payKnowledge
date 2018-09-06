@@ -68,6 +68,7 @@ Page({
             }
           }
           that.setData({
+            tabArr: res.data.data.nav,
             answerArr: that.data.answerArr.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
           })
@@ -90,6 +91,7 @@ Page({
         if (res.data.code === 1) {
           for (let v of res.data.data.data) v.create_time = app.moment(v.create_time)
           that.setData({
+            tabArr: res.data.data.nav,
             communityArr: that.data.communityArr.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
           })

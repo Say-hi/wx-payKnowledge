@@ -29,6 +29,10 @@ Page({
     nowStartArr: [],
     videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
   },
+  //
+  showImage (e) {
+    app.showImg(e)
+  },
   // 获取商品分享的二维码
   getQrCode () {
     let that = this
@@ -74,42 +78,42 @@ Page({
     }, this.getComment)
   },
   // 放大图片
-  showImage (e) {
-    let showArray = []
-    for (let v of this.data.bannerArr) {
-      showArray.push(v.image_url)
-    }
-    app.showImg(e, showArray)
-  },
+  // showImage (e) {
+  //   let showArray = []
+  //   for (let v of this.data.bannerArr) {
+  //     showArray.push(v.image_url)
+  //   }
+  //   app.showImg(e, showArray)
+  // },
   // 秒杀逻辑
   setKill () {
     let that = this
     if (timer) clearInterval(timer)
     function kill () {
-      if (!that.data.goodsInfo) return
+      if (!that.data.info.seckill) return
       let nowData = new Date().getTime() // 毫秒数
-      let startTime = that.data.goodsInfo.start_time * 1000
-      let endTime = that.data.goodsInfo.end_time * 1000
+      let startTime = new Date(that.data.info.seckill.start_time.replace(/[-]/g, '.')).getTime()
+      let endTime = new Date(that.data.info.seckill.end_time.replace(/[-]/g, '.')).getTime()
       if (nowData < startTime) { // 未开始
-        that.data.goodsInfo.status = 1
-        that.data.goodsInfo.h = Math.floor((startTime - nowData) / 3600000)
-        that.data.goodsInfo.m = Math.floor((startTime - nowData) % 3600000 / 60000)
-        that.data.goodsInfo.s = Math.floor((startTime - nowData) % 60000 / 1000)
+        that.data.info.status = 1
+        that.data.info.h = Math.floor((startTime - nowData) / 3600000)
+        that.data.info.m = Math.floor((startTime - nowData) % 3600000 / 60000)
+        that.data.info.s = Math.floor((startTime - nowData) % 60000 / 1000)
       } else if (nowData > startTime && nowData < endTime) { // 进行中
-        that.data.goodsInfo.status = 2
-        that.data.goodsInfo.h = Math.floor((endTime - nowData) / 3600000)
-        that.data.goodsInfo.m = Math.floor((endTime - nowData) % 3600000 / 60000)
-        that.data.goodsInfo.s = Math.floor((endTime - nowData) % 60000 / 1000)
+        that.data.info.status = 2
+        that.data.info.h = Math.floor((endTime - nowData) / 3600000)
+        that.data.info.m = Math.floor((endTime - nowData) % 3600000 / 60000)
+        that.data.info.s = Math.floor((endTime - nowData) % 60000 / 1000)
       } else { // 已结束
-        that.data.goodsInfo.status = 3
-        that.data.goodsInfo.h = '已'
-        that.data.goodsInfo.m = '结'
-        that.data.goodsInfo.s = '束'
+        that.data.info.status = 3
+        that.data.info.h = '已'
+        that.data.info.m = '结'
+        that.data.info.s = '束'
       }
       that.setData({
-        goodsInfo: that.data.goodsInfo
+        info: that.data.info
       })
-      if (that.data.goodsInfo.status === 3) clearInterval(timer)
+      if (that.data.info.status === 3) clearInterval(timer)
     }
     kill()
     timer = setInterval(() => {
@@ -341,16 +345,18 @@ Page({
   addToCar () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().addCar,
+      url: app.getUrl().cartupdate,
       data: {
-        goods_id: that.data.goodsInfo.goods_id,
-        goods_num: that.data.goodsInfo.num || 1
+        key: app.gs(),
+        goods_id: that.data.info.id,
+        number: that.data.num || 1
       },
       success (res) {
         wx.hideLoading()
-        if (res.data.status === 1) {
+        if (res.data.code === 1) {
           that.closeBuy()
-        } else if (res.data.status === -4) {
+          app.setToast(that, {content: '已添加至购物车'})
+        } else {
           app.setToast(that, {content: res.data.msg})
           that.closeBuy()
         }
@@ -359,12 +365,16 @@ Page({
   },
   // 购买确认
   buyConfirm () {
+    if (this.data.info.seckill && this.data.info.seckill.id) {
+      if (this.data.info.status === 3) return app.setToast(this, {content: '该商品秒杀结束了，欢迎您关注下次活动'})
+      else if (this.data.info.seckill.quota < this.data.num) return app.setToast(this, {content: `每人最够购买${this.data.info.seckill.quota}`})
+    }
     this.closeBuy()
     if (this.data.buyType === 'car') {
-      app.setToast(this, {content: '已添加至购物车'})
+      this.addToCar()
     } else {
       wx.navigateTo({
-        url: '../submitOrder/submitOrder'
+        url: `../submitOrder/submitOrder?type=buynow&goods_id=${this.data.info.id}&num=${this.data.num}&seckill=${this.data.info.seckill ? this.data.info.seckill.id : -1}`
       })
     }
     //
@@ -563,7 +573,7 @@ Page({
           that.setData({
             commentArr: that.data.commentArr.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
-          })
+          }, that.setKill)
         } else {
           app.setToast(that, {content: res.data.msg})
         }

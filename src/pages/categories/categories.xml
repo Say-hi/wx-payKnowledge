@@ -1,5 +1,5 @@
 <view class="out-wrap">
-  <navigator url="../searchHistory/searchHistory" class="search bb">
+  <navigator url="../searchHistory/searchHistory?type=goods" class="search bb">
     <view class="jwq icon-sousuo"></view>
     <input disabled confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
   </navigator>

@@ -87,8 +87,31 @@ Page({
     })
   },
   upData () {
-    wx.navigateBack({
-      delta: 1
+    let that = this
+    let u = this.data.userInfoArr
+    app.wxrequest({
+      url: app.getUrl().useredit,
+      data: {
+        code: '123',
+        key: app.gs(),
+        avatar: u[0].id || u[0].r,
+        username: u[1].r,
+        sex: u[2].r === '男' ? 1 : 2,
+        nickname: u[3].r,
+        mobile: u[4].r,
+        signature: u[5].r
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '更新成功'
+          })
+          // wx.navigateBack()
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
   },
   formSubmit (e) {
@@ -120,9 +143,14 @@ Page({
     let type = e.currentTarget.dataset.type
     let changeData = this.data.userInfoArr
     if (type === 'img') {
-      changeData[0].r = 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order1.png'
-      this.setData({
-        userInfoArr: changeData
+      app.wxUploadImg((res1, res2) => {
+        console.log(res1)
+        console.log(res2)
+        that.data.userInfoArr[0].r = res2
+        that.data.userInfoArr[0]['id'] = res1.id
+        that.setData({
+          userInfoArr: that.data.userInfoArr
+        })
       })
     } else if (type === 'gender') {
       wx.showActionSheet({
@@ -146,12 +174,29 @@ Page({
       this.maskChange()
     }
   },
+  getData () {
+    let u = this.data.userInfoArr
+    let s = app.gs('userInfoC')
+    u[0].r = s.avatar
+    u[1].r = s.username
+    // u[2].r = s.username
+    u[3].r = s.nickname
+    u[4].r = s.mobile || '未绑定手机号码'
+    u[5].r = s.signature || '暂无个性签名'
+    this.setData({
+      userInfoArr: u
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('个人资料')
     app.getSelf(this)
+    this.getData()
+    // this.setData({
+      // user
+    // })
     // TODO: onLoad
   },
 

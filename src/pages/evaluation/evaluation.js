@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
     scoreArr: [
       {
@@ -25,34 +26,51 @@ Page({
         tr: '非常好'
       }
     ],
-    imgArr: [],
     textArr: ['差', '一般', '还行', '好', '非常好']
   },
-  upImage () {
+  inputValue (e) {
+    this.data.goods[e.currentTarget.dataset.index]['upContent'] = e.detail.value
+    this.setData({
+      goods: this.data.goods
+    })
+  },
+  upImage (e) {
     let that = this
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    app.wxUploadImg((res, v) => {
+      that.data.goods[e.currentTarget.dataset.index]['imgArr'].push({url: v, id: res.id})
+      that.setData({
+        goods: that.data.goods
+      })
+    })
+  },
+  getSecond () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().orderorder,
+      data: {
+        key: app.gs(),
+        order_id: that.data.options.id
+      },
       success (res) {
-        // console.log('图片上传', res)
-        app.wxUpload({
-          url: app.getUrl().orderImageUpload,
-          filePath: res.tempFilePaths[0],
-          formData: {},
-          success (res2) {
-            res2 = JSON.parse(res2.data)
-            if (res2.status === 200) {
-              that.data.imgArr.push(res2.data.image_url)
-              that.setData({
-                imgArr: that.data.imgArr
-              })
-            } else {
-              app.setToast(that, {content: res2.msg})
-            }
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          for (let v of res.data.data.goods) {
+            v['imgArr'] = []
           }
-        })
+          that.setData({
+            goods: res.data.data.goods
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
       }
+    })
+  },
+  del (e) {
+    let that = this
+    that.data.goods[e.currentTarget.dataset.oindex]['imgArr'].splice(e.currentTarget.dataset.index, 1)
+    that.setData({
+      goods: that.data.goods
     })
   },
   starChoose (e) {
@@ -99,21 +117,39 @@ Page({
       }
     })
   },
-  getOrderInfo (id) {
+  upComment () {
     let that = this
+    let data = {
+      key: app.gs(),
+      order_id: that.data.options.id,
+      quality: that.data.scoreArr[0].c * 1 + 1,
+      shop_service: that.data.scoreArr[2].c * 1 + 1,
+      deliver_service: that.data.scoreArr[1].c * 1 + 1
+    }
+    let s = {}
+    for (let v of that.data.goods) {
+      s['content[' + v.goods_id + ']'] = v.upContent || '默认好评'
+      if (v.imgArr.length > 0) {
+        s['pictures[' + v.goods_id + ']'] = ''
+        for (let m of v.imgArr) {
+          s['pictures[' + v.goods_id + ']'] += m.id + ','
+        }
+      }
+    }
+    console.log(Object.assign(data, s))
     app.wxrequest({
-      url: app.getUrl().addComment,
-      data: {
-        order_id: id,
-        sign: 0
-      },
+      url: app.getUrl().ordercomment,
+      data: Object.assign(data, s),
       success (res) {
         wx.hideLoading()
-        if (res.data.status === 200) {
-          that.setData({
-            info: res.data.data.order_info,
-            goods: res.data.data.goods_list
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '评论成功',
+            mask: true
           })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1000)
         } else {
           app.setToast(that, {content: res.data.msg})
         }
@@ -124,12 +160,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.setData({
-      options
-    })
-    this.getOrderInfo(options.id)
     app.setBar('评价')
     app.getSelf(this)
+    this.setData({
+      options
+    }, this.getSecond)
     // TODO: onLoad
   },
 

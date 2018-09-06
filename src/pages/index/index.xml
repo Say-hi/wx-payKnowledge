@@ -1,4 +1,5 @@
-<swiper autoplay
+<swiper hidden="{{ indexData.slide.length == 0 }}"
+        autoplay
         indicator-dots
         circular
         indicator-color="{{ indicatorColor }}"
@@ -22,7 +23,7 @@
 <!--<view class="Adimg">-->
     <!--<image mode="widthFix" src="{{ testImg }}"></image>-->
 <!--</view>-->
-<swiper autoplay
+<swiper hidden="{{ indexData.ad.length == 0 }}" autoplay
         indicator-dots
         circular
         indicator-color="{{ indicatorColor }}"
@@ -97,10 +98,10 @@
             <view class="h-a-c-left br fw7 tac l36 f24">?</view>
             <view style="width: 100%;">
                 <view class="f32 c333 fw7">{{ item.query }}</view>
-                <view class="f24 h-a-c-a">
+                <view wx:if="{{ item.answer }}" class="f24 h-a-c-a">
                     <text class="c999">{{ item.answer.username }}:</text><text class="c333">{{ item.answer.answer || '暂无回答' }}</text>
                 </view>
-                <view class="h-a-operation">
+                <view wx:if="{{ item.answer }}" class="h-a-operation">
                     <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.answer.comment }}</view>
                     <view catchtap="zan" data-type="answer" data-index="{{ index }}" data-id="{{ item.answer.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
                     <view catchtap="giveTip" data-type="answer" data-index="{{ index }}" data-id="{{ item.answer.id }}" data-userid="{{ item.answer.user_id }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>

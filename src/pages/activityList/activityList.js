@@ -15,7 +15,7 @@ Page({
   getData (flag) {
     let that = this
     app.wxrequest({
-      url: flag ? app.getUrl().workshops : app.getUrl().activitys,
+      url: flag === '我的活动' ? app.getUrl().useractivity : flag ? app.getUrl().workshops : app.getUrl().activitys,
       data: {
         key: app.gs(),
         page: ++that.data.page
@@ -23,6 +23,11 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1) {
+          if (flag === '我的活动') {
+            for (let v of res.data.data.data) {
+              v['id'] = v.activity_id
+            }
+          }
           that.setData({
             list: that.data.list.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
@@ -38,7 +43,9 @@ Page({
     else this.tabChoose(this.data.options)
   },
   tabChoose () {
-    if (this.data.options.type) {
+    if (this.data.options.type === '我的活动') {
+      this.getData('我的活动')
+    } else if (this.data.options.type) {
       this.getData(true)
     } else {
       this.getData()

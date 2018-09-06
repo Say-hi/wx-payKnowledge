@@ -7,39 +7,100 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     allMoney: 0
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().cartindex,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          for (let v of res.data.data) {
+            v['num'] = v.number
+          }
+          that.setData({
+            menuArr: res.data.data
+          }, that.chooseAll)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   // 菜单页数量选择
   chooseMenuNum (e) {
+    let that = this
+    let index = e.currentTarget.dataset.index
+    let startData = that.data.menuArr
     if (e.currentTarget.dataset.type === 'del') {
-      --this.data.menuArr[e.currentTarget.dataset.index].num
+      --that.data.menuArr[index].num
     } else {
-      if (!this.data.menuArr[e.currentTarget.dataset.index].num) {
-        this.data.menuArr[e.currentTarget.dataset.index].num = 1
+      if (!that.data.menuArr[index].num) {
+        that.data.menuArr[index].num = 1
       } else {
-        ++this.data.menuArr[e.currentTarget.dataset.index].num
+        ++that.data.menuArr[index].num
       }
     }
-    this.setData({
-      menuArr: this.data.menuArr
+    app.wxrequest({
+      url: app.getUrl().cartupdate,
+      data: {
+        key: app.gs(),
+        goods_id: that.data.menuArr[index].goods_id,
+        number: that.data.menuArr[index].num
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            menuArr: that.data.menuArr
+          }, that.calculatorMoney)
+        } else {
+          that.setData({
+            menuArr: startData
+          })
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
-    this.calculatorMoney()
   },
   // 确认订单
   confirm () {
     if (this.data.allMoney <= 0) return app.setToast(this, {content: '请选择要购买的商品'})
     // if (this.data.allMoney < this.data.dispatch) return app.setToast(this, {content: `抱歉，起送金额为${this.data.dispatch}元哦`})
-    wx.navigateTo({
-      url: `../submitOrder/submitOrder?money=${this.data.allMoney}`
+    let cartId = ''
+    for (let v of this.data.menuArr) {
+      if (v.checked) cartId += v.id + ','
+    }
+    wx.redirectTo({
+      url: `../submitOrder/submitOrder?money=${this.data.allMoney}&cart_id=${cartId}`
     })
   },
   // 删除当前物品
   del (e) {
-    this.data.menuArr.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      menuArr: this.data.menuArr
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().cartdelete,
+      data: {
+        key: app.gs(),
+        id: e.currentTarget.dataset.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.data.menuArr.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            menuArr: that.data.menuArr
+          }, that.calculatorMoney)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
-    this.calculatorMoney()
   },
   // 编辑
   setting () {
@@ -50,8 +111,7 @@ Page({
   // 计算总价格
   calculatorMoney () {
     let allMoney = 0
-    app.su('goodsStorage', this.data.menuArr)
-    for (let v of app.gs('goodsStorage')) {
+    for (let v of this.data.menuArr) {
       if (v.num && v.checked) {
         allMoney += v.num * v.price
       }
@@ -110,6 +170,7 @@ Page({
   onLoad () {
     app.setBar('购物车')
     app.getSelf(this)
+    this.getData()
     // TODO: onLoad
   },
 
@@ -124,21 +185,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
-    if (app.gs('goodsStorage')) {
-      // console.log(2)
-      this.setData({
-        menuArr: app.gs('goodsStorage')
-      })
-      this.chooseAll('must')
-    } else {
-      // console.log(1)
-      this.setData({
-        menuArr: []
-      })
-    }
-    this.setData({
-      dispatch: app.gs('shop').shop.dispatch
-    })
+
+    // if (app.gs('goodsStorage')) {
+    //   // console.log(2)
+    //   this.setData({
+    //     menuArr: app.gs('goodsStorage')
+    //   })
+    //   this.chooseAll('must')
+    // } else {
+    //   // console.log(1)
+    //   this.setData({
+    //     menuArr: []
+    //   })
+    // }
+    // this.setData({
+    //   dispatch: app.gs('shop').shop.dispatch
+    // })
     // TODO: onShow
   },
 

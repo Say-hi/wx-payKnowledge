@@ -1,10 +1,10 @@
 <view class="p30 user-info-wrap">
   <view class="user-info br20 p30">
     <navigator url='../userInfo/userInfo' class="arrow">
-      <image class="br" src="{{ testImg }}"></image>
+      <image class="br" src="{{ info.user.avatar }}"></image>
       <view>
-        <view class="f32 c333">阿斯顿发生大</view>
-        <view class="f24 c999">还没有个性签名喔</view>
+        <view class="f32 c333">{{ info.user.nickname }}</view>
+        <view class="f24 c999">{{ info.user.signature || '还没有个性签名喔' }}</view>
       </view>
     </navigator>
     <view class="user-operation f28 c999 lh30">
@@ -18,14 +18,14 @@
     <text class="f28">全部订单</text>
   </navigator>
   <view class="tab-wrap tab-wrap3">
-    <navigator url="{{ item.active ? '': item.url }}"
+    <navigator url="{{ item.active ? '': item.path }}"
     wx:for="{{ userOrderArr }}"
     wx:key="*5"
     hover-class="none"
     class="tab-item f24 c333 pr">
-    <view class="tab-nubmer pa br cfff">100</view>
-    <image mode="widthFix" src="{{ item.i }}"></image>
-    <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>
+    <view class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
+    <image mode="widthFix" src="{{ item.picture }}"></image>
+    <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
     </navigator>
   </view>
 </view>
@@ -36,13 +36,13 @@
     <!--<text class="f28">全部订单</text>-->
   </view>
   <view class="tab-wrap tab-wrap3 tab5">
-    <navigator url="{{ item.active ? '': item.url }}"
+    <navigator url="{{ item.active ? '': item.path }}"
                wx:for="{{ userServiceArr }}"
                wx:key="*5"
                hover-class="none"
                class="tab-item f24 c333 pr">
-      <image mode="widthFix" src="{{ item.i }}"></image>
-      <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.t }}</view>
+      <image mode="widthFix" src="{{ item.picture }}"></image>
+      <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
     </navigator>
   </view>
 </view>

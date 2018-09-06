@@ -22,9 +22,9 @@
   </navigator>
 </view>
 
-<view class="f32 c333 fw7 lh80 tac shop-t">正在秒杀</view>
+<view wx:if="{{ info.seckill.length > 0 }}" class="f32 c333 fw7 lh80 tac shop-t">正在秒杀</view>
 
-<view class="time-kill p30">
+<view wx:if="{{ info.seckill.length > 0 }}"  class="time-kill p30">
   <!--<navigator url='../goods/goods?type=new'-->
            <!--hover-class="none"-->
            <!--class="content-title"><view class="f30 c333">今日上新</view><view class="arrow f24 c666">查看更多</view></navigator>-->

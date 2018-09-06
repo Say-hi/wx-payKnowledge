@@ -2,7 +2,10 @@
     <view class="mask-toast" >
         <button open-type="getUserInfo" bindgetuserinfo="MaskGetUserInfo">
             <image mode="aspectFill" class="mask-image" src="../../../images/jiong.png"></image>
-            <view>请您授权该小程序获取您的信息</view>
+            <view>请您授权该小程序获取您的信息,点击此处进行授权</view>
+        </button>
+        <button class="danger" open-type="getUserInfo" bindgetuserinfo="MaskGetUserInfo">
+            点击按钮授权
         </button>
     </view>
 </view>

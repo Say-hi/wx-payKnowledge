@@ -8,5 +8,5 @@
   // 导航栏背景颜色，如"#000000"
   // 类型：Boolean；默认值：false
   // 是否开启下拉刷新，详见页面相关事件处理函数。
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": true
 }

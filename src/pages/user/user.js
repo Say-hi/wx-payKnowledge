@@ -7,71 +7,50 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     testImg: app.data.testImg,
-    tabArr2: [
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom1.png',
-        t: '发现',
-        url: '../index/index'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom2.png',
-        t: '分类',
-        url: '../articleCategories/articleCategories'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
-        t: '商城',
-        url: '../shop/shop'
-      },
-      {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom4.png',
-        t: '我的',
-        url: '',
-        active: true
-      }
-    ],
+    tabArr2: [],
     userOrderArr: [
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order1.png',
-        t: '代付款',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order1.png',
+        title: '待付款',
         url: '../order/order?type=1'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order2.png',
-        t: '待发货',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order2.png',
+        title: '待发货',
         url: '../order/order?type=2'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order3.png',
-        t: '待收货',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order3.png',
+        title: '待收货',
         url: '../order/order?type=3'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order4.png',
-        t: '待评价',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user_order4.png',
+        title: '待评价',
         url: '../order/order?type=4'
       }
     ],
     userServiceArr: [
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service1.png',
-        t: '我的订阅',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service1.png',
+        title: '我的订阅',
         url: '../userSubscription/userSubscription'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service2.png',
-        t: '预约生产',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service2.png',
+        title: '预约生产',
         url: '../userCoProduction/userCoProduction'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service3.png',
-        t: '优惠卷',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service3.png',
+        title: '优惠卷',
         url: '../coupon/coupon?type=我的优惠卷'
       },
       {
-        i: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service4.png',
-        t: '我的活动',
+        picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/user-service4.png',
+        title: '我的活动',
         url: '../activityList/activityList?type=我的活动'
       }
     ],
@@ -161,6 +140,34 @@ Page({
       }
     })
   },
+  getUserInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userindex,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          app.su('userInfoC', res.data.data.user)
+          for (let v of res.data.data.nav[0]) {
+            v.picture = that.data.imgDomain + v.picture
+          }
+          for (let v of res.data.data.nav[1]) {
+            v.picture = that.data.imgDomain + v.picture
+          }
+          that.setData({
+            info: res.data.data,
+            userOrderArr: res.data.data.nav[0],
+            userServiceArr: res.data.data.nav[1]
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -169,7 +176,7 @@ Page({
     app.getSelf(this)
     this.setData({
       tabArr2: app.setNav()
-    })
+    }, this.getUserInfo)
     // TODO: onLoad
   },
 
@@ -205,6 +212,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.getUserInfo()
     // TODO: onPullDownRefresh
   }
 })

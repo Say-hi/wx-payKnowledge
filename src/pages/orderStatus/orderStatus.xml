@@ -1,6 +1,6 @@
-<view class="time jwq {{ type == '代发货' ? 'icon-yifukuan' : type == '确认收货' ? 'icon-yifahuo' : type == '完成' ? 'icon-jiaoyichenggong' : ''}}">
-  <view class="f36 cfff lh70">交易成功</view>
-  <view class="f24 cfff lh70">交易成功</view>
+<view class="time jwq {{ type == '待发货' ? 'icon-yifukuan' : type == '确认收货' ? 'icon-yifahuo' : type == '完成' ? 'icon-jiaoyichenggong' : ''}}">
+  <view class="f36 cfff lh70">{{ type }}</view>
+  <!--<view class="f24 cfff lh70">交易成功</view>-->
 </view>
 
 <view class="goods-w">
@@ -9,25 +9,25 @@
   <text>脑籽商城</text>
 </view>
 <view wx:for="{{ menuArr }}" wx:key="*2134" class="goods">
-  <image src="{{ item.src }}"></image>
+  <image src="{{ imgDomain }}{{ item.picture }}"></image>
   <view class="g-i">
-    <view class="f30 c333">{{ item.goodsname }}</view>
-    <view class="f24 c999">规格： {{ item.spec_name ? item.spec_name : '标准尺寸' }}</view>
+    <view class="f30 c333">{{ item.goods_name }}</view>
+    <!--<view class="f24 c999">规格： {{ item.spec_name ? item.spec_name : '标准尺寸' }}</view>-->
     <view class="g-b">
       <view class="f30 c333">
         <text class="f24">￥</text>{{ item.price }}
       </view>
-      <view class="f24 c999">×{{ item.num }}</view>
+      <view class="f24 c999">×{{ item.number }}</view>
     </view>
   </view>
 </view>
 <view class="g-d bd1 lh80 f24">
   <view class="c333 fw7">配送费</view>
-  <view><text>￥</text>{{ dispatch_fee }}</view>
+  <view><text>￥</text>{{ order.freight }}</view>
 </view>
 <view class="g-d bd1 lh80 f24">
   <view class="c333 fw7">优惠卷</view>
-  <view class="f24 c999">{{ coupon_price * 1 ? '优惠金额' + coupon_price + '元' : '未使用优惠卷' }}</view>
+  <view class="f24 c999">{{ order.ticket_id >= 1 ? '优惠金额' + order.ticket + '元' : '未使用优惠卷' }}</view>
 </view>
 <!--<view class="g-d bd1 lh80 f24">-->
 <!--<view class="c333 fw7">预计送达时间</view>-->
@@ -36,7 +36,7 @@
 <view class="g-d bd1 lh80">
   <view>　</view>
   <view>
-    <text class="f24">小计:<text class="f28 c666">￥{{ allMoney }}</text></text>
+    <text class="f24">小计:<text class="f28 c666">￥{{ order.amount }}</text></text>
   </view>
 </view>
   <view catchtap="call" class="iconfont icon-dianhua tac f30 c333 lh70">联系商家</view>
@@ -54,17 +54,17 @@
   </view>
 </view>
 <view class="f-b">
-  <text class="f26 lh60 c999"><text class="c666">订单编号:　</text>{{ orderInfo.order_number }}</text>
-  <text class="f26 lh60 c999"><text class="c666">创建时间:　</text>{{ orderInfo.time }}</text>
-  <text class="f26 lh60 c999"><text class="c666">付款时间:　</text>{{ orderInfo.pay_time }}</text>
-  <text class="f26 lh60 c999"><text class="c666">发货时间:　</text>{{ orderInfo.pay_time }}</text>
-  <text class="f26 lh60 c999"><text class="c666">确认时间:　</text>{{ orderInfo.pay_time }}</text>
+  <text wx:if="{{ order.order_no }}" class="f26 lh60 c999"><text class="c666">订单编号:　</text>{{ order.order_no }}</text>
+  <text wx:if="{{ order.create_time }}" class="f26 lh60 c999"><text class="c666">创建时间:　</text>{{ order.create_time }}</text>
+  <text wx:if="{{ order.pay_time }}" class="f26 lh60 c999"><text class="c666">付款时间:　</text>{{ order.pay_time }}</text>
+  <text wx:if="{{ order.send_time }}" class="f26 lh60 c999"><text class="c666">发货时间:　</text>{{ order.send_time }}</text>
+  <text wx:if="{{ order.confim_time }}" class="f26 lh60 c999"><text class="c666">确认时间:　</text>{{ order.confim_time }}</text>
 </view>
 <view class="o-btn f28 c999">
-  <navigator url="../express/express">
+  <navigator wx:if="{{ order.status == 3 || order.status == 2 }}" url="../express/express?id={{ order.id }}">
     <view>查看物流</view>
   </navigator>
-  <navigator url="../evaluation/evaluation">
+  <navigator wx:if="{{ order.status == 3 }}" url="../evaluation/evaluation?id={{ order.id }}">
     <view class="cfff">评价晒图</view>
   </navigator>
 </view>

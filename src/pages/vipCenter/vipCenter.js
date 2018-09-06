@@ -8,7 +8,7 @@ Page({
    */
   data: {
     title: 'vipCenter',
-    testImg: app.data.testImg,
+    testImg: app.gs('userInfoC').avatar,
     vipLvArr: [
       {
         l: 'LV1.ASDF',
@@ -65,8 +65,46 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1) {
+          for (let [i, v] of res.data.data.group.entries()) {
+            console.log(i)
+            if (v.id === res.data.data.user.group_id) {
+              res.data.data.user['lv'] = v.name
+              if (i < res.data.data.group.length - 1 && res.data.data.group[i * 1 + 1].is_apply < 1) {
+                res.data.data.user['need'] = '积分高于' + res.data.data.group[i * 1 + 1].integral + '时升级为' + res.data.data.group[i * 1 + 1].name
+                break
+              } else if (res.data.data.group[i * 1 + 1].is_apply >= 1 && res.data.data.group[i * 1 + 1].is_use <= 0) {
+                res.data.data.user['need'] = '已达到最高等级啦,下一级需要申请'
+                break
+              } else if (res.data.data.group[i * 1 + 1].is_use > 0) {
+                res.data.data.user['need'] = '您已是最高等级啦'
+              }
+            } else {
+              res.data.data.user['lv'] = '暂无等级'
+              res.data.data.user['need'] = '积分高于' + res.data.data.group[0].integral + '时升级为' + res.data.data.group[0].name
+            }
+          }
           that.setData({
             info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  apply (e) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().applyGroup,
+      data: {
+        key: app.gs(),
+        group_id: e.currentTarget.dataset.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '申请已受理'
           })
         } else {
           app.setToast(that, {content: res.data.msg})

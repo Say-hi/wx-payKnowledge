@@ -9,13 +9,35 @@ Page({
   data: {
     title: 'express'
   },
-
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().deliver,
+      data: {
+        key: app.gs(),
+        order_id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            info: res.data.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('物流信息')
     app.getSelf(this)
+    this.setData({
+      options
+    }, this.getData)
     // TODO: onLoad
   },
 

@@ -28,20 +28,48 @@ Page({
 
   formSubmit (e) {
     let check = true
+    let condition = ''
     for (let v of this.data.conditionArr) {
       if (v.choose) {
         check = false
-        break
+        condition += v.t + '\r\n'
       }
     }
     if (!e.detail.value.name) return app.setToast(this, {content: '请输入您的姓名'})
     else if (app.checkMobile(e.detail.value.phone)) return app.setToast(this, {content: '请填写正确的11位手机号'})
     else if (!e.detail.value.condition && check) return app.setToast(this, {content: '请至少填写或勾选一个条件'})
+    let that = this
+    condition += e.detail.value.condition || ''
+    app.wxrequest({
+      url: app.getUrl().userworkshop,
+      data: {
+        key: app.gs(),
+        workshop_id: that.data.options.id,
+        name: e.detail.value.name,
+        phone: e.detail.value.phone,
+        condition
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '预约成功',
+            mask: true
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1200)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('预约报名')
     app.getSelf(this)
     let conditionArr = []
@@ -52,7 +80,8 @@ Page({
       })
     }
     this.setData({
-      conditionArr: app.gs('yuyue')
+      conditionArr,
+      options
     })
     // TODO: onLoad
   },

@@ -1,13 +1,13 @@
 <view class="bt1 bd1">
-  <view class="p30 f24 main-text-color">账户可用余额　280.00</view>
+  <view class="p30 f24 main-text-color">账户可用余额　{{ money }}</view>
   <view class="f30 p30 user-input c333">
     <text>{{ type }}金额</text>
-    <input focus="{{ focus }}" type="digit" placeholder="0.00" />
+    <input bindinput="inputValue" data-type="pwd" focus="{{ focus }}" type="digit" placeholder="0.00" />
   </view>
 </view>
 <view wx:if="{{ type == '提现' }}" class="f24 c999 p30">{{ type == '提现' ? '提现需要1-3个工作日到账，遇节假日顺延。' : '充值后可使用余额进行交易支付' }}</view>
 <view class="tac">
-  <view class="br10 lh90 f30 cfff">立即{{ type }}</view>
+  <view catchtap="{{ type == '提现' ? 'withdraw' : 'recharge' }}" class="br10 lh90 f30 cfff">立即{{ type }}</view>
 </view>
 <!--错误弹窗-->
 <import src="../template/template"></import>

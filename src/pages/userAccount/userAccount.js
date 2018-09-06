@@ -8,21 +8,36 @@ Page({
    */
   data: {
     title: 'userAccount',
-    lists: [
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: 20
-      },
-      {
-        desc: '重置',
-        change_data: 'asfdas',
-        user_money: -20
-      }
-    ],
+    lists: [],
+    page: 0,
     cipCenterImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/vip_center.png'
   },
-
+  getLog () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().moneylog,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            money: res.data.data.money,
+            lists: that.data.lists.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getLog()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -43,6 +58,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    this.setData({
+      page: 0,
+      lists: []
+    }, this.getLog)
+
     // TODO: onShow
   },
 

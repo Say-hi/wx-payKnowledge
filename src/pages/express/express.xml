@@ -1,14 +1,14 @@
 <!-- 可用组件：https://mp.weixin.qq.com/debug/wxadoc/dev/component/ -->
 <view class="express">
   <view class="title">
-    <view>{{ expressInfo.logisticCode || '顺丰爸爸' }}</view>
+    <view>物流信息</view>
   </view>
   <view class='express-content-wrap'>
-    <view class="content" wx:for="123123" wx:key="*7893">
+    <view class="content" wx:for="{{ info }}" wx:key="*7893">
       <view class="dot {{ index == 0 ? 'first' : '' }}"></view>
       <view class="content-wrap">
-        <view class='time'>到达站点</view>
-        <view class="site">发货</view>
+        <view class='time'>{{ item.time }}</view>
+        <view class="site">{{ item.context }}</view>
         <view class="phone jwq icon-pinglun" data-phone="{{ item.phone }}" catchtap="callPhone" wx:if="{{ item.phone }}"></view>      </view>
     </view>
   </view>

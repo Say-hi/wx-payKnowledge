@@ -15,13 +15,32 @@ Page({
     ],
     testImg: app.data.testImg
   },
-
+  ranking () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().ranking,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('脑籽排行')
     app.getSelf(this)
+    this.ranking()
     // TODO: onLoad
   },
 

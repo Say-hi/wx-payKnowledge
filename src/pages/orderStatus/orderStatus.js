@@ -7,16 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgDomain: app.data.imgDomain,
     shopImg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/gd1.png',
     title: 'orderStatus'
   },
-
+  call () {
+    app.call(this.data.order.shop_phone)
+  },
+  getSecond () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().orderorder,
+      data: {
+        key: app.gs(),
+        order_id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            addressInfo: {
+              userName: res.data.data.name,
+              telNumber: res.data.data.phone,
+              provinceName: res.data.data.province,
+              cityName: res.data.data.city,
+              detailInfo: res.data.data.address,
+              countyName: res.data.data.area
+            },
+            menuArr: res.data.data.goods,
+            order: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('订单信息')
     app.getSelf(this)
+    this.setData({
+      options,
+      type: options.status
+    }, this.getSecond)
     // TODO: onLoad
   },
 

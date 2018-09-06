@@ -6,8 +6,8 @@
              catchtap="changeTab"
              data-index="{{ index }}"
              class="tab-item f24 c333 bd1 bt1 lh88">
-    <image mode="widthFix" src="{{ item.img }}"></image>
-    <view class="f30 c666 fw7 {{ active == index ? 'active' : '' }}">{{ item.name }}</view>
+    <image mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
+    <view class="f30 c666 fw7 {{ active == index ? 'active' : '' }}">{{ item.title }}</view>
   </view>
 </view>
 <view class="zw"></view>

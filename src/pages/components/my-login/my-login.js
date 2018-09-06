@@ -30,6 +30,9 @@ Component({
   methods: {
     MaskGetUserInfo (e) {
       if (e.detail.iv) {
+        wx.showLoading({
+          title: '刷新数据中...'
+        })
         app.wxlogin()
       }
     }

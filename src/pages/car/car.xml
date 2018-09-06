@@ -9,21 +9,21 @@
 <view class="zw"></view>
 <view wx:for="{{ menuArr }}" wx:key="*21" class="m-l bd1 pr">
   <radio data-index="{{ index }}" catchtap="choose" color="#ff3300;" checked="{{ item.checked }}"></radio>
-  <image src="{{ item.src || item.img }}" mode="aspectFill" lazy-load="true" class="m-l-l"></image>
+  <image src="{{ imgDomain }}{{ item.picture }}" mode="aspectFill" lazy-load="true" class="m-l-l"></image>
   <view class="m-l-c">
-    <view class="f30 fw7">{{ item.goodsname || item.name }}</view>
-    <view class="c999 f22">规格: {{ item.size ? item.size : '标准尺寸' }}</view>
+    <view class="f30 fw7">{{ item.goods_name }}</view>
+    <!--<view class="c999 f22">规格: {{ item.size ? item.size : '标准尺寸' }}</view>-->
     <view class="main-text-color f24">￥<text class="f30">{{ item.price }}</text></view>
   </view>
   <view class="m-l-r">
     <view class="choose-count" wx:if="{{ editor }}">
-      <view wx:if="{{ item.num > 1 }}" catchtap="chooseMenuNum" data-type="del" data-index="{{ index }}" class="del order-btn cfff iconfont icon-jianhao"></view>
+      <view wx:if="{{ item.num > 1 }}" catchtap="chooseMenuNum" data-type="del" data-index="{{ index }}" class="del order-btn cfff jwq icon-jianhao"></view>
       <view wx:if="{{ item.num > 0 }}" class="order-num">{{ item.num }}</view>
-      <view catchtap="chooseMenuNum" data-typ="add" data-index="{{ index }}" class="add order-btn cfff iconfont icon-jiahao"></view>
+      <view wx:if="{{ item.num < item.stock }}" catchtap="chooseMenuNum" data-typ="add" data-index="{{ index }}" class="add order-btn cfff jwq icon-jiahao"></view>
     </view>
     <view class="choose-size c999 f24" wx:else>×{{ item.num }}</view>
   </view>
-  <view class="f24 cfff del-btn" catchtap="del" data-index="{{ index }}" wx:if="{{ editor }}">删除</view>
+  <view class="f24 cfff del-btn" catchtap="del" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ editor }}">删除</view>
 </view>
 <view class="zw"></view>
 
@@ -31,11 +31,14 @@
   <view class="c999 r-c" catchtap="chooseAll"><radio checked="{{ all }}"></radio><text>全选</text></view>
   <view class="m-money">
     <view class="f24 c333">总价: <text class="main-text-color f40">￥{{ allMoney }}</text></view>
-    <view class="f22" style="color: #f60;">满{{ dispatch * 1 || 0 }}元起送</view>
+    <!--<view class="f22" style="color: #f60;">满{{ dispatch * 1 || 0 }}元起送</view>-->
   </view>
-  <view catchtap="confirm" class="f36 cfff confirm tac {{ allMoney < dispatch ? 'mb' : '' }}">确定下单</view>
+  <view catchtap="confirm" class="f36 cfff confirm tac">确定下单</view>
 </view>
 
 <view class="tac noGoods f24 c999" wx:if="{{!menuArr || menuArr.length <= 0 }}">您的购物车空空如也，快去添加商品吧</view>
 
-<template wx:if="{{ FuckU.show == 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ FuckU.show != 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>
+<!--<template wx:if="{{ FuckU.show == 1 }}" is="showGZH" data="{{ ...FuckU, notDel }}"></template>-->

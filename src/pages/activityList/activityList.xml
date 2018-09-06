@@ -1,10 +1,11 @@
 <view class="p30 out-wrap">
-  <navigator url="{{ options.type == '微工坊列表' ? '../coProduction/coProduction?id=' + item.id : '../activityDetail/activityDetail?id=' + item.id }}" wx:for="{{ list }}" wx:key="*55" class="ac-list br10">
+  <navigator url="{{ options.type == '微工坊列表' ? '../coProduction/coProduction?id=' + item.id : '../activityDetail/activityDetail?id=' + item.id || item.activity_id }}" wx:for="{{ list }}" wx:key="*55" class="ac-list br10">
     <image mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="p20">
       <view class="f32 c000 ell1">{{ item.title }}</view>
       <view class="f26 c999 ac-l-b">
-        <text class="f24 cfff">{{ item.progress == 0 ? '未开始' : item.progress == 1 ? '报名中' : '已结束'}}</text>
+        <text wx:if="{{ options.type == '微工坊列表' }}" class="f24 cfff">{{ item.progress == 0 ? '报名中' : item.progress == 1 ? '已结束' : '未知进度'}}</text>
+        <text wx:else class="f24 cfff">{{ item.progress == 0 ? '未开始' : item.progress == 1 ? '报名中' : '已结束'}}</text>
         <text>{{ item.start_time }} ~{{ item.end_time }}</text>
       </view>
     </view>

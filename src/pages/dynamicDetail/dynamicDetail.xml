@@ -32,7 +32,7 @@
       <view class="h-a-operation">
         <navigator hover-class="none" url="../commentDetail/commentDetail?id={{ item.id }}" class="jwq lh70 f24 c999 icon-pinglun">{{ item.reply }}</navigator>
         <view catchtap="zan" data-type="comment" data-index="{{ index }}" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
-        <view catchtap="giveTip" data-index="{{ index }}" data-id="{{ item.id }}" data-type="dynamic" data-userid="{{ item.user_id }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
+        <view catchtap="giveTip" data-index="{{ index }}" data-id="{{ item.id }}" data-type="comment" data-userid="{{ item.user_id }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
       </view>
     </view>
   </view>

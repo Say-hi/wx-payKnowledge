@@ -10,6 +10,27 @@ Page({
     title: 'share',
     codeImg: 'https://c.jiangwenqiang.com/api/qrcode.jpg'
   },
+  getDesc () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().help,
+      data: {
+        id: 9,
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            ss: res.data.data
+          })
+          app.WP('title', 'html', res.data.data.content, that, 0)
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   savePhoto () {
     let that = this
     wx.downloadFile({
@@ -24,12 +45,33 @@ Page({
       }
     })
   },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().getQRCode,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            codeImg: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('分享赢积分')
     app.getSelf(this)
+    this.getDesc()
+    this.getData()
     // TODO: onLoad
   },
 

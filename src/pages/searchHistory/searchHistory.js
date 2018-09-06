@@ -10,18 +10,48 @@ Page({
     title: 'searchHistory',
     searchShow: true
   },
+  getKey () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().keywords,
+      data: {
+        key: app.gs(),
+        type: that.data.options.type === 'goods' ? 1 : 0
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            keyWord: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   cleanHistory () {
     this.setData({
       history: [],
       searchShow: false
     })
-    wx.removeStorageSync('history')
+    if (this.data.options.type === 'goods') {
+      wx.removeStorageSync('goodsHistory')
+    } else {
+      wx.removeStorageSync('articleHistory')
+    }
   },
   chooseTip (e) {
     let index = e.currentTarget.dataset.choose
-    this.setData({
-      chooseHistory: index
-    }, this.search(e.currentTarget.dataset.content))
+    if (e.currentTarget.dataset.type === 'key') {
+      this.setData({
+        keyWordIndex: index
+      }, this.search(e.currentTarget.dataset.content))
+    } else {
+      this.setData({
+        chooseHistory: index
+      }, this.search(e.currentTarget.dataset.content))
+    }
   },
   search (content) {
     let that = this
@@ -30,7 +60,7 @@ Page({
     if (content.detail) searcheText = content.detail.value
     else searcheText = content
     app.wxrequest({
-      url: app.getUrl().articles,
+      url: that.data.options.type === 'goods' ? app.getUrl().goods : app.getUrl().articles,
       data: {
         key: app.gs(),
         keyword: searcheText
@@ -38,8 +68,8 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1 && res.data.data.total > 0) {
-          wx.navigateTo({
-            url: `/pages/articleList/articleList?content=${searcheText}`
+          wx.redirectTo({
+            url: that.data.options.type === 'goods' ? `/pages/goodsList/goodsList?content=${searcheText}` : `/pages/articleList/articleList?content=${searcheText}`
           })
         } else {
           app.setToast(that, {content: '未搜索到相关内容'})
@@ -75,12 +105,13 @@ Page({
     })
     // 执行搜索操作
     // this.getSearch(searcheText)
+    let type = that.data.options.type === 'goods' ? 'goodsHistory' : 'articleHistory'
     wx.setStorage({
-      key: 'history',
+      key: type,
       data: that.data.history,
       success () {
         that.setData({
-          history: wx.getStorageSync('history')
+          history: wx.getStorageSync(type)
         })
       }
     })
@@ -88,18 +119,19 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     app.setBar('搜索')
     app.getSelf(this)
-    let history = app.gs('history')
+    let history = options.type === 'goods' ? app.gs('goodsHistory') : app.gs('articleHistory')
     if (!history) {
       this.setData({
         searchShow: false
       })
     }
     this.setData({
+      options,
       history: history || []
-    })
+    }, this.getKey)
     // TODO: onLoad
   },
 

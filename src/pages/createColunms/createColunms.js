@@ -10,11 +10,50 @@ Page({
     title: 'createColunms',
     create_success: 'https://c.jiangwenqiang.com/workProject/payKnowledge/create_success.png'
   },
+  getUserVip () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().usergroup,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          if (res.data.data.user.is_column <= 0) {
+            app.setToast(that, {content: '您的等级不可创建专栏'}, 2000)
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1500)
+          }
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   formSubmit (e) {
     if (!e.detail.value.name) return app.setToast(this, {content: '请输入专栏名'})
     else if (!e.detail.value.content) return app.setToast(this, {content: '请输入专栏简介'})
-    this.setData({
-      createSuccess: true
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().operationcolumn,
+      data: {
+        key: app.gs(),
+        name: e.detail.value.name,
+        info: e.detail.value.content,
+        id: that.data.options.id || ''
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            createSuccess: true
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
   },
   /**
@@ -26,6 +65,7 @@ Page({
     })
     app.setBar(options.type || '创建专栏')
     app.getSelf(this)
+    this.getUserVip()
     // TODO: onLoad
   },
 

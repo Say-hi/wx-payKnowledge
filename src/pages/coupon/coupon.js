@@ -33,10 +33,16 @@ Page({
     })
   },
   onReachBottom () {
-    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    if (this.data.options.type === 'order') return
+    else if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
     else this.getData()
   },
   getTicket (e) {
+    if (this.data.options.type === 'order') {
+      app.su('useCoupon', this.data.couponList[e.currentTarget.dataset.index])
+      wx.navigateBack()
+      return
+    }
     let that = this
     app.wxrequest({
       url: app.getUrl().ticket,
@@ -63,7 +69,16 @@ Page({
   onLoad (options) {
     app.setBar(options.type || '领取优惠卷')
     app.getSelf(this)
-    this.getData()
+    if (options.type === 'order') {
+      this.setData({
+        options,
+        couponList: app.gs('setCoupon')
+      })
+    } else {
+      this.setData({
+        options
+      }, this.getData)
+    }
     // TODO: onLoad
   },
 

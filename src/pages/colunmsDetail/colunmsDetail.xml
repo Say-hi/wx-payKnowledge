@@ -8,7 +8,7 @@
     <view catchtap="zan" data-index="-1" data-id="{{ info.id }}" data-type="column" class="f32 br5 tac {{ info.is_like == 1 ? 'follow' : 'no-follow' }}">
       {{ info.is_like == 1 ? '- 取关专栏' : '+ 关注专栏' }}
     </view>
-    <view catchtap="giveTip" data-type="" data-id="{{ info.user_id }}" data-userid="{{ info.user_id }}" class="f32 mt20 tac no-follow br5 jwq icon-zhifufangshi">
+    <view catchtap="giveTip" data-type="qun" data-id="{{ info.id }}" data-userid="{{ info.user_id }}" class="f32 mt20 tac no-follow br5 jwq icon-zhifufangshi">
       打赏作者
     </view>
   </view>

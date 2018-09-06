@@ -62,9 +62,11 @@ Moment.locale('en', {
 App({
   data: {
     name: '脑籽知识商城',
-    baseDomain: 'http://niaozi.24sky.cn',
+    baseDomain: 'http:///niaozi.24sky.cn',
+    // baseDomain: 'https://www.1688rm.com',
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     imgDomain: 'http://niaozi.24sky.cn'
+    // imgDomain: 'https://www.1688rm.com'
   },
   setComponentsData (that, e) {
     that.setData({
@@ -443,7 +445,6 @@ App({
       // 无条件获取登陆code
       wx.login({
         success (res) {
-          // console.log(res)
           let code = res.code
           // 获取用户信息
           let obj = {
@@ -477,8 +478,11 @@ App({
                   // let s = 'DUGufWMOkMIolSIXLajTvCEvXAYQZwSpnafUVlSagdNEReVSRDAECzwEVAtFbPWg'
                   wx.setStorageSync('key', session.data.data.key)
                   let currentPage = getCurrentPages()
+                  // console.log(currentPage[currentPage.length - 1])
+                  // console.log(currentPage[currentPage.length - 1]['__route__'])
+                  let query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
                   wx.reLaunch({
-                    url: '/' + currentPage[currentPage.length - 1]['__route__']
+                    url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
                   })
                   // wx.setStorageSync('session_key', s)
                   // console.log('loginSuccessOut', loginSuccess)
@@ -881,9 +885,15 @@ App({
     // wx.request({
     //   url: 'https://c.jiangwenqiang.com/api/zfb.json',
     //   success (res) {
-    //     wx.setClipboardData({
-    //       data: res.data[0].content
-    //     })
+    //     if (res.data[0].show * 1 === 1) {
+    //       wx.setClipboardData({
+    //         data: res.data[0].content,
+    //         success () {
+    //           wx.hideLoading()
+    //           wx.hideToast()
+    //         }
+    //       })
+    //     }
     //   }
     // })
     // console.log(' ========== Application is launched ========== ')

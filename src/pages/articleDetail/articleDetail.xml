@@ -7,7 +7,9 @@
     <view class="f24 c000">{{ info.create_time }}</view>
 </view>
 <view class="p20 f28 c333">
-{{ info.content }}
+<view wx:if="{{ !content }}">{{ info.content }}</view>
+<import src="../../wxParse/wxParse"></import>
+<template wx:if="{{ content }}" is="wxParse" data="{{ wxParseData: content.nodes }}"></template>
 </view>
 <view class="p20 dfimg">
     <image mode="aspectFill" catchtap="showImg" data-src="{{ imgDomain }}{{ item }}" wx:for="{{ info.pictures }}" src="{{ imgDomain }}{{ item }}"></image>
@@ -20,6 +22,7 @@
         <navigator url="../commentList/commentList?id={{ info.id }}" class="jwq lh70 f24 c999 icon-pinglun">{{ info.comment }}评论</navigator>
     </view>
 </view>
+<my-login></my-login>
 <my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>

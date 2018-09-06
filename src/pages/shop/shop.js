@@ -10,7 +10,7 @@ Page({
     page: 0,
     imgDomain: app.data.imgDomain,
     testImg: app.data.testImg,
-    redbag: 'https://c.jiangwenqiang.com/workProject/payKnowledge/redbag_close.png',
+    redbag: '',
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
     tabArr: [
@@ -69,7 +69,7 @@ Page({
   redpack () {
     let that = this
     app.wxrequest({
-      url: app.getUrl(),
+      url: app.getUrl().redpack,
       data: {
         key: app.gs()
       },
@@ -84,9 +84,10 @@ Page({
     })
   },
   redbagChange () {
+    if (!this.data.info.redpack.id) return app.setToast(this, {content: '暂无红包可领'})
     this.setData({
       redBag: !this.data.redBag,
-      redbag: 'https://c.jiangwenqiang.com/workProject/payKnowledge/redbag_close.png',
+      redbag: this.data.imgDomain + this.data.info.redpack.picture,
       showOpen: false
     })
   },
@@ -96,8 +97,8 @@ Page({
     })
     setTimeout(() => {
       this.setData({
-        redbag: 'https://c.jiangwenqiang.com/workProject/payKnowledge/redbag_open.png'
-      })
+        redbag: this.data.imgDomain + this.data.info.redpack.picture_open
+      }, this.redpack)
     }, 1100)
   },
   shopIndex () {
@@ -109,7 +110,8 @@ Page({
         wx.hideLoading()
         if (res.data.code === 1) {
           that.setData({
-            info: res.data.data
+            info: res.data.data,
+            redbag: that.data.imgDomain + res.data.data.redpack.picture
           }, that.getGoods)
         } else {
           app.setToast(that, {content: res.data.msg})
@@ -162,6 +164,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.setData({
+      page: 0,
+      goodsList: []
+    }, this.shopIndex)
     // TODO: onPullDownRefresh
   }
 })

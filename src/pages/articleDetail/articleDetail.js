@@ -10,6 +10,13 @@ Page({
     imgDomain: app.data.imgDomain,
     testImg: app.data.testImg
   },
+  onShareAppMessage () {
+    let that = this
+    return {
+      title: '脑籽精品文章分享',
+      path: `/pages/articleDetail/articleDetail?id=${that.data.options.id}`
+    }
+  },
   showImg (e) {
     app.showImg(e)
   },
@@ -24,6 +31,7 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1) {
+          app.WP('content', 'html', res.data.data.content, that, 0)
           res.data.data.create_time = app.moment(res.data.data.create_time)
           that.setData({
             info: res.data.data
@@ -59,6 +67,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    console.log(options)
     app.setBar('文章详情')
     app.getSelf(this)
     this.setData({

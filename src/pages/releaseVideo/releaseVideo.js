@@ -57,6 +57,28 @@ Page({
       })
     }
   },
+  getUserVip () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().usergroup,
+      data: {
+        key: app.gs()
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          if (res.data.data.user.is_video <= 0) {
+            app.setToast(that, {content: '您的等级不可发布视频'}, 2000)
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1500)
+          }
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   imageOperation (e) {
     let that = this
     if (e.currentTarget.dataset.type === 'add') {
@@ -73,8 +95,8 @@ Page({
   },
   formSubmit (e) {
     if (!this.data.videoSrc.id) return app.setToast(this, {content: '请上传本地视频'})
-    if (!this.data.imageSrc.id) return app.setToast(this, {content: '请上传视频封面图'})
-    if (!e.detail.value.desc) return app.setToast(this, {content: '请输入描述信息'})
+    else if (!this.data.imageSrc.id) return app.setToast(this, {content: '请上传视频封面图'})
+    else if (!e.detail.value.desc) return app.setToast(this, {content: '请输入描述信息'})
     let that = this
     app.wxrequest({
       url: app.getUrl().operationvideo,
@@ -110,6 +132,7 @@ Page({
   onLoad () {
     app.setBar('发布视频')
     app.getSelf(this)
+    this.getUserVip()
     // TODO: onLoad
   },
 

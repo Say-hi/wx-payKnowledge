@@ -3,20 +3,25 @@
 </view>
 <view class="zw"></view>
 <view class="zw20"></view>
-<view class="p30 cop-item bd1" wx:for="123" wx:key="*9564">
-  <navigator url="../coProduction/coProduction" class="c-i-top">
-    <image mode="widthFix" src="{{ testImg }}"></image>
-    <view class="f28 c666 ell2">阿卡家四大行反馈乐尽哀生法兰克将撒旦教和南方</view>
+<view class="p30 cop-item bd1" wx:for="{{ answerArr }}" wx:key="*9564">
+  <navigator url="../coProduction/coProduction?id={{ item.id }}" class="c-i-top">
+    <image mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
+    <view class="f28 c666 ell2">{{ item.title }}</view>
   </navigator>
   <view class="f28 c999 c-i-t">
     <text>预约时间:</text>
-    <text>3241654</text>
+    <text>{{ item.create_time }}</text>
+  </view>
+  <view wx:if="{{ currentIndex != 0 }}" class="f28 c999 c-i-t">
+    <text>审核时间:</text>
+    <text>{{ item.update_time }}</text>
   </view>
   <view class="f28 c999 c-i-t">
     <text>预约审核状态:</text>
     <text class="{{ currentIndex == 0 ? 'check' : currentIndex == 1 ? 'access' : 'ng' }}">{{ currentIndex == 0 ? '审核中' : currentIndex == 1 ? '已通过' : '未通过' }}</text>
   </view>
 </view>
+<view hidden="{{ answerArr.length >= 1 }}" class="tac f28 c999 p20">暂无相关预约哦</view>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

@@ -9,8 +9,34 @@ Page({
   data: {
     orderList: [],
     currentIndex: 0,
-    typeArr: ['', 'WAITPAY', 'WAITSEND', 'WAITRECEIVE', 'FINISH'],
+    imgDomain: app.data.imgDomain,
+    typeArr: ['', '0', '1', '2', '3'],
+    typeArrT: ['待付款', '待发货', '待收货', '已收货', '已取消'],
     page: 0
+  },
+  orderremind (e) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().orderremind,
+      data: {
+        key: app.gs(),
+        order_id: e.currentTarget.dataset.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          wx.showToast({
+            title: '收货成功'
+          })
+          that.data.orderList.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            orderList: that.data.orderList
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   chooseTab (e) {
     this.setData({
@@ -26,22 +52,32 @@ Page({
       title: '模拟删除'
     })
   },
-  getOrderList (type = '') {
+  getOrderList (status = '') {
     let that = this
     app.wxrequest({
-      url: app.getUrl().orderList,
+      url: app.getUrl().orderindex,
       data: {
-        type,
-        P: ++this.data.page
+        key: app.gs(),
+        status,
+        page: ++this.data.page
       },
       success (res) {
         wx.hideLoading()
         wx.stopPullDownRefresh()
-        // console.log(res)
-        if (res.data.status === 200) {
+        if (res.data.code === 1) {
+          for (let v of res.data.data.data) {
+            if (v.goods.length > 0) {
+              v.goods_back = 0
+              v.num = 0
+              for (let s of v.goods) {
+                v.goods_back += s.number * s.market
+                v.num += s.number
+              }
+            }
+          }
           that.setData({
-            orderList: that.data.orderList.concat(res.data.data.list),
-            more: res.data.data.list.length < 10 ? 0 : 1
+            orderList: that.data.orderList.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
           })
         } else {
           app.setToast(that, {content: res.data.msg})
@@ -55,7 +91,7 @@ Page({
       url: app.getUrl().refundOrderList,
       data: {
         refund_status: that.data.currentIndex,
-        p: ++this.data.page
+        page: ++this.data.page
       },
       success (res) {
         wx.hideLoading()
@@ -75,14 +111,14 @@ Page({
   orderMsg (e) {
     let that = this
     app.wxrequest({
-      url: app.getUrl().orderMsg,
+      url: app.getUrl().orderremind,
       data: {
-        order_id: e.currentTarget.dataset.id,
-        pickup_id: e.currentTarget.dataset.pid
+        key: app.gs(),
+        order_id: e.currentTarget.dataset.id
       },
       success (res) {
         wx.hideLoading()
-        if (res.data.status === 200) {
+        if (res.data.code === 1) {
           app.setToast(that, {content: '已提醒商家发货'})
         } else {
           app.setToast(that, {content: res.data.msg})
@@ -98,24 +134,29 @@ Page({
       success (Mres) {
         if (Mres.confirm) {
           app.wxrequest({
-            url: app.getUrl().cancelOrder,
+            url: app.getUrl().ordercancel,
             data: {
+              key: app.gs(),
               order_id: e.currentTarget.dataset.id
             },
             success (res) {
               wx.hideLoading()
-              if (res.data.status * 1 === 1) {
+              if (res.data.code === 1) {
                 wx.showToast({
                   title: '取消成功',
                   mask: true
                 })
                 setTimeout(() => {
+                  that.data.orderList.splice(e.currentTarget.dataset.index, 1)
                   that.setData({
-                    orderList: [],
-                    page: 1
+                    orderList: that.data.orderList
                   })
-                  if (that.data.type !== '5') that.getOrderList(that.data.typeArr[that.data.currentIndex])
-                  else that.getreturnGoodsList()
+                  // that.setData({
+                  //   orderList: [],
+                  //   page: 1
+                  // })
+                  // if (that.data.type !== '5') that.getOrderList(that.data.typeArr[that.data.currentIndex])
+                  // else that.getreturnGoodsList()
                 }, 1400)
               } else {
                 app.setToast(that, {content: res.data.msg})

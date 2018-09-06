@@ -2,7 +2,7 @@
   <view class="cfff">
     <view class="jwq icon-qiandai"></view>
     <view>
-      <view class="user-account-number fw7">12312</view>
+      <view class="user-account-number fw7">{{ money }}</view>
       <view class="f22">当前余额</view>
     </view>
   </view>
@@ -10,8 +10,8 @@
 </view>
 <view class="u-a-operation tac lh90 f30">
   <view class="u-a-operation-out">
-    <navigator url="../userMoney/userMoney?type=充值" class="tac">充值</navigator>
-    <navigator url="../userMoney/userMoney?type=提现" class="tac">提现</navigator>
+    <navigator url="../userMoney/userMoney?type=充值&money={{ money }}" class="tac">充值</navigator>
+    <navigator url="../userMoney/userMoney?type=提现&money={{ money }}" class="tac">提现</navigator>
   </view>
 </view>
 
@@ -19,10 +19,10 @@
 <view class="score-detail-wrap">
   <view class="score-detail bd1" wx:for="{{ lists }}" wx:key="*4">
     <view>
-      <view class="f28 c333">{{ item.desc }}</view>
-      <view class="f22 c999">{{ item.change_data || '未知' }}</view>
+      <view class="f28 c333">{{ item.log }}</view>
+      <view class="f22 c999">{{ item.create_time || '未知' }}</view>
     </view>
-    <view class="f28" style="color: {{ item.user_money > 0 ? '#cd9b00' : '#666' }}">{{ item.user_money > 0 ? '+' : '' }}{{ item.user_money }}</view>
+    <view class="f28" style="color: {{ item.type == 1 ? '#cd9b00' : '#666' }}">{{ item.type == 1 ? '+' : '-' }}{{ item.amount }}</view>
   </view>
   <view class="tac f24 c999 p20" wx:if="{{ !lists.length }}">暂无您的相关信息</view>
 </view>

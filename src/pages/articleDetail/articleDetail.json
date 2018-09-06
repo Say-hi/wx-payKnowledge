@@ -1,7 +1,8 @@
 // Window configuration
 {
   "usingComponents": {
-    "my-tip": "../components/my-tip/my-tip"
+    "my-tip": "../components/my-tip/my-tip",
+    "my-login": "../components/my-login/my-login"
   },
   // 类型：HexColor；默认值：#000000
   // 类型：Boolean；默认值：false

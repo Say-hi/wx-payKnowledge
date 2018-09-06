@@ -4,19 +4,20 @@
           class="banner">
     <swiper-item  wx:for="1"
                   wx:key="*143">
-      <image catchtap="{{ index == 0 ? '': 'showImage' }}"
+      <image catchtap="showImage"
+             data-src="{{ imgDomain }}{{ info.picture }}"
              data-index="{{ index }}"
              mode="aspectFit"
              class="{{ type != 'kill' ? 'bofang-center' : '' }}"
              src="{{ imgDomain }}{{ info.picture }}"></image>
     </swiper-item>
   </swiper>
-  <view wx:if="{{ type === 'kill' }}"
+  <view wx:if="{{ info.seckill.id }}"
         class="kill pa">
     <view class="cfff k-left">
-      <view class="f44">￥{{ goodsInfo.shop_price }}</view>
+      <view class="f44">￥{{ info.seckill.price }}</view>
       <view class="kill-b-l">
-        <view class="f24">￥{{ goodsInfo.market_price }}</view>
+        <view class="f24">￥{{ info.price }}</view>
         <view class="iconfont f22 icon-miaosha1">
           秒杀商品
         </view>
@@ -26,13 +27,13 @@
       <view class="cfff content-time p10">
         <!--<view class="f24 tac">秒杀进行中</view>-->
         <view class="k-r-w">
-          <view class="f30 k-r-t">{{ goodsInfo.status == 1 ? '开始倒计时' : goodsInfo.status == 2 ? '结束倒计时' : '秒杀已结束' }}</view>
+          <view class="f30 k-r-t">{{ info.status == 1 ? '开始倒计时' : info.status == 2 ? '结束倒计时' : '秒杀已结束' }}</view>
           <view class="f20 content-times">
-            <view class="h br5">{{ goodsInfo.h }}</view>
+            <view class="h br5">{{ info.h }}</view>
             <view class="c000">:</view>
-            <view class="m br5">{{ goodsInfo.m }}</view>
+            <view class="m br5">{{ info.m }}</view>
             <view class="c000">:</view>
-            <view class="s br5">{{ goodsInfo.s }}</view>
+            <view class="s br5">{{ info.s }}</view>
           </view>
         </view>
       </view>
@@ -40,9 +41,11 @@
   </view>
 </view>
 <view class="f32 c000 p20">{{ info.goods_name }}</view>
-<view class="f36 goods-price p020">￥{{ info.seckill.price || info.price }} <text wx:if="{{ type !== 'kill' }}" class="f30 main-text-color">/件</text>　
-<!--<text wx:if="{{ type !== 'kill' }}" class="f30 c999 del-money">￥{{ info.price }}</text>-->
-<text wx:if="{{ info.seckill.price }}" class="f30 c999 del-money">￥{{ info.price }}</text>
+<view class="f36 goods-price p020">
+<!--￥{{ info.seckill.price || info.price }} <text wx:if="{{ type !== 'kill' }}" class="f30 main-text-color">/件</text>　-->
+<text wx:if="{{ !info.seckill.id }}" class="f30 c333">￥{{ info.price }}</text>
+<!--<text wx:if="{{ !info.seckill.id }}" class="f30 c999 del-money">￥{{ info.price }}</text>-->
+<!--<text wx:if="{{ info.seckill.price }}" class="f30 c999 del-money">￥{{ info.price }}</text>-->
 </view>
 <view class="f24 c999 sale p020 bd1">
   <view class="sale-left">
@@ -225,7 +228,7 @@
     </view>
     <view class="b-b-number p20">
       <view class="f30 c000">数量</view>
-      <view class="f24 c666" >库存:2132</view>
+      <view class="f24 c666" >库存:{{ info.seckill.stock || info.stock }}</view>
       <!--<view class="f24 c666" wx:if="{{ type == 'bulkP' && bulkpChoose >= 0  }}">库存:{{ nowStartArr[bulkpChoose].goods_num }}</view>-->
       <view class="choose-count">
         <view catchtap="chooseMenuNum" data-type="del" data-index="{{ index }}" class="del order-btn cfff">-</view>

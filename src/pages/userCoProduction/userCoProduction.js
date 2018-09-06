@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: 0,
+    answerArr: [],
+    imgDomain: app.data.imgDomain,
     currentIndex: 0,
     testImg: app.data.testImg,
     tabArr: [
@@ -17,8 +20,36 @@ Page({
   },
   tabChoose (e) {
     this.setData({
+      page: 0,
+      answerArr: [],
       currentIndex: e.currentTarget.dataset.index
+    }, this.getData)
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userworkshops,
+      data: {
+        key: app.gs(),
+        page: ++that.data.page,
+        status: that.data.currentIndex
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            answerArr: that.data.answerArr.concat(res.data.data.data),
+            more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
     })
+  },
+  onReachBottom () {
+    if (this.data.more) return app.setToast(this, {content: '别扯了，没有啦~~'})
+    else this.getAnswer()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -26,6 +57,7 @@ Page({
   onLoad () {
     app.setBar('预约生产')
     app.getSelf(this)
+    this.getData()
     // TODO: onLoad
   },
 
@@ -56,11 +88,13 @@ Page({
   onUnload () {
     // TODO: onUnload
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
-    // TODO: onPullDownRefresh
+    this.setData({
+      page: 0,
+      answerArr: []
+    }, this.getData)
   }
 })

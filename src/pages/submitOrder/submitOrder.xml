@@ -19,7 +19,7 @@
   <!--</view>-->
   <!--<view class="fuck-address-img"></view>-->
 <!--</view>-->
-<view catchtap="chooseAddress" class="address pr">
+<view catchtap="{{ options.type == 'second' ? '' : 'chooseAddress' }}" class="address pr">
   <image mode="widthFix" src="../../images/add_address.png"></image>
   <view wx:if="{{ addressInfo }}" class="address-s">
     <view class="a-s-t">
@@ -51,46 +51,63 @@
     <image mode="widthFix" class="shopImg" src="{{ shopImg }}"></image>
     <text>脑籽商城</text>
   </view>
-  <view wx:for="12" wx:key="*39" class="goods">
-    <image src="{{ testImg }}"></image>
+  <view wx:for="{{ order.cart.list || order.goods }}" wx:key="*39" class="goods">
+    <image src="{{ imgDomain }}{{ item.picture }}"></image>
     <view class="g-i">
-      <view class="f30 c333">阿斯顿发</view>
+      <view class="f30 c333">{{ item.goods_name }}</view>
       <view class="g-b">
         <view class="f30 c333">
-          <text class="f24">￥</text>25.00
+          <text class="f24">￥</text>{{ item.price }}
         </view>
-        <view class="f24 c999">×2</view>
+        <view class="f24 c999">×{{ item.number }}</view>
       </view>
     </view>
   </view>
   <view class="g-d bd1 lh80 f24">
     <view class="c333 fw7">送货费</view>
-    <view><text>￥</text>{{ sendMoney }}</view>
+    <view><text>￥</text>{{ order.freight }}</view>
   </view>
-  <navigator catchtap="setCoupon" url="../coupon/coupon?type=order&money={{ allMoney }}">
+  <view wx:if="{{ options.type != 'second'}}" catchtap="setCoupon" data-url="../coupon/coupon?type=order&money={{ order.cart.total }}">
     <view class="g-d bd1 lh80 f24">
       <view class="c333 fw7">选择优惠卷</view>
-      <view wx:if="{{ lostTime }}" class="f24 c999">
-        红包抵扣{{ info.coupon_price }}
-      </view>
-      <view wx:else class="arrow f24 c999">
-        {{ useCoupon ? '满' + useCoupon.coupon.condition  + '减' + useCoupon.coupon.money : '选择' }}
+      <!--<view wx:if="{{ lostTime }}" class="f24 c999">-->
+        <!--红包抵扣{{ info.coupon_price }}-->
+      <!--</view>-->
+      <view class="arrow f24 c999">
+        {{ useCoupon ? '满' + useCoupon.total  + '减' + useCoupon.amount : '选择优惠卷' }}
       </view>
     </view>
-  </navigator>
-  <view class="g-d bd1 lh80 f24">
+  </view>
+  <view wx:if="{{ options.type == 'second'}}">
+    <view class="g-d bd1 lh80 f24">
+      <view class="c333 fw7">优惠卷</view>
+      <!--<view wx:if="{{ lostTime }}" class="f24 c999">-->
+      <!--红包抵扣{{ info.coupon_price }}-->
+      <!--</view>-->
+      <view class="f24 c999">
+        {{ order.ticket_id > 0 ? '优惠金额' + order.ticket + '元' : '未使用优惠卷' }}
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{ options.type != 'second' }}" class="g-d bd1 lh80 f24">
     <view class="c333 fw7">积分抵扣</view>
     <view wx:if="{{ lostTime }}" class="fuck-score c999">抵扣{{ info.integral_money }}</view>
-    <view wx:else class="fuck-score {{ fuck_score ? '' : 'c999' }}"><view class="c333">可用<text class="main-text-color">{{ userInfo.pay_points }}</text>积分　</view><text>-￥</text>{{ userInfo.pay_points / 100 }}　<switch color="#ff4344" bindchange="fuckScore"></switch></view>
+    <view wx:else class="fuck-score {{ fuck_score ? '' : 'c999' }}"><view class="c333">可用<text class="main-text-color">{{ order.integral }}</text>积分　</view><text>-￥</text>{{ order.integral * order.integral_transform }}　<switch color="#ff4344" bindchange="fuckScore"></switch></view>
   </view>
-  <view class="g-d bd1 lh80 f24">
+  <view wx:if="{{ options.type == 'second' }}" class="g-d bd1 lh80 f24">
+    <view class="c333 fw7">积分抵扣</view>
+    <view wx:if="{{ order.integral > 0 }}" class="fuck-score c999">抵扣{{ order.integral * order.integral_transform }}元</view>
+    <view wx:else>未使用积分抵扣</view>
+    <!--<view wx:else class="fuck-score {{ fuck_score ? '' : 'c999' }}"><view class="c333">可用<text class="main-text-color">{{ order.integral }}</text>积分　</view><text>-￥</text>{{ order.integral * order.integral_transform }}　<switch color="#ff4344" bindchange="fuckScore"></switch></view>-->
+  </view>
+  <view wx:if="{{ options.type != 'second' }}" class="g-d bd1 lh80 f24">
     <view class="c333 fw7">买家留言:</view>
-    <input bindinput="inputValue" data-type="userNote" disabled="{{ info.user_note ? true : false }}" value="{{ info.user_note }}" placeholder="请输入您的留言"/>
+    <input bindinput="inputValue" data-type="pwd" disabled="{{ info.user_note ? true : false }}" value="{{ info.user_note || order.user_note }}" placeholder="请输入您的留言"/>
   </view>
   <view class="g-d">
     <view>　</view>
     <view>
-      <text class="f24">共{{ info.goods_list.length || allCount }}件商品　小计:<text class="f28 main-text-color">￥{{ info.total_amount ? info.total_amount * 1 + info.user_money * 1  : calculateMoney }}</text></text>
+      <text class="f24">共计:<text class="f28 main-text-color">￥{{ order.cart.total || order.goods_total }}</text></text>
     </view>
   </view>
 </view>
@@ -100,16 +117,16 @@
 <view class="m-bottom bd1">
   <!--<view class="iconfont icon-gouwuche cfff"><text class="f24 cfff">2</text></view>-->
   <view class="m-money tar p020">
-    <view class="f24 c333">实付: <text class="main-text-color f40">￥{{ info.total_amount ? info.total_amount * 1 + info.user_money * 1 : calculateMoney }}</text></view>
+    <view class="f24 c333">实付: <text class="main-text-color f40">￥{{ calculateMoney || order.amount }}</text></view>
     <!--<view class="f22" style="color: #f60;">满20元起送</view>-->
   </view>
   <!--<view catchtap="showLostTime" class="f36 cfff confirm tac">提交订单</view>-->
-  <view catchtap="choosePay" class="f36 cfff confirm tac">{{ lostTime ? '支付订单' : '提交订单' }}</view>
+  <view catchtap="choosePay" class="f36 cfff confirm tac">{{ options.type == 'second' ? '支付订单' : '提交订单' }}</view>
 </view>
 
 <view class="mask" wx:if="{{ showActionSheet }}">
   <view class="mask-sas f34 c333">
-    <view wx:for="{{ payBottom }}" wx:key="*89" catchtap="" class="tac bd1">
+    <view wx:for="{{ payBottom }}" wx:key="*89" catchtap="pay" data-index="{{ item.index }}" class="tac bd1">
       <image mode="widthFix" src="{{ item.img }}"></image>
       <view>{{ item.t }}</view>
     </view>
