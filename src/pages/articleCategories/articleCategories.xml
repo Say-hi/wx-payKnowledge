@@ -17,7 +17,7 @@
           <view class="h-a-operation">
             <view class="jwq lh70 f24 c999 icon-pinglun">{{ item.comment }}</view>
             <view catchtap="zan" data-index="{{ index }}" data-type="article" data-id="{{ item.id }}" class="jwq lh70 f24 c999 {{ item.is_like == 1 ? 'icon-xin1' : 'icon-xin' }}">{{ item.like }}</view>
-            <view catchtap="giveTip" data-id="{{ item.id }}" data-type="article" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral }}</view>
+            <view catchtap="giveTip" data-id="{{ item.id }}" data-type="article" data-userid="{{ item.user_id }}" data-index="{{ index }}" class="jwq lh70 f24 main-text-color icon-zhifufangshi">{{ item.integral >= 1000 ? item.integralK : item.integral }}</view>
           </view>
         </view>
       </navigator>

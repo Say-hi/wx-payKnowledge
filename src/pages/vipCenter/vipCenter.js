@@ -35,7 +35,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().help,
       data: {
-        id: 1
+        id: 17
       },
       success (res) {
         wx.hideLoading()
@@ -66,7 +66,7 @@ Page({
         wx.hideLoading()
         if (res.data.code === 1) {
           for (let [i, v] of res.data.data.group.entries()) {
-            console.log(i)
+            // console.log(i)
             if (v.id === res.data.data.user.group_id) {
               res.data.data.user['lv'] = v.name
               if (i < res.data.data.group.length - 1 && res.data.data.group[i * 1 + 1].is_apply < 1) {

@@ -237,11 +237,14 @@ Page({
   zan (e) {
     app.dianzan(e, 'answerArr', this)
   },
+  goOther (e) {
+    app.goOther(e)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    app.setBar('发现')
+    // app.setBar('发现')
     app.getSelf(this)
     this.getIndexData()
     /*eslint-disable*/

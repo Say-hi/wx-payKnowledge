@@ -13,7 +13,8 @@
     </view>
     <view data-id="{{ item.id }}" data-type="column" data-index="{{ index }}" catchtap="zan" class="f24 cfff follow}}">{{ item.is_like == 1 ? '关注作者' : '取消关注' }}</view>
   </view>
-  <navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow" url="../colunmsList/colunmsList">您还没有订阅哦，点击去订阅专栏</navigator>
+  <!--<navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow" url="../colunmsList/colunmsList">您还没有订阅哦，点击去订阅专栏</navigator>-->
+  <navigator class="tac f32 c333 lh80 follow" url="../colunmsList/colunmsList">您还没有订阅哦，点击去订阅专栏</navigator>
 </view>
 
 <view wx:if="{{ currentIndex == 1 }}" class="release">
@@ -24,6 +25,7 @@
     <!--<view catchtap="play" wx:if="{{ play }}" class="mask">-->
       <!--<video objectFit="fill" show-fullscreen-btn="{{ showFullscreenBtn }}" class="video-area" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" autoplay></video>-->
     <!--</view>-->
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseVideo/releaseVideo">发布我的视频</navigator>
     <navigator hover-class="none" url="../videoDetail/videoDetail?id={{ item.id }}" catchtap="goDetail" data-id="{{ item.id }}" wx:for="{{ lists }}" wx:key="*62" class="p30 video-item">
       <view data-index="{{ index }}" class="v-i-img pr">
         <image mode="widthFix" class="br10 poster" src="{{ imgDomain }}{{ item.picture }}"></image>
@@ -42,9 +44,11 @@
         </view>
       </view>
     </navigator>
-    <navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseVideo/releaseVideo">发布我的视频</navigator>
+    <!--<navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseVideo/releaseVideo">发布我的视频</navigator>-->
+    <!--<navigator class="tac f32 c333 lh80 follow go-release" url="../releaseVideo/releaseVideo">发布我的视频</navigator>-->
   </view>
   <view wx:if="{{ currentReleaseIndex == 1 }}" class="release-community">
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseCommunity/releaseCommunity">发布我的动态</navigator>
     <view catchtap='goDetail' data-type='dynamic' data-index='{{ index }}' data-url='../dynamicDetail/dynamicDetail?id={{ item.id }}' class="p20 comment-item bd1" wx:for="{{ lists }}" wx:key="*101">
       <image class="br user-img ci-left" mode="aspectFill" src="{{ item.avatar }}"></image>
       <view class="ci-right">
@@ -64,9 +68,10 @@
         </view>
       </view>
     </view>
-    <navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseCommunity/releaseCommunity">发布我的动态</navigator>
+    <!--<navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseCommunity/releaseCommunity">发布我的动态</navigator>-->
   </view>
   <view wx:if="{{ currentReleaseIndex == 2 }}" class="release-article">
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseArticle/releaseArticle">发布我的文章</navigator>
     <view class="ar-list-w">
       <navigator url="../articleDetail/articleDetail?id={{ item.id }}" wx:for="{{ lists }}" wx:key="*334" class="ar-list bd1 p200">
         <image mode="widthFix" class="br5 ar-l-l" src="{{ imgDomain }}{{ item.picture }}"></image>
@@ -83,9 +88,10 @@
         </view>
       </navigator>
     </view>
-    <navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseArticle/releaseArticle">发布我的文章</navigator>
+    <!--<navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseArticle/releaseArticle">发布我的文章</navigator>-->
   </view>
   <view wx:if="{{ currentReleaseIndex == 3 }}" class="release-question p20">
+    <navigator class="tac f32 c333 lh80 follow go-release" url="../releaseQuestion/releaseQuestion">发布我的提问</navigator>
     <view data-type='quesiton' catchtap='goDetail' data-index="{{ index }}" data-url="../quesitonDetail/quesitonDetail?id={{ item.id }}" class="h-a-content" wx:for="{{ lists }}" wx:key="*980">
       <view class="h-a-c-left br fw7 tac l36 f24">?</view>
       <view style="width: 100%;">
@@ -100,7 +106,7 @@
         </view>
       </view>
     </view>
-    <navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseQuestion/releaseQuestion">发布我的提问</navigator>
+    <!--<navigator hidden="{{ lists.length > 0 }}" class="tac f32 c333 lh80 follow go-release" url="../releaseQuestion/releaseQuestion">发布我的提问</navigator>-->
   </view>
 </view>
 <view wx:if="{{ currentIndex == 2 }}" class="colunms">

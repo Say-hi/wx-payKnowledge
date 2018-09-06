@@ -11,6 +11,7 @@
     </view>
   </navigator>
 </view>
+<view hidden="{{ list.length > 0 }}" class="tac f30 c999 p20">你还没有相关内容哦~~</view>
 <!--错误弹窗-->
 <import src="../template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

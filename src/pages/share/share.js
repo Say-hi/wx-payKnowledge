@@ -15,7 +15,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().help,
       data: {
-        id: 9,
+        id: 18,
         key: app.gs()
       },
       success (res) {

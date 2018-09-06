@@ -1,4 +1,4 @@
-<swiper autoplay
+<swiper wx:if="{{ info.advert.length > 0 }}" autoplay
         indicator-dots
         circular
         indicator-color="{{ indicatorColor }}"

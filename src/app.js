@@ -240,12 +240,14 @@ App({
     wx.uploadFile(s)
   },
   setNav () {
+    let that = this
     let navArr = this.gs('navArr')
     let currentPage = getCurrentPages()
     let currentPath = currentPage[currentPage.length - 1]['__route__'].replace('pages', '..')
     for (let v of navArr) {
       if (v.path === currentPath) {
         v['active'] = true
+        that.setBar(v.title)
         break
       }
     }
@@ -363,6 +365,11 @@ App({
       }
     })
   },
+  goOther (e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    })
+  },
   // 用户登陆
   wxlogin (loginSuccess, params) {
     // console.log('loginSuccess', loginSuccess)
@@ -478,9 +485,15 @@ App({
                   // let s = 'DUGufWMOkMIolSIXLajTvCEvXAYQZwSpnafUVlSagdNEReVSRDAECzwEVAtFbPWg'
                   wx.setStorageSync('key', session.data.data.key)
                   let currentPage = getCurrentPages()
-                  // console.log(currentPage[currentPage.length - 1])
-                  // console.log(currentPage[currentPage.length - 1]['__route__'])
-                  let query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
+                  let query = ''
+                  try {
+                    query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
+                  } catch (err) {
+                    let s = currentPage[currentPage.length - 1].options
+                    for (let i in s) {
+                      query += `${i}=${s[i]}&`
+                    }
+                  }
                   wx.reLaunch({
                     url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
                   })

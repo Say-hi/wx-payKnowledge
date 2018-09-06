@@ -96,7 +96,7 @@ Component({
       })
     },
     _showMask (newValue, oldValue, changePath) {
-      console.log(newValue)
+      // console.log(newValue)
       // let that = this
       if (!newValue) {
         this.setData({

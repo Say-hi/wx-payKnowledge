@@ -137,6 +137,14 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.code === 1) {
+          for (let v of res.data.data.data) {
+            if (v.integral >= 1000) {
+              v['integralK'] = Math.floor(v.integral / 1000) + 'K'
+            }
+            if (v.integral >= 1000000) {
+              v['integralK'] = Math.floor(v.integral / 1000000) + 'BW'
+            }
+          }
           that.setData({
             rightArr: that.data.rightArr.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
@@ -154,6 +162,8 @@ Page({
   ds (e) {
     let {index, integral} = e.detail
     this.data.rightArr[index].integral += (integral * 1)
+    if (this.data.rightArr[index].integral >= 1000) this.data.rightArr[index]['integralK'] = Math.floor(this.data.rightArr[index].integral / 1000) + 'K'
+    if (this.data.rightArr[index].integral >= 1000000) this.data.rightArr[index]['integralK'] = Math.floor(this.data.rightArr[index].integral / 1000000) + 'BW'
     this.setData({
       rightArr: this.data.rightArr
     })
@@ -165,7 +175,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    app.setBar('文章分类')
+    // app.setBar('文章分类')
     app.getSelf(this)
     this.setData({
       tabArr2: app.setNav()

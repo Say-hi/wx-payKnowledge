@@ -17,6 +17,26 @@ Page({
       play: !this.data.play
     })
   },
+  getUserInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().info,
+      data: {
+        key: app.gs(),
+        user_id: that.data.info.user_id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.code === 1) {
+          that.setData({
+            userInfo: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
+  },
   // random (array) {
   //   if (typeof array !== 'object' || array.length <= 0) return console.log('传入有效数组')
   //   return array.sort(() => {
@@ -76,7 +96,7 @@ Page({
           that.setData({
             commentArr: that.data.commentArr.concat(res.data.data.data),
             more: res.data.data.data.length < res.data.data.per_page ? 1 : 0
-          })
+          }, that.getUserInfo)
         } else {
           app.setToast(that, {content: res.data.msg})
         }
@@ -155,6 +175,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.setData({
+      page: 0,
+      commentArr: []
+    }, this.getComment)
     // TODO: onPullDownRefresh
   }
 })

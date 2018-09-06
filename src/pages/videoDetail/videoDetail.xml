@@ -7,6 +7,7 @@
     </view>
     <view class="p30 v-i-wrap">
       <view class="f28 video-text c333 fw7">{{ info.title }}</view>
+      <view class="f28 video-text c333 fw7">视频作者:{{ userInfo.username }}</view>
       <view class="f24 c999 video-bottom">
         <view>
           <text class="cfff video-time">{{ info.duration }}</text>

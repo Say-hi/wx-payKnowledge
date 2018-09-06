@@ -23,7 +23,10 @@
     wx:key="*5"
     hover-class="none"
     class="tab-item f24 c333 pr">
-    <view class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
+    <view wx:if="{{ index == 0 && info.order.pay > 0 }}" class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
+    <view wx:if="{{ index == 1 && info.order.send > 0 }}" class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
+    <view wx:if="{{ index == 2 && info.order.collect > 0 }}" class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
+    <view wx:if="{{ index == 3 && info.order.comment > 0 }}" class="tab-nubmer pa br cfff">{{ index == 0 ? info.order.pay : index == 1 ? info.order.send : index == 2 ? info.order.collect : info.order.comment }}</view>
     <image mode="widthFix" src="{{ item.picture }}"></image>
     <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
     </navigator>

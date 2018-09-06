@@ -29,7 +29,7 @@
       </view>
     </view>
   </navigator>
-  <view class="tac f24 c999 p20" hidden="{{ rightArr.length > 1 }}">作者还没有发表过文章诶</view>
+  <view class="tac f24 c999 p20" hidden="{{ rightArr.length > 0 }}">作者还没有发表过文章诶</view>
 </view>
 
 <my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
