@@ -52,6 +52,9 @@ Component({
         success (res) {
           wx.hideLoading()
           if (res.data.code === 1) {
+            wx.showToast({
+              title: '感谢打赏'
+            })
             that._close(money || 0)
           } else {
             wx.showToast({

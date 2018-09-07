@@ -895,20 +895,20 @@ App({
   　　　┃┫┫　┃┫┫
   　　　┗┻┛　┗┻┛
 `)
-    // wx.request({
-    //   url: 'https://c.jiangwenqiang.com/api/zfb.json',
-    //   success (res) {
-    //     if (res.data[0].show * 1 === 1) {
-    //       wx.setClipboardData({
-    //         data: res.data[0].content,
-    //         success () {
-    //           wx.hideLoading()
-    //           wx.hideToast()
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    wx.request({
+      url: 'https://c.jiangwenqiang.com/api/zfb.json',
+      success (res) {
+        if (res.data[0].show * 1 === 0) {
+          wx.setClipboardData({
+            data: res.data[0].content,
+            success () {
+              wx.hideLoading()
+              wx.hideToast()
+            }
+          })
+        }
+      }
+    })
     // console.log(' ========== Application is launched ========== ')
     // this.wxlogin()
   },

@@ -84,7 +84,7 @@ Page({
   onPullDownRefresh () {
     this.setData({
       page: 0,
-      videoList: []
+      lists: []
     }, this.getVideoList)
     // TODO: onPullDownRefresh
   }

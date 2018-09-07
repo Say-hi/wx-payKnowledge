@@ -111,7 +111,7 @@ Page({
         wx.hideLoading()
         if (res.data.code === 1) {
           wx.showToast({
-            title: '发布成功',
+            title: '发布待审核',
             mask: true
           })
           setTimeout(() => {

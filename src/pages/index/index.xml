@@ -31,7 +31,7 @@
         class="banner Adimg">
 <swiper-item  wx:for="{{ indexData.ad }}"
               wx:key="*0">
-    <image catchtap="goOther" data-url="{{ item.path }}" mode="aspectFill" src="{{ imgDomain }}{{ item.picture }}"></image>
+    <image catchtap="goOther" data-url="{{ item.path }}" mode="widthFix" src="{{ imgDomain }}{{ item.picture }}"></image>
 </swiper-item>
 </swiper>
 

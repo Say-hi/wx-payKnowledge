@@ -7,7 +7,8 @@
           <text>{{ item.username }}</text>
         </view>
 <!--0：回答；1：回复评论；2：关注专栏；3：点赞文章；4：点赞回答；5：点赞视频；6：点赞社群；6：评论文章；7：评论视频；8；评论社群；9：评论回答；10：打赏回答；11：打赏文章；12：打赏视频-->
-        <view class="f32 c333 ci-r-text"><text class="fw7">{{ item.type == 0 ? '回答了您的提问:' : item.type == 1 ? '回复了您:' : (item.type == 6 || item.type == 7 || item.type == 8 || item.type == 8) ? '点评:' : 'TA' }}　</text>{{ item.content }}</view>
+        <!--<view class="f32 c333 ci-r-text"><text class="fw7">{{ item.type == 0 ? '回答了您的提问:' : item.type == 1 ? '回复了您:' : (item.type == 6 || item.type == 7 || item.type == 8 || item.type == 8) ? '点评:' : 'TA' }}　</text>{{ item.content }}</view>-->
+        <view class="f32 c333 ci-r-text"><text class="fw7"></text>{{ item.content }}</view>
         <view class="f24 c333 ci-r-bottom" wx:if="{{ item.data.content || item.data.query }}">
           <!--<image wx:if="{{ index == 1 }}" src="{{ testImg }}"></image>-->
           <view hidden="{{ item.type != 4 && item.type != 0 }}" class="h-a-c-left br fw7 tac l36 f24">?</view>
